@@ -4,6 +4,8 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Status](https://img.shields.io/badge/status-beta-orange.svg) ![Tech](https://img.shields.io/badge/Powered%20by-Google%20Gemini-4285F4.svg)
 
+![LegalThink Screenshot](LegalThink_Screenshot_2026-02-13.jpg)
+
 ## 🏛 Über LegalThink
 
 LegalThink überträgt die Leistungsfähigkeit modernster Sprachmodelle (LLMs) wie Gemini 3 Pro auf den deutschen Kanzleialltag. Inspiriert von internationalen Legal-Tech-Vorreitern, aber **streng optimiert auf deutsches Recht**, bietet diese Open-Source-Lösung eine lokale, datenschutzbewusste Oberfläche für juristische Analysen.
