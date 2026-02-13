@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>LegalThink | Kanzlei-Intelligenz</title>
+    <!-- Added typography plugin for better markdown tables -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <!-- MAMMOTH.JS for Client-Side DOCX Conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    
+    <style>
+      :root {
+        /* Faster, snappier easing (0.3s range) */
+        --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        background-color: #f8fafc;
+        color: #1e293b;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      
+      h1, h2, h3, h4, .serif {
+        font-family: "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", "Droid Serif", Times, "Source Serif Pro", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; border: 2px solid #f8fafc; }
+
+      /* Utility to hide scrollbar but allow scrolling (Mobile Nav) */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+
+      /* PERFORMANCE OPTIMIZED ANIMATIONS (GPU ONLY) */
+      
+      .animate-enter {
+        animation: enter 0.35s var(--ease-out-expo) forwards;
+        opacity: 0;
+        /* translate3d forces GPU layer promotion */
+        transform: translate3d(0, 10px, 0); 
+        will-change: transform, opacity;
+      }
+      
+      .stagger-1 { animation-delay: 50ms; }
+      .stagger-2 { animation-delay: 100ms; }
+      .stagger-3 { animation-delay: 150ms; }
+      
+      @keyframes enter {
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      /* "Thinking" Wave Shimmer - Premium Silver Vertical - ULTRA WIDE VERSION */
+      @keyframes shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+
+      .shimmer {
+        display: inline-block;
+        /* Navy -> White/Silver -> Navy */
+        /* Stops significantly widened to 10%/90% to make the beam very broad */
+        background: linear-gradient(
+          90deg, 
+          #0f172a 10%, 
+          #e2e8f0 50%, 
+          #0f172a 90%
+        );
+        background-size: 200% 100%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: shimmer 3s linear infinite;
+        will-change: background-position;
+        font-weight: 800; /* Extra bold to show off the effect */
+      }
+      
+      /* Markdown Styles */
+      .prose { max-width: none; }
+      .prose h1 { font-size: 1.4em; font-weight: 700; margin-bottom: 0.8em; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.3em; margin-top: 0; }
+      .prose h2 { font-size: 1.2em; font-weight: 600; margin-bottom: 0.6em; margin-top: 1.5em; color: #334155; }
+      .prose h3 { font-size: 1.1em; font-weight: 600; margin-bottom: 0.4em; margin-top: 1.2em; color: #0f172a; }
+      .prose p { margin-bottom: 1em; line-height: 1.7; color: #334155; font-size: 0.95rem; }
+      .prose ul { list-style-type: disc; padding-left: 1.2em; margin-bottom: 1em; color: #475569; }
+      .prose li { margin-bottom: 0.4em; }
+      .prose strong { color: #0f172a; font-weight: 600; }
+      .prose table { border-collapse: collapse; margin-bottom: 1.5em; font-size: 0.85rem; }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"Iowan Old Style"', '"Apple Garamond"', '"Baskerville"', '"Times New Roman"', 'serif'],
+              sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+            },
+            colors: {
+              firm: {
+                navy: '#0f172a',    
+                slate: '#64748b',   
+                paper: '#ffffff',   
+                accent: '#0e7490',  
+                copper: '#b45309',  
+              }
+            },
+            boxShadow: {
+              'firm': '0 2px 8px -2px rgba(15, 23, 42, 0.08), 0 1px 4px -2px rgba(15, 23, 42, 0.04)',
+              'firm-lg': '0 12px 24px -6px rgba(15, 23, 42, 0.12), 0 4px 8px -4px rgba(15, 23, 42, 0.05)',
+              'dock': '0 20px 40px -10px rgba(15, 23, 42, 0.25)',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0",
+    "remark-gfm": "https://esm.sh/remark-gfm@^4.0.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "marked": "https://esm.sh/marked@11.1.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
