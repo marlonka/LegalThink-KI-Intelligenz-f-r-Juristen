@@ -1,3 +1,4 @@
+
 # LegalThink – KI-Intelligenz für Juristen ⚖️
 
 > **Vom 1x zum 10x Anwalt: Hochperformante KI-Vertragsanalyse und juristische Assistenz, maßgeschneidert für den deutschen Rechtsmarkt (BGB, DSGVO, UWG).**
@@ -8,7 +9,7 @@
 
 ## 🏛 Über LegalThink
 
-LegalThink überträgt die Leistungsfähigkeit modernster Sprachmodelle (LLMs) wie Gemini 3 Pro auf den deutschen Kanzleialltag. Inspiriert von internationalen Legal-Tech-Vorreitern, aber **streng optimiert auf deutsches Recht**, bietet diese Open-Source-Lösung eine lokale, datenschutzbewusste Oberfläche für juristische Analysen.
+LegalThink überträgt die Leistungsfähigkeit modernster Sprachmodelle (LLMs) auf den deutschen Kanzleialltag. Inspiriert von internationalen Legal-Tech-Vorreitern, aber **streng optimiert auf deutsches Recht**, bietet diese Open-Source-Lösung eine lokale, datenschutzbewusste Oberfläche für juristische Analysen.
 
 Es ist kein "Chatbot", sondern eine Suite spezialisierter Werkzeuge für Partner, Associates und Rechtsabteilungen.
 
@@ -57,7 +58,7 @@ Laden Sie Ihre eigenen Muster, AGBs oder "Corporate Wording" Richtlinien hoch. L
 
 LegalThink ist eine "Client-Side Application". Das bedeutet:
 1.  Der Code läuft in Ihrem Browser.
-2.  Daten werden **nur** zur Analyse an die Google Gemini API (Google Cloud) gesendet.
+2.  Daten werden **nur** zur Analyse an die Google Gemini API (Enterprise Grade) gesendet.
 3.  Es gibt keinen "LegalThink-Server", der Ihre Daten speichert.
 
 **⚠️ Warnung:**
@@ -65,29 +66,66 @@ Laden Sie **niemals** Dokumente mit ungeschwärzten personenbezogenen Daten (Nam
 
 ---
 
-## 💻 Installation (Für IT & Legal Engineers)
+## 💻 Installation (No-Code: Der einfache Weg)
 
-Sie benötigen keine IT-Abteilung, um dies zu testen. Alles, was Sie brauchen, ist ein Computer mit Node.js und einen API Key.
+Sie brauchen **keine IT-Kenntnisse** und müssen keine komplexen Befehle tippen. Wir nutzen **Google Antigravity**, eine intelligente Software, bei der eine KI ("Agent") die Installation für Sie übernimmt.
 
-### Voraussetzungen
-*   [Node.js](https://nodejs.org/) installiert.
-*   Einen **Google Gemini API Key** (erhältlich via Google AI Studio).
+### Schritt 1: Software laden
+1.  Laden Sie **Google Antigravity** herunter: [https://antigravity.google/download](https://antigravity.google/download)
+2.  Installieren und starten Sie das Programm.
 
-### Starten
+### Schritt 2: API Key besorgen
+Damit die KI juristisch arbeiten kann, benötigt sie einen Zugangsschlüssel.
+1.  Besuchen Sie [https://aistudio.google.com/api-keys](https://aistudio.google.com/api-keys).
+2.  Klicken Sie auf den blauen Button **"Create API Key"**.
+3.  Kopieren Sie den generierten Schlüssel (er beginnt mit `AIza...`).
+
+### Schritt 3: LegalThink installieren (In Antigravity)
+1.  Erstellen Sie auf Ihrem Computer einen leeren Ordner (z.B. "LegalThink").
+2.  Öffnen Sie diesen Ordner in Google Antigravity ("Open Folder").
+3.  Rechts sehen Sie ein Chat-Fenster ("Agent"). Kopieren Sie diesen Befehl dort hinein und drücken Sie Enter:
+    ```
+    /clone https://github.com/marlonka/LegalThink-KI-Intelligenz-f-r-Juristen .
+    ```
+    *(Wichtig: Der Punkt am Ende sorgt dafür, dass die Dateien direkt in Ihrem Ordner landen).*
+
+### Schritt 4: Schlüssel hinterlegen
+Wir müssen der App nun Ihren Schlüssel aus Schritt 2 geben. Das machen wir direkt im Editor, ohne komplizierte Windows-Einstellungen:
+1.  Klicken Sie in der linken Spalte (Dateiliste) mit der **rechten Maustaste** in den leeren Bereich.
+2.  Wählen Sie **"New File"** (Neue Datei).
+3.  Geben Sie der Datei exakt den Namen: `.env` (Punkt am Anfang nicht vergessen!).
+4.  Fügen Sie in diese Datei folgende Zeile ein:
+    ```text
+    API_KEY=Ihr-Kopierter-Schlüssel-Hier
+    ```
+5.  Speichern Sie die Datei (`Strg + S` oder `Cmd + S`).
+
+### Schritt 5: Starten
+Schreiben Sie nun einfach in den Chat rechts an die KI:
+> **"Bitte installiere alle Abhängigkeiten und starte die App."**
+
+Die KI führt nun alle technischen Schritte aus (`npm install`, `npm start`). Warten Sie kurz, bis sich LegalThink automatisch in Ihrem Browser öffnet (meist unter `http://localhost:1234`).
+
+---
+
+## 🤓 Installation (Für Entwickler / Manuell)
+
+Falls Sie Node.js bereits installiert haben und das Terminal bevorzugen:
+
 1.  Repository klonen:
     ```bash
-    git clone https://github.com/IhrUsername/LegalThink.git
-    cd LegalThink
+    git clone https://github.com/marlonka/LegalThink-KI-Intelligenz-f-r-Juristen.git
+    cd LegalThink-KI-Intelligenz-f-r-Juristen
     ```
 2.  Abhängigkeiten installieren:
     ```bash
     npm install
     ```
-3.  API Key setzen (Linux/Mac):
+3.  API Key setzen:
+    Erstellen Sie eine Datei `.env` im Hauptverzeichnis und fügen Sie ein:
     ```bash
-    export API_KEY="Ihr-Google-Gemini-Key-Hier"
+    API_KEY="Ihr-Google-Gemini-Key-Hier"
     ```
-    *(Windows Powershell: `$env:API_KEY="Ihr-Key-Hier"`)*
 4.  Anwendung starten:
     ```bash
     npm start

@@ -33,6 +33,7 @@ const getSearchInstruction = (context?: string) => {
   const base = `
   !!! RECHERCHE-ANWEISUNG (GROUNDING) !!!
   Die Google Suche ist AKTIV. Nutze sie, um Fakten zu verifizieren, statt zu halluzinieren.
+  WICHTIG: Füge KEINE Inline-Zitierungen wie [1], [2] oder [Quelle] in den Fließtext ein. Der Text muss flüssig lesbar sein ohne Unterbrechungen.
   `;
   
   if (context === 'DPIA') {
@@ -43,36 +44,6 @@ const getSearchInstruction = (context?: string) => {
       `;
   }
   return base + " Verifiziere alle Tatsachenbehauptungen.";
-};
-
-export const injectCitations = (text: string, metadata: GroundingMetadata | undefined): string => {
-    if (!metadata || !metadata.groundingSupports || !metadata.groundingChunks) {
-        return text;
-    }
-
-    const supports = metadata.groundingSupports;
-    const chunks = metadata.groundingChunks;
-    let newText = text;
-
-    const sortedSupports = [...supports].sort(
-        (a, b) => (b.segment.endIndex ?? 0) - (a.segment.endIndex ?? 0)
-    );
-
-    for (const support of sortedSupports) {
-        const endIndex = support.segment.endIndex;
-        if (endIndex === undefined || !support.groundingChunkIndices || support.groundingChunkIndices.length === 0) {
-            continue;
-        }
-
-        const citations = support.groundingChunkIndices.map(i => `${i + 1}`);
-        const citationString = ` [${citations.join(', ')}]`;
-
-        if (endIndex <= newText.length) {
-            newText = newText.slice(0, endIndex) + citationString + newText.slice(endIndex);
-        }
-    }
-
-    return newText;
 };
 
 /**
@@ -235,8 +206,8 @@ export const generateAnalysis = async <T = any>({
         throw new Error("Strukturierter Output fehlgeschlagen.");
       }
     } else {
-      const textWithCitations = injectCitations(text, groundingMetadata);
-      data = textWithCitations as unknown as T;
+      // Direct text return without citation injection
+      data = text as unknown as T;
     }
 
     return { data, usage, groundingMetadata };
