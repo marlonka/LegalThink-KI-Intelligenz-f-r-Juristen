@@ -10,7 +10,8 @@ import { generateAnalysis, fileToBase64, FileData } from '../services/geminiServ
 import { PROMPTS, MODEL_PRO } from '../constants';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Upload, FileText, XCircle, Info, Paperclip, FilePlus, Type, BookOpen, Copy, Check, RefreshCw, PlusCircle, ArrowLeftRight, FileCheck, ArrowDown, Fingerprint } from 'lucide-react';
+// Added missing FileCheck and ArrowLeftRight imports from lucide-react
+import { Upload, FileText, XCircle, Info, Paperclip, FilePlus, Type, BookOpen, Copy, Check, RefreshCw, PlusCircle, ArrowDown, Fingerprint, FileCheck, ArrowLeftRight } from 'lucide-react';
 import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
 import { copyRichText } from '../utils/clipboardUtils';
@@ -141,8 +142,7 @@ const DpiaGenerator: React.FC = () => {
 
   const handleCopy = async () => {
     if (!result) return;
-    const cleanResult = result.replace(/<br\s*\/?>/gi, '; ');
-    await copyRichText(cleanResult);
+    await copyRichText(result);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -158,7 +158,6 @@ const DpiaGenerator: React.FC = () => {
   );
 
   if (result) {
-    const cleanResult = result.replace(/<br\s*\/?>/gi, '; ');
     return (
       <div className="space-y-6 pb-32 animate-enter">
         <div className="flex items-center justify-between">
@@ -197,10 +196,33 @@ const DpiaGenerator: React.FC = () => {
                  ),
                  thead: ({node, ...props}) => <thead className="bg-slate-50" {...props} />,
                  th: ({node, ...props}) => <th className="p-3 text-xs font-bold text-firm-navy uppercase tracking-wider border-b border-slate-200" {...props} />,
-                 td: ({node, ...props}) => <td className="p-3 text-sm text-slate-600 border-b border-slate-100 whitespace-pre-wrap" {...props} />
+                 td: ({node, children, ...props}) => {
+                    // Utility to handle <br> tags within markdown cells safely
+                    const renderChildren = (child: any): any => {
+                      if (typeof child === 'string') {
+                        const parts = child.split(/<br\s*\/?>/gi);
+                        if (parts.length > 1) {
+                          return parts.map((part, i) => (
+                            <React.Fragment key={i}>
+                              {part}
+                              {i < parts.length - 1 && <br />}
+                            </React.Fragment>
+                          ));
+                        }
+                      }
+                      if (Array.isArray(child)) return child.map(renderChildren);
+                      return child;
+                    };
+
+                    return (
+                      <td className="p-3 text-sm text-slate-600 border-b border-slate-100 whitespace-pre-wrap" {...props}>
+                        {renderChildren(children)}
+                      </td>
+                    );
+                 }
                }}
              >
-               {cleanResult}
+               {result}
              </ReactMarkdown>
            </div>
            <GroundingSources metadata={metadata} />

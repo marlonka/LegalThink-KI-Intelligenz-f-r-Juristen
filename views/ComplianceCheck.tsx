@@ -150,7 +150,29 @@ const ComplianceCheck: React.FC = () => {
                  ),
                  thead: ({node, ...props}) => <thead className="bg-slate-50" {...props} />,
                  th: ({node, ...props}) => <th className="p-3 text-xs font-bold text-firm-navy uppercase tracking-wider border-b border-slate-200" {...props} />,
-                 td: ({node, ...props}) => <td className="p-3 text-sm text-slate-600 border-b border-slate-100 whitespace-pre-wrap" {...props} />
+                 td: ({node, children, ...props}) => {
+                    const renderChildren = (child: any): any => {
+                      if (typeof child === 'string') {
+                        const parts = child.split(/<br\s*\/?>/gi);
+                        if (parts.length > 1) {
+                          return parts.map((part, i) => (
+                            <React.Fragment key={i}>
+                              {part}
+                              {i < parts.length - 1 && <br />}
+                            </React.Fragment>
+                          ));
+                        }
+                      }
+                      if (Array.isArray(child)) return child.map(renderChildren);
+                      return child;
+                    };
+
+                    return (
+                      <td className="p-3 text-sm text-slate-600 border-b border-slate-100 whitespace-pre-wrap" {...props}>
+                        {renderChildren(children)}
+                      </td>
+                    );
+                 }
                }}
              >
                {result}
