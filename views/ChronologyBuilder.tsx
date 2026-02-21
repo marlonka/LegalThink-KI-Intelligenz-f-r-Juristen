@@ -241,7 +241,7 @@ const ChronologyBuilder: React.FC = () => {
                 />
               </div>
             ) : (
-              <div className="prose prose-sm md:prose-base max-w-none text-firm- font-medium prose-headings:font-serif prose-headings:text-firm-navy relative z-10 overflow-x-auto">
+              <div className="prose prose-sm md:prose-base max-w-none text-firm-navy font-medium prose-headings:font-serif prose-headings:text-firm-navy relative z-10 overflow-x-auto">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
@@ -299,7 +299,7 @@ const ChronologyBuilder: React.FC = () => {
               </button>
             ) : (
               <div className="bg-white border-0 rounded-3xl p-6 md:p-8 shadow-firm animate-enter relative">
-                <button onClick={() => setIsRefining(false)} className="absolute top-6 right-6 text-firm-slate/40 hover:text-firm- font-medium transition-colors"><X size={20} /></button>
+                <button onClick={() => setIsRefining(false)} className="absolute top-6 right-6 text-firm-slate/40 hover:text-firm-navy transition-colors"><X size={20} /></button>
                 <h3 className="text-xl font-bold text-firm-navy font-serif mb-6 flex items-center gap-3">
                   <div className="p-1.5 bg-firm-paper rounded-lg"><FilePlus size={18} className="text-neon-cyan" /></div>
                   Beweismittel nachreichen
@@ -318,7 +318,7 @@ const ChronologyBuilder: React.FC = () => {
                 </div>
                 <div className="mb-6">
                   <textarea
-                    className="w-full h-24 p-4 rounded-xl bg-firm-paper/50 border border-firm-slate/15 -medium leading-relaxed text-firm-navy focus:border-neon-cyan focus:ring-2 focus:ring-neon-cyan/20 outline-none resize-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all"
+                    className="w-full h-24 p-4 rounded-xl bg-firm-paper/50 border border-firm-slate/15 text-[14px] font-medium leading-relaxed text-firm-navy focus:border-neon-cyan focus:ring-2 focus:ring-neon-cyan/20 outline-none resize-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all"
                     placeholder='z.B.: "Zusätzliche Notiz am 12.04. bezüglich des Telefonats mit Herrn Schmidt..."'
                     value={refineText}
                     onChange={(e) => setRefineText(e.target.value)}
@@ -349,7 +349,7 @@ const ChronologyBuilder: React.FC = () => {
                   <div className="p-1.5 bg-firm-paper rounded-lg"><MessageCircleQuestion size={18} className="text-neon-lime" /></div>
                   Fragen an den Mandanten
                 </h3>
-                <div className="prose prose-sm md:prose-base text-firm- font-medium flex-1 overflow-y-auto mb-6 pr-2 relative z-10 font-serif">
+                <div className="prose prose-sm md:prose-base text-firm-navy font-medium flex-1 overflow-y-auto mb-6 pr-2 relative z-10">
                   <ReactMarkdown>{questions}</ReactMarkdown>
                 </div>
                 <Button variant="secondary" fullWidth onClick={() => copyRichText(questions)} className="!py-3 shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30 mt-auto relative z-10">

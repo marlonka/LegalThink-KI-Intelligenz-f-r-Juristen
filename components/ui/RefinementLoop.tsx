@@ -52,7 +52,7 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                 // COLLAPSED STATE: "Trigger Bar"
                 <button
                     onClick={() => setIsExpanded(true)}
-                    className="w-full group flex items-center justify-between bg-white hover:bg-firm-paper border border-firm-slate/15 hover:border-firm-accent/40 p-5 rounded-3xl shadow-sm hover:shadow-firm transition-all duration-300"
+                    className="w-full group flex items-center justify-between bg-white hover:bg-firm-paper border border-firm-slate/30 hover:border-firm-accent/50 p-5 rounded-3xl shadow-sm hover:shadow-firm transition-all duration-300"
                 >
                     <div className="flex items-center gap-4">
                         <div className="bg-firm-paper border border-firm-slate/5 text-firm-navy p-3 rounded-xl group-hover:bg-firm-navy group-hover:border-firm-navy group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow group-hover:scale-105">
@@ -73,9 +73,9 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                 </button>
             ) : (
                 // EXPANDED STATE: "Composer"
-                <div className="bg-white rounded-3xl border border-firm-slate/15 shadow-firm-lg overflow-hidden transition-all duration-300 relative">
+                <div className="bg-white rounded-3xl border border-firm-slate/25 shadow-firm overflow-hidden transition-all duration-300 relative">
 
-                    <div className="px-5 py-3 bg-firm-paper/50 border-b border-firm-slate/10 flex items-center justify-between">
+                    <div className="px-5 py-3 bg-firm-paper/80 border-b border-firm-slate/10 flex items-center justify-between">
                         <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar max-w-[85%]">
                             <span className="text-[10px] font-bold text-firm-slate/40 uppercase tracking-widest mr-2 shrink-0">Kontext:</span>
 
@@ -111,7 +111,7 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             placeholder={`Anweisung zur Überarbeitung von ${contextType}...`}
-                            className="w-full min-h-[100px] bg-transparent border-none focus:ring-0 text-[15px] font-serif text-firm-navy placeholder:text-firm-slate/30 resize-y p-0 leading-relaxed outline-none"
+                            className="w-full min-h-[100px] bg-transparent border-none focus:ring-0 text-[15px] font-serif text-firm-navy placeholder:text-firm-slate/50 resize-y p-0 leading-relaxed outline-none"
                             autoFocus
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter' && !e.shiftKey) {
@@ -196,7 +196,7 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
 
             {/* Disclaimer - Reduced visual noise */}
             {isExpanded && (
-                <p className="text-center text-[10px] text-slate-300 mt-3 font-medium">
+                <p className="text-center text-[10px] text-firm-slate/50 mt-3 font-medium">
                     Der neue Prompt wird Kontext und Historie berücksichtigen.
                 </p>
             )}

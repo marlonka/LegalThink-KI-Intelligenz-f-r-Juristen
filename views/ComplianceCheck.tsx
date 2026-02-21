@@ -154,7 +154,7 @@ const ComplianceCheck: React.FC = () => {
         <motion.div variants={itemVariants}>
           <Card className="border-0 shadow-firm-lg bg-white rounded-[2rem] p-6 md:p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-firm-paper/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-            <div className="prose prose-sm md:prose-base max-w-none text-firm- font-medium prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
+            <div className="prose prose-sm md:prose-base max-w-none text-firm-navy font-medium prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -215,7 +215,7 @@ const ComplianceCheck: React.FC = () => {
             </div>
             <div>
               <h3 className="text-2xl font-bold text-firm-navy font-serif">Compliance Check</h3>
-              <p className="text-[15px] text-firm- font-medium mt-1">
+              <p className="text-[15px] text-firm-navy font-medium mt-1 leading-relaxed">
                 Automatisierter Abgleich mit Art. 28 DSGVO (AVV) und Standardvertragsklauseln.
               </p>
             </div>
@@ -230,9 +230,9 @@ const ComplianceCheck: React.FC = () => {
             />
           </div>
 
-          <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto">
-            <strong className="block font-bold">ACHTUNG:</strong>
-            Bitte schwärzen Sie alle personenbezogenen Daten (z.B. reale Namen, Unterschriften, präzise Adressen) <strong className="font-bold underline">VOR</strong> dem Upload.
+          <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 md:p-5 flex flex-col md:flex-row gap-2 md:gap-4 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto font-medium">
+            <strong className="font-bold flex-shrink-0">ACHTUNG:</strong>
+            <span>Bitte schwärzen Sie alle personenbezogenen Daten (z.B. reale Namen, Unterschriften, präzise Adressen) <strong className="font-bold underline">VOR</strong> dem Upload.</span>
           </div>
         </Card>
       </motion.div>

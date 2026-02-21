@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/marlonka/LegalThink-KI-Intelligenz-f-r-Juristen/main/public/Legalthink-Logo.png" alt="LegalThink Logo" width="300"/>
   <h1>LegalThink – KI-Intelligenz für Juristen ⚖️</h1>
   <p><strong>Vom 1x zum 10x Anwalt: Hochperformante KI-Vertragsanalyse und juristische Assistenz, maßgeschneidert für den deutschen Rechtsmarkt (BGB, DSGVO, UWG).</strong></p>
 
