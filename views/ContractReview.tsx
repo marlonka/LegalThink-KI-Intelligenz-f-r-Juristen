@@ -623,14 +623,14 @@ const ContractReview: React.FC = () => {
                             <div className="flex bg-firm-paper p-1.5 rounded-xl border border-firm-slate/10 w-full shadow-inner">
                                 <button
                                     onClick={() => setContractPerspective('BUYER')}
-                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-firm-card shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-firm-card shadow-sm border border-firm-slate/5 text-firm-navy' : 'border border-transparent text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
                                 >
                                     {perspectiveLabels.BUYER.Icon && <perspectiveLabels.BUYER.Icon size={16} className={perspective === 'BUYER' ? 'text-firm-accent' : ''} />}
                                     {perspectiveLabels.BUYER.label}
                                 </button>
                                 <button
                                     onClick={() => setContractPerspective('SELLER')}
-                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-firm-card shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-firm-card shadow-sm border border-firm-slate/5 text-firm-navy' : 'border border-transparent text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
                                 >
                                     {perspectiveLabels.SELLER.Icon && <perspectiveLabels.SELLER.Icon size={16} className={perspective === 'SELLER' ? 'text-firm-accent' : ''} />}
                                     {perspectiveLabels.SELLER.label}
