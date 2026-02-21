@@ -505,7 +505,7 @@ const ContractReview: React.FC = () => {
                                 <h3 className="font-bold font-serif flex items-center gap-2 text-firm-navy text-base">
                                     <Mail size={18} className="text-firm-accent" /> Mandanten-Briefing (Entwurf)
                                 </h3>
-                                <button onClick={() => setShowClientEmail(false)} className="hover:bg-slate-100 p-1.5 rounded-full transition-colors text-slate-400">
+                                <button onClick={() => setShowClientEmail(false)} className="hover:bg-slate-100 dark:hover:bg-firm-paper p-1.5 rounded-full transition-colors text-slate-400">
                                     <X size={20} />
                                 </button>
                             </div>

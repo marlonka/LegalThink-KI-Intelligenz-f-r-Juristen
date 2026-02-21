@@ -172,7 +172,7 @@ const ComplianceCheck: React.FC = () => {
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren (für z.B. Word)'}
             </Button>
-            <button onClick={() => { setComplianceFile(null); setGlobalComplianceFile(null); setComplianceResult(null); setGlobalComplianceResult(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-navy bg-white border border-firm-slate/10 rounded-full hover:shadow-sm transition-all">
+            <button onClick={() => { setComplianceFile(null); setGlobalComplianceFile(null); setComplianceResult(null); setGlobalComplianceResult(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-navy bg-white dark:bg-firm-card border border-firm-slate/10 dark:border-firm-slate/20 rounded-full hover:shadow-sm dark:hover:bg-firm-card/80 transition-all">
               <X size={18} />
             </button>
           </div>
@@ -183,7 +183,7 @@ const ComplianceCheck: React.FC = () => {
 
           {/* LEFT PANE: DOCUMENT VIEWER */}
           <div className={`hidden lg:flex flex-col h-full bg-firm-paper border border-firm-slate/15 rounded-2xl shadow-inner overflow-hidden relative ${viewMode === 'SINGLE' ? '!hidden' : ''}`}>
-            <div className="bg-white border-b border-firm-slate/15 px-5 py-3 flex items-center justify-between z-10 shrink-0">
+            <div className="bg-white dark:bg-firm-card border-b border-firm-slate/15 px-5 py-3 flex items-center justify-between z-10 shrink-0">
               <span className="text-xs font-bold text-firm-slate uppercase tracking-wider">Originaldokument</span>
               <div className="flex items-center gap-3">
                 <span className="text-xs text-firm-slate/60 truncate max-w-[200px]">{file?.name}</span>

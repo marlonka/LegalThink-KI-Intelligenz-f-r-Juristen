@@ -182,7 +182,7 @@ const NdaTriage: React.FC = () => {
 
           {/* LEFT PANE: DOCUMENT VIEWER */}
           <div className={`hidden lg:flex flex-col h-full bg-firm-paper border border-firm-slate/15 rounded-2xl shadow-inner overflow-hidden relative ${viewMode === 'SINGLE' ? '!hidden' : ''}`}>
-            <div className="bg-white border-b border-firm-slate/15 px-5 py-3 flex items-center justify-between z-10 shrink-0">
+            <div className="bg-white dark:bg-firm-card border-b border-firm-slate/15 px-5 py-3 flex items-center justify-between z-10 shrink-0">
               <span className="text-xs font-bold text-firm-slate uppercase tracking-wider">Originaldokument</span>
               <div className="flex items-center gap-3">
                 <span className="text-xs text-firm-slate/60 truncate max-w-[200px]">{file?.name}</span>

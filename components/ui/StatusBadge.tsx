@@ -9,7 +9,7 @@ interface StatusBadgeProps {
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'md' }) => {
   let colorClass = "";
   let glowClass = "";
-  
+
   switch (status) {
     case 'GRÜN':
       colorClass = "bg-neon-lime/10 text-neon-lime border-neon-lime/20";
@@ -24,7 +24,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'md' }) => {
       glowClass = "shadow-[0_0_10px_rgba(239,68,68,0.3)]";
       break;
     default:
-      colorClass = "bg-gray-100 text-gray-600 border-gray-200";
+      colorClass = "bg-gray-100 dark:bg-firm-slate/10 text-gray-600 dark:text-firm-slate border-gray-200 dark:border-firm-slate/20";
   }
 
   const sizeClasses = {
