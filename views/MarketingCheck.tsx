@@ -142,7 +142,7 @@ const MarketingCheck: React.FC = () => {
     const isMediumRisk = data.abmahnRiskScore > 20 && data.abmahnRiskScore <= 60;
 
     return (
-      <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
+      <div className="space-y-8 pb-32 animate-enter max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-firm-slate/15 pb-6 gap-4">
           <div>
             <h2 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Wettbewerbsrechtliche Risikoanalyse</h2>
@@ -259,7 +259,7 @@ const MarketingCheck: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8 pb-32 animate-enter max-w-4xl mx-auto">
+    <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-8 mt-2">
@@ -321,7 +321,7 @@ const MarketingCheck: React.FC = () => {
 
       </Card>
 
-      <div className="bg-[#FCFAF4] border border-amber-400/30 rounded-2xl p-5 flex gap-4 text-[13px] text-amber-900 shadow-sm mx-auto max-w-4xl">
+      <div className="bg-[#FCFAF4] border border-amber-400/30 rounded-2xl p-5 flex gap-4 text-[13px] text-amber-900 shadow-sm mx-auto w-full">
         <Globe className="shrink-0 mt-0.5 text-amber-500" size={20} />
         <div>
           <strong className="block text-amber-800 font-bold mb-1 font-serif text-[15px]">Erforderliche Datengrundlage (Sorgfaltspflicht):</strong>

@@ -364,7 +364,7 @@ const ChronologyBuilder: React.FC = () => {
   }
 
   return (
-    <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-32 max-w-4xl mx-auto">
+    <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-32 max-w-5xl mx-auto">
       <motion.div variants={itemVariants}>
         <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />

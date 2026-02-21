@@ -136,7 +136,7 @@ const NdaTriage: React.FC = () => {
     const bgClass = isGreen ? 'bg-emerald-600' : isRed ? 'bg-red-600' : 'bg-amber-500';
 
     return (
-      <div className="space-y-8 animate-enter pb-32 max-w-4xl mx-auto">
+      <div className="space-y-8 animate-enter pb-32 max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-firm-slate/15 pb-6 gap-4">
           <h2 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Ersteinschätzung (NDA)</h2>
           <div className="flex gap-3">
@@ -203,7 +203,7 @@ const NdaTriage: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8 pb-32 animate-enter max-w-3xl mx-auto">
+    <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-8 mt-2">

@@ -38,7 +38,7 @@ const InnerApp: React.FC = () => {
 
   const containerClass = isWideMode
     ? "max-w-[95vw] xl:max-w-[1800px]"
-    : "max-w-3xl";
+    : "max-w-6xl";
 
   const renderView = () => {
     let viewContent;

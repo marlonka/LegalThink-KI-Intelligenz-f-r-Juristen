@@ -64,6 +64,7 @@ Laden Sie Ihre eigenen Muster, AGBs oder "Corporate Wording" Richtlinien hoch. L
 Diese Applikation wurde komplett überarbeitet, um ein **Premium-Gefühl** zu vermitteln. 
 - **Typografie:** `Playfair Display` für autoritäre Überschriften, kombiniert mit scharfem `Inter` für flüssig lesbare Datagrids.
 - **Aesthetic:** Tiefes "Firm Navy" auf "Firm Paper" Off-White mit edlen Gold-Akzenten. Starke asymmetrische Abstände und 1px-feine Rahmen ersetzen generische Drop-Shadows.
+- **Ultra-Wide Layout:** Die App nutzt das "max-w-6xl" Layout Konzept, um auch auf extrem weiten hochauflösenden Monitoren den Platz der Sub-Views perfomed auszunutzen.
 - **Choreografie:** Hochperformantes, durch `Framer Motion` orchestriertes React, das Layoutwechsel sanft animiert und taktile `spring`-Mechaniken auf Buttons und Karten anwendet.
 
 ---

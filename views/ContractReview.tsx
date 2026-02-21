@@ -499,7 +499,7 @@ const ContractReview: React.FC = () => {
                 {/* REDESIGNED CLIENT LETTER MODAL (FULLY TRANSPARENT OVERLAY, NO BLUR) */}
                 {showClientEmail && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent animate-enter pointer-events-none">
-                        <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] border border-slate-300 ring-4 ring-slate-900/5 pointer-events-auto">
+                        <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] border border-slate-300 ring-4 ring-slate-900/5 pointer-events-auto">
                             <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-white">
                                 <h3 className="font-bold font-serif flex items-center gap-2 text-firm-navy text-base">
                                     <Mail size={18} className="text-firm-accent" /> Mandanten-Briefing (Entwurf)
@@ -550,7 +550,7 @@ const ContractReview: React.FC = () => {
 
     // === UPLOAD VIEW ===
     return (
-        <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-6 pb-32 max-w-4xl mx-auto">
+        <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-6 pb-32 max-w-5xl mx-auto">
             <motion.div variants={itemVariants}>
                 <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
