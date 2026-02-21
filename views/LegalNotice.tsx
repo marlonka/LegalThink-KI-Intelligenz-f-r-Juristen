@@ -13,40 +13,40 @@ const LegalNotice: React.FC = () => {
       </div>
 
       <Card>
-         <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+        <div className="flex items-center gap-3 mb-6 border-b border-firm-slate/15 pb-4">
           <div className="p-2 bg-[#05050A] rounded-lg text-white dark:bg-firm-card dark:text-firm-navy">
             <Bot size={24} />
           </div>
           <h3 className="text-xl font-bold text-firm-navy font-serif">EU AI Act (KI-Verordnung)</h3>
         </div>
-        <div className="prose prose-sm max-w-none text-slate-700 space-y-6">
-           <section>
+        <div className="prose prose-sm max-w-none text-firm-navy/80 space-y-6">
+          <section>
             <h4 className="font-bold text-firm-navy text-base">Transparenzhinweis gemäß Art. 50</h4>
             <p>
-              Diese Anwendung stellt eine Schnittstelle zu einem <strong>Künstlichen Intelligenzsystem</strong> (General Purpose AI Model: Google Gemini) dar. 
-              Alle ausgegebenen Inhalte (Texte, Bewertungen, Tabellen) sind künstlich generiert. 
+              Diese Anwendung stellt eine Schnittstelle zu einem <strong>Künstlichen Intelligenzsystem</strong> (General Purpose AI Model: Google Gemini) dar.
+              Alle ausgegebenen Inhalte (Texte, Bewertungen, Tabellen) sind künstlich generiert.
             </p>
-            <p className="bg-amber-50 p-3 rounded border border-amber-200 text-xs">
-              Die KI-Ausgaben können Fehler enthalten ("Halluzinationen"), voreingenommen sein oder aktuelle Rechtsprechung ignorieren. 
+            <p className="bg-amber-50 dark:bg-amber-500/10 p-3 rounded border border-amber-200 dark:border-amber-500/20 text-xs dark:text-amber-100">
+              Die KI-Ausgaben können Fehler enthalten ("Halluzinationen"), voreingenommen sein oder aktuelle Rechtsprechung ignorieren.
               Eine menschliche Überprüfung ist zwingend erforderlich.
             </p>
-           </section>
+          </section>
         </div>
       </Card>
 
       <Card>
-        <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+        <div className="flex items-center gap-3 mb-6 border-b border-firm-slate/15 pb-4">
           <div className="p-2 bg-blue-600 rounded-lg text-white">
             <Lock size={24} />
           </div>
           <h3 className="text-xl font-bold text-firm-navy font-serif">Datenschutz (DSGVO)</h3>
         </div>
 
-        <div className="prose prose-sm max-w-none text-slate-700 space-y-6">
+        <div className="prose prose-sm max-w-none text-firm-navy/80 space-y-6">
           <section>
             <h4 className="font-bold text-firm-navy text-base text-red-600">WARNUNG: Serverstandort & Drittlandtransfer</h4>
             <p>
-              LegalThink ist ein Open-Source-Client für die Google Gemini API. Standardmäßig erfolgt die Datenverarbeitung über globale Endpunkte von Google. 
+              LegalThink ist ein Open-Source-Client für die Google Gemini API. Standardmäßig erfolgt die Datenverarbeitung über globale Endpunkte von Google.
               <strong>Es kann nicht ausgeschlossen werden, dass Daten auf Servern in den USA (Drittland) verarbeitet werden.</strong>
             </p>
           </section>
@@ -62,14 +62,14 @@ const LegalNotice: React.FC = () => {
       </Card>
 
       <Card>
-        <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+        <div className="flex items-center gap-3 mb-6 border-b border-firm-slate/15 pb-4">
           <div className="p-2 bg-[#05050A] rounded-lg text-white dark:bg-firm-card dark:text-firm-navy">
             <Github size={24} />
           </div>
           <h3 className="text-xl font-bold text-firm-navy font-serif">Lizenz & Haftung (MIT / BGB)</h3>
         </div>
 
-        <div className="prose prose-sm max-w-none text-slate-700 space-y-6">
+        <div className="prose prose-sm max-w-none text-firm-navy/80 space-y-6">
           <section>
             <h4 className="font-bold text-firm-navy text-base">Haftungsausschluss nach deutschem Recht</h4>
             <p>
@@ -81,19 +81,19 @@ const LegalNotice: React.FC = () => {
       </Card>
 
       <Card>
-        <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+        <div className="flex items-center gap-3 mb-6 border-b border-firm-slate/15 pb-4">
           <div className="p-2 bg-slate-700 rounded-lg text-white">
             <Code2 size={24} />
           </div>
           <h3 className="text-xl font-bold text-firm-navy font-serif">Open Source Attribution</h3>
         </div>
 
-        <div className="prose prose-sm max-w-none text-slate-700 space-y-6">
+        <div className="prose prose-sm max-w-none text-firm-navy/80 space-y-6">
           <section>
-            <p>
+            <p className="text-firm-navy/90">
               LegalThink beinhaltet Logik und Prompt-Strukturen, die von <strong>Anthropic</strong> entwickelt und unter der Apache License 2.0 veröffentlicht wurden.
             </p>
-            <div className="bg-slate-50 p-4 rounded border border-slate-200 text-xs font-mono overflow-x-auto">
+            <div className="bg-slate-50 dark:bg-firm-card p-4 rounded border border-slate-200 dark:border-firm-border/40 text-xs font-mono overflow-x-auto text-firm-navy/80">
               <p className="font-bold mb-2">Original Work: Legal Productivity Plugin</p>
               <p className="mb-2">Copyright 2024 Anthropic, PBC.</p>
               <p>

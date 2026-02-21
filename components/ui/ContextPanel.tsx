@@ -82,7 +82,7 @@ const ContextPanel: React.FC = () => {
         <div className="border-t border-firm-slate/10 pt-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className={`p-2 rounded-xl transition-colors ${state.useSearch ? "bg-[#FFF8E7] text-firm-accent border border-firm-accent/20" : "bg-firm-paper text-firm-slate/40 border border-firm-slate/5"}`}>
+              <div className={`p-2 rounded-xl transition-colors ${state.useSearch ? "bg-[#FFF8E7] dark:bg-firm-accent/20 text-firm-accent dark:text-firm-accent border border-firm-accent/20 dark:border-firm-accent/30" : "bg-firm-paper text-firm-slate/40 border border-firm-slate/5"}`}>
                 <Search size={20} strokeWidth={1.5} />
               </div>
               <div>
@@ -104,7 +104,7 @@ const ContextPanel: React.FC = () => {
           </div>
 
           {state.useSearch && (
-            <div className="mt-5 flex items-start gap-3 bg-[#FCF5F5] border border-red-500/10 p-4 rounded-xl text-red-800/90 text-[13px] shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] animate-enter">
+            <div className="mt-5 flex items-start gap-3 bg-[#FCF5F5] dark:bg-red-500/10 border border-red-500/10 dark:border-red-500/20 p-4 rounded-xl text-red-800/90 dark:text-red-200 text-[13px] shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] animate-enter">
               <ShieldAlert size={16} className="shrink-0 mt-0.5" />
               <p className="leading-relaxed">
                 <strong className="font-bold">Privacy Hinweis:</strong> Bei aktiver Suche werden Suchanfragen (nicht das Dokument selbst) an Google gesendet.

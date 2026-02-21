@@ -210,7 +210,7 @@ const ComplianceCheck: React.FC = () => {
 
           {/* RIGHT PANE: ANALYSIS RESULTS */}
           <motion.div variants={itemVariants} className={`flex flex-col h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-firm-slate/20 pb-48 ${viewMode === 'SINGLE' ? 'max-w-4xl mx-auto w-full' : ''}`}>
-            <div className="bg-[#FCFAF4] border border-amber-400/30 rounded-[1.5rem] p-5 flex items-start gap-4 text-[13px] text-amber-900 shadow-sm mb-4 shrink-0">
+            <div className="bg-[#FCFAF4] dark:bg-amber-500/10 border border-amber-400/30 dark:border-amber-500/20 rounded-[1.5rem] p-5 flex items-start gap-4 text-[13px] text-amber-900 dark:text-amber-100 shadow-sm mb-4 shrink-0">
               <Info size={18} className="shrink-0 mt-0.5 text-amber-500" />
               <p className="leading-relaxed opacity-90">
                 <strong className="font-bold text-amber-800">Hinweis zur KI-Nutzung:</strong> Dies ist ein technischer Abgleich mittels generativer KI.
@@ -312,7 +312,7 @@ const ComplianceCheck: React.FC = () => {
             )}
           </div>
 
-          <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 md:p-5 flex flex-col md:flex-row gap-2 md:gap-4 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto font-medium">
+          <div className="bg-[#FCF5F5] dark:bg-red-500/10 border border-red-500/10 dark:border-red-500/20 rounded-xl p-4 md:p-5 flex flex-col md:flex-row gap-2 md:gap-4 text-sm text-red-800/90 dark:text-red-200 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto font-medium">
             <strong className="font-bold flex-shrink-0">ACHTUNG:</strong>
             <span>Bitte schwärzen Sie alle personenbezogenen Daten (z.B. reale Namen, Unterschriften, präzise Adressen) <strong className="font-bold underline">VOR</strong> dem Upload.</span>
           </div>

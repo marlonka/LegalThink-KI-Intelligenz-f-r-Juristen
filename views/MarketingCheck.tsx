@@ -211,7 +211,7 @@ const MarketingCheck: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <p className="text-[10px] uppercase font-bold text-red-500/70 mb-2 tracking-widest flex items-center gap-1.5"><AlertOctagon size={12} /> Rechtliche Beanstandung</p>
-                      <div className="bg-[#FCF5F5] p-4 rounded-xl border border-red-500/10 text-firm-navy text-[14px] font-medium italic mb-4">
+                      <div className="bg-[#FCF5F5] dark:bg-red-500/10 p-4 rounded-xl border border-red-500/10 text-firm-navy dark:text-red-100 text-[14px] font-medium italic mb-4">
                         "{issue.textSnippet}"
                       </div>
                       <p className="text-[13px] text-firm-navy font-medium leading-relaxed">
@@ -220,7 +220,7 @@ const MarketingCheck: React.FC = () => {
                     </div>
                     <div className="border-t md:border-t-0 md:border-l border-firm-slate/10 pt-6 md:pt-0 md:pl-8">
                       <p className="text-[10px] uppercase font-bold text-emerald-600/70 mb-2 tracking-widest flex items-center gap-1.5"><Check size={12} /> Rechtskonformer Alternativvorschlag</p>
-                      <div className="bg-[#F4FCF7] p-4 rounded-xl border border-emerald-500/20 text-firm-navy text-[14px] font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
+                      <div className="bg-[#F4FCF7] dark:bg-emerald-500/10 p-4 rounded-xl border border-emerald-500/20 text-firm-navy dark:text-emerald-100 text-[14px] font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
                         "{issue.safeAlternative}"
                       </div>
                       <button
@@ -335,10 +335,10 @@ const MarketingCheck: React.FC = () => {
 
       </Card>
 
-      <div className="bg-[#FCFAF4] border border-amber-400/30 rounded-2xl p-5 flex gap-4 text-[13px] text-amber-900 shadow-sm mx-auto w-full">
+      <div className="bg-[#FCFAF4] dark:bg-amber-500/10 border border-amber-400/30 rounded-2xl p-5 flex gap-4 text-[13px] text-amber-900 dark:text-amber-100 shadow-sm mx-auto w-full">
         <Globe className="shrink-0 mt-0.5 text-amber-500" size={20} />
         <div>
-          <strong className="block text-amber-800 font-bold mb-1 font-serif text-[15px]">Erforderliche Datengrundlage (Sorgfaltspflicht):</strong>
+          <strong className="block text-amber-800 dark:text-amber-400 font-bold mb-1 font-serif text-[15px]">Erforderliche Datengrundlage (Sorgfaltspflicht):</strong>
           <p className="leading-relaxed opacity-90">
             Für die Prüfung von Faktenbehauptungen ist der Zugriff auf externe Echtzeit-Daten zwingend.
             <strong className="font-bold"> Google Search Grounding</strong> wurde für diesen Vorgang automatisch aktiviert.
