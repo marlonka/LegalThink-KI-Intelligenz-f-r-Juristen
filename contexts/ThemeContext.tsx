@@ -20,11 +20,22 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeState>(() => {
-    const saved = localStorage.getItem('legalthink-theme');
-    return saved ? JSON.parse(saved) : defaultState;
+    try {
+      const saved = localStorage.getItem('legalthink-theme');
+      if (saved) return JSON.parse(saved) as ThemeState;
+    } catch (e) {
+      console.warn("Failed to parse theme from localStorage", e);
+    }
+    return defaultState;
   });
 
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    if (theme.mode === 'dark' || theme.mode === 'midnight' || theme.mode === 'obsidian') return true;
+    if (theme.mode === 'system' && typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
 
   // Apply theme to document
   useEffect(() => {
@@ -39,7 +50,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
 
     const appliedTheme = theme.mode === 'system' ? (systemDark ? 'dark' : 'light') : theme.mode;
-    
+
     if (appliedTheme === 'dark') {
       root.classList.add('dark');
       setIsDark(true);

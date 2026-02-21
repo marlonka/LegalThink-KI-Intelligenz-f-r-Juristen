@@ -6,6 +6,7 @@ import Loader from '../components/ui/Loader';
 import ContextPanel from '../components/ui/ContextPanel';
 import FileUploader from '../components/ui/FileUploader';
 import GroundingSources from '../components/ui/GroundingSources';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import { generateAnalysis, fileToBase64, FileData } from '../services/geminiService';
 import { PROMPTS, MODEL_PRO } from '../constants';
 import ReactMarkdown from 'react-markdown';
@@ -331,6 +332,18 @@ const DpiaGenerator: React.FC = () => {
             onFileChange={handleFileChange}
             onRemove={removeDpiaFile}
           />
+          {/* DEMO BUTTON */}
+          {files.length === 0 && !textInput && (
+            <DemoLoadButton
+              demoFile={{ path: '/test-dummies/05_DSFA_Projekt_Employee_Monitoring.md', name: 'DSFA_Projekt_Employee_Monitoring.md' }}
+              onLoad={async (file) => {
+                const text = await file.text();
+                setDpiaTextInput(text);
+                setDpiaContext("Wir wollen dieses Tool unbedingt einführen. Gibt es harte Blocker, die wir vorlegen müssen?");
+              }}
+              label="Muster-Projekt (Mitarbeiterüberwachung) laden"
+            />
+          )}
         </div>
 
         <div className="mt-8 border-t border-firm-slate/10 pt-8">

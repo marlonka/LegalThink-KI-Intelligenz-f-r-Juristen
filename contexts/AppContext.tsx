@@ -4,49 +4,50 @@ import { AppState, ContractAnalysisResponse, NdaTriageResponse, RiskAssessmentRe
 
 interface AppContextType {
   state: AppState;
+  toggleDemoMode: (enable: boolean) => void;
   setPlaybookFile: (file: File | null) => void;
   setThinking: (thinking: boolean) => void;
   // Context / Search
   addReferenceUrl: (url: string) => void;
   removeReferenceUrl: (url: string) => void;
   toggleSearch: (enable: boolean) => void;
-  
+
   setContractFile: (file: File | null) => void;
-  setContractPerspective: (perspective: 'BUYER' | 'SELLER' | 'NEUTRAL') => void; 
+  setContractPerspective: (perspective: 'BUYER' | 'SELLER' | 'NEUTRAL') => void;
   setContractAnalysis: (data: ContractAnalysisResponse | null, metadata?: GroundingMetadata) => void;
-  
+
   // Comparison
   setComparisonFiles: (original: File | null, newFile: File | null) => void;
   setComparisonAnalysis: (data: ComparisonResponse | null, metadata?: GroundingMetadata) => void;
 
   // NDA
-  setNdaFile: (file: File | null) => void; 
+  setNdaFile: (file: File | null) => void;
   setNdaText: (text: string) => void;
   setNdaAnalysis: (data: NdaTriageResponse | null, metadata?: GroundingMetadata) => void;
-  
+
   setComplianceFile: (file: File | null) => void;
   setComplianceResult: (result: string | null, metadata?: GroundingMetadata) => void;
-  
+
   setRiskText: (text: string) => void;
   setRiskDisputeValue: (value: string) => void;
   setRiskAnalysis: (data: RiskAssessmentResponse | null, metadata?: GroundingMetadata) => void;
-  
+
   // DPIA Setters
   setDpiaMode: (mode: 'CREATE' | 'UPDATE') => void;
   addDpiaFile: (file: File) => void;
   removeDpiaFile: (index: number) => void;
-  setDpiaTextInput: (text: string) => void; 
+  setDpiaTextInput: (text: string) => void;
   setDpiaContext: (text: string) => void;
   setDpiaAnalysis: (result: string | null, metadata?: GroundingMetadata) => void;
-  
+
   // Chronology Setters
   addChronologyFile: (file: File) => void;
   removeChronologyFile: (index: number) => void;
-  setChronologyTextInput: (text: string) => void; 
+  setChronologyTextInput: (text: string) => void;
   setChronologyContext: (text: string) => void;
   setChronologyResult: (result: string | null, metadata?: GroundingMetadata) => void;
-  setChronologyQuestions: (questions: string | null) => void; 
-  
+  setChronologyQuestions: (questions: string | null) => void;
+
   // NEW: Marketing Check Setters
   setMarketingFile: (file: File | null) => void;
   setMarketingText: (text: string) => void;
@@ -55,6 +56,7 @@ interface AppContextType {
 }
 
 const initialState: AppState = {
+  isDemoMode: false,
   playbookFile: null,
   isThinking: false,
   referenceUrls: [],
@@ -65,15 +67,18 @@ const initialState: AppState = {
   ndaTriage: { file: null, text: '', analysis: null, groundingMetadata: null },
   compliance: { file: null, result: null, groundingMetadata: null },
   dpia: { mode: 'CREATE', files: [], textInput: '', context: '', analysis: null, groundingMetadata: null },
-  chronology: { files: [], textInput: '', context: '', result: null, questions: null, groundingMetadata: null }, 
+  chronology: { files: [], textInput: '', context: '', result: null, questions: null, groundingMetadata: null },
   riskAssessment: { text: '', disputeValue: '', analysis: null, groundingMetadata: null },
-  marketing: { file: null, text: '', targetAudience: '', analysis: null, groundingMetadata: null }, 
+  marketing: { file: null, text: '', targetAudience: '', analysis: null, groundingMetadata: null },
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, setState] = useState<AppState>(initialState);
+
+  const toggleDemoMode = (enable: boolean) =>
+    setState(prev => ({ ...prev, isDemoMode: enable }));
 
   const setPlaybookFile = (file: File | null) =>
     setState(prev => ({ ...prev, playbookFile: file }));
@@ -82,22 +87,22 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setState(prev => ({ ...prev, isThinking: thinking }));
 
   // New Context Logic
-  const addReferenceUrl = (url: string) => 
+  const addReferenceUrl = (url: string) =>
     setState(prev => ({ ...prev, referenceUrls: [...prev.referenceUrls, url] }));
-  
-  const removeReferenceUrl = (url: string) => 
+
+  const removeReferenceUrl = (url: string) =>
     setState(prev => ({ ...prev, referenceUrls: prev.referenceUrls.filter(u => u !== url) }));
-  
-  const toggleSearch = (enable: boolean) => 
+
+  const toggleSearch = (enable: boolean) =>
     setState(prev => ({ ...prev, useSearch: enable }));
 
-  const setContractFile = (file: File | null) => 
+  const setContractFile = (file: File | null) =>
     setState(prev => ({ ...prev, contractReview: { ...prev.contractReview, file } }));
-  
-  const setContractPerspective = (perspective: 'BUYER' | 'SELLER' | 'NEUTRAL') => 
+
+  const setContractPerspective = (perspective: 'BUYER' | 'SELLER' | 'NEUTRAL') =>
     setState(prev => ({ ...prev, contractReview: { ...prev.contractReview, perspective } }));
 
-  const setContractAnalysis = (analysis: ContractAnalysisResponse | null, metadata?: GroundingMetadata) => 
+  const setContractAnalysis = (analysis: ContractAnalysisResponse | null, metadata?: GroundingMetadata) =>
     setState(prev => ({ ...prev, contractReview: { ...prev.contractReview, analysis, groundingMetadata: metadata || null } }));
 
   // Comparison Logic
@@ -110,38 +115,38 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const setNdaFile = (file: File | null) =>
     setState(prev => ({ ...prev, ndaTriage: { ...prev.ndaTriage, file } }));
 
-  const setNdaText = (text: string) => 
+  const setNdaText = (text: string) =>
     setState(prev => ({ ...prev, ndaTriage: { ...prev.ndaTriage, text } }));
-  
-  const setNdaAnalysis = (analysis: NdaTriageResponse | null, metadata?: GroundingMetadata) => 
+
+  const setNdaAnalysis = (analysis: NdaTriageResponse | null, metadata?: GroundingMetadata) =>
     setState(prev => ({ ...prev, ndaTriage: { ...prev.ndaTriage, analysis, groundingMetadata: metadata || null } }));
 
-  const setComplianceFile = (file: File | null) => 
+  const setComplianceFile = (file: File | null) =>
     setState(prev => ({ ...prev, compliance: { ...prev.compliance, file } }));
-  
-  const setComplianceResult = (result: string | null, metadata?: GroundingMetadata) => 
+
+  const setComplianceResult = (result: string | null, metadata?: GroundingMetadata) =>
     setState(prev => ({ ...prev, compliance: { ...prev.compliance, result, groundingMetadata: metadata || null } }));
-  
-  const setRiskText = (text: string) => 
+
+  const setRiskText = (text: string) =>
     setState(prev => ({ ...prev, riskAssessment: { ...prev.riskAssessment, text } }));
 
   const setRiskDisputeValue = (value: string) =>
     setState(prev => ({ ...prev, riskAssessment: { ...prev.riskAssessment, disputeValue: value } }));
-  
-  const setRiskAnalysis = (analysis: RiskAssessmentResponse | null, metadata?: GroundingMetadata) => 
+
+  const setRiskAnalysis = (analysis: RiskAssessmentResponse | null, metadata?: GroundingMetadata) =>
     setState(prev => ({ ...prev, riskAssessment: { ...prev.riskAssessment, analysis, groundingMetadata: metadata || null } }));
 
   // DPIA Logic
   const setDpiaMode = (mode: 'CREATE' | 'UPDATE') =>
     setState(prev => ({ ...prev, dpia: { ...prev.dpia, mode } }));
 
-  const addDpiaFile = (file: File) => 
+  const addDpiaFile = (file: File) =>
     setState(prev => ({ ...prev, dpia: { ...prev.dpia, files: [...prev.dpia.files, file] } }));
-  
-  const removeDpiaFile = (index: number) => 
-    setState(prev => ({ 
-      ...prev, 
-      dpia: { ...prev.dpia, files: prev.dpia.files.filter((_, i) => i !== index) } 
+
+  const removeDpiaFile = (index: number) =>
+    setState(prev => ({
+      ...prev,
+      dpia: { ...prev.dpia, files: prev.dpia.files.filter((_, i) => i !== index) }
     }));
 
   const setDpiaTextInput = (text: string) =>
@@ -154,13 +159,13 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setState(prev => ({ ...prev, dpia: { ...prev.dpia, analysis: result, groundingMetadata: metadata || null } }));
 
   // Chronology Logic
-  const addChronologyFile = (file: File) => 
+  const addChronologyFile = (file: File) =>
     setState(prev => ({ ...prev, chronology: { ...prev.chronology, files: [...prev.chronology.files, file] } }));
-  
-  const removeChronologyFile = (index: number) => 
-    setState(prev => ({ 
-      ...prev, 
-      chronology: { ...prev.chronology, files: prev.chronology.files.filter((_, i) => i !== index) } 
+
+  const removeChronologyFile = (index: number) =>
+    setState(prev => ({
+      ...prev,
+      chronology: { ...prev.chronology, files: prev.chronology.files.filter((_, i) => i !== index) }
     }));
 
   const setChronologyTextInput = (text: string) =>
@@ -178,10 +183,10 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   // Marketing Check Logic
   const setMarketingFile = (file: File | null) =>
     setState(prev => ({ ...prev, marketing: { ...prev.marketing, file } }));
-  
+
   const setMarketingText = (text: string) =>
     setState(prev => ({ ...prev, marketing: { ...prev.marketing, text } }));
-  
+
   const setMarketingTargetAudience = (text: string) =>
     setState(prev => ({ ...prev, marketing: { ...prev.marketing, targetAudience: text } }));
 
@@ -191,6 +196,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   return (
     <AppContext.Provider value={{
       state,
+      toggleDemoMode,
       setPlaybookFile,
       setThinking,
       addReferenceUrl,

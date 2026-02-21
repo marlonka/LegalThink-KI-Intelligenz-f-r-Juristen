@@ -34,7 +34,9 @@ const InnerApp: React.FC = () => {
   // Some views need a lot of horizontal space (Split Views, Tables)
   const isWideMode =
     (currentView === View.CONTRACT_REVIEW && state.contractReview.analysis !== null) ||
-    (currentView === View.CONTRACT_COMPARISON && state.comparison.analysis !== null);
+    (currentView === View.CONTRACT_COMPARISON && state.comparison.analysis !== null) ||
+    (currentView === View.NDA_TRIAGE && state.ndaTriage.analysis !== null) ||
+    (currentView === View.COMPLIANCE && state.compliance.result !== null);
 
   const containerClass = isWideMode
     ? "max-w-[95vw] xl:max-w-[1800px]"
@@ -81,7 +83,7 @@ const InnerApp: React.FC = () => {
       {/* Background Ambience - Premium Editorial */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Subtle radial gradient instead of flat color */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[rgba(var(--color-firm-light),1)] via-firm-paper to-firm-paper transition-colors duration-300" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-firm-light via-firm-paper to-firm-paper transition-colors duration-300" />
         {/* Distinctive gold ambient glow - Expanded to prevent cutoff on ultrawide monitors */}
         <div className="absolute top-[-30%] right-[-20%] w-[150vw] md:w-[120vw] lg:w-[1500px] h-[1000px] md:h-[1500px] rounded-[100%] bg-firm-accent/5 blur-[120px] md:blur-[180px] transition-colors duration-300" />
       </div>

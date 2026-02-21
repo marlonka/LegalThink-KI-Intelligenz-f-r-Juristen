@@ -13,6 +13,7 @@ import { RiskAssessmentResponse, RiskPoint } from '../types';
 import { RiskAssessmentSchema } from '../schemas';
 import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import { Euro, BookOpen, Copy, Check, ChevronDown, ChevronUp, AlertTriangle, Filter, X } from 'lucide-react';
 import { copyRichText } from '../utils/clipboardUtils';
 
@@ -277,6 +278,19 @@ const RiskAssessment: React.FC = () => {
           value={text}
           onChange={(e) => setRiskText(e.target.value)}
         />
+
+        {/* DEMO BUTTON */}
+        {!text && (
+          <DemoLoadButton
+            demoFile={{ path: '/test-dummies/06_Risiko_Markenrechtsverletzung.md', name: 'Risiko_Markenrechtsverletzung.md' }}
+            onLoad={async (file) => {
+              const fileText = await file.text();
+              setRiskText(fileText);
+              setRiskDisputeValue("250.000,00 EUR (Streitwert der Hauptsache gem. Abmahnung)");
+            }}
+            label="Muster-Sachverhalt laden"
+          />
+        )}
       </Card>
 
       <ContextPanel />

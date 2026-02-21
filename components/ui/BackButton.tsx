@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -84,6 +84,15 @@ const BackButton: React.FC<BackButtonProps> = ({
     { id: number; x: number; y: number }[]
   >([]);
   const rippleIdRef = useRef(0);
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   // ── Magnetic hover tracking ────────────────────────────────────────────────
   const handleMouseMove = useCallback(
@@ -120,7 +129,10 @@ const BackButton: React.FC<BackButtonProps> = ({
         }
       }
       // Slight delay so ripple is visible before navigation
-      setTimeout(onClick, prefersReducedMotion ? 0 : 180);
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = window.setTimeout(onClick, prefersReducedMotion ? 0 : 180);
     },
     [onClick, prefersReducedMotion],
   );
@@ -176,7 +188,7 @@ const BackButton: React.FC<BackButtonProps> = ({
         transition={{ duration: 0.35 }}
         style={{
           background:
-            "radial-gradient(circle at 30% 50%, rgba(var(--color-firm-accent), 0.12) 0%, transparent 70%)",
+            "radial-gradient(circle at 30% 50%, rgb(var(--color-firm-accent) / 0.12) 0%, transparent 70%)",
         }}
       />
 

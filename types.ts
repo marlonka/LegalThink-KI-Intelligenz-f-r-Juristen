@@ -12,6 +12,11 @@ export enum View {
   LEGAL_NOTICE = 'LEGAL_NOTICE'
 }
 
+export interface DemoFileParams {
+  path: string;
+  name: string;
+}
+
 export type RiskColor = 'GRÜN' | 'GELB' | 'ROT';
 
 // Google Search Grounding Types
@@ -117,6 +122,7 @@ export interface MarketingCheckResponse {
 
 // Global State Interface
 export interface AppState {
+  isDemoMode: boolean;
   playbookFile: File | null;
   isThinking: boolean;
   referenceUrls: string[];

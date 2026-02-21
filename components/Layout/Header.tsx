@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from '../../types';
 import { useAppContext } from '../../contexts/AppContext';
-import { Settings2 } from 'lucide-react';
+import { Settings2, Library } from 'lucide-react';
 import SettingsModal from './SettingsModal';
 import { motion, AnimatePresence } from 'framer-motion';
 import BackButton from '../ui/BackButton';
@@ -12,7 +12,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
-  const { state } = useAppContext();
+  const { state, toggleDemoMode } = useAppContext();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // LOGIC CHANGE: Shimmer ONLY when thinking/loading. 
@@ -44,12 +44,23 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
 
           {/* Controls & Date */}
           <div className="flex items-center gap-4">
+            <button
+              onClick={() => toggleDemoMode(!state.isDemoMode)}
+              className={`hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border ${state.isDemoMode
+                ? 'bg-firm-navy/5 text-firm-navy border-firm-navy/20 shadow-sm'
+                : 'bg-transparent text-firm-slate/40 border-firm-slate/15 hover:bg-firm-slate/5 hover:text-firm-navy'
+                }`}
+            >
+              <Library size={14} className={state.isDemoMode ? 'text-firm-accent' : ''} />
+              Testakten {state.isDemoMode ? 'An' : 'Aus'}
+            </button>
+
             <div className="hidden md:block text-right opacity-80">
               <p className="text-[10px] font-bold text-firm-accent uppercase tracking-[0.2em]">
                 {new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' })}
               </p>
             </div>
-            
+
             <button
               onClick={() => setIsSettingsOpen(true)}
               className="p-2 text-firm-slate hover:text-firm-navy hover:bg-firm-navy/5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-firm-accent/50"
@@ -60,10 +71,10 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
           </div>
         </div>
       </header>
-      
-      <SettingsModal 
-        isOpen={isSettingsOpen} 
-        onClose={() => setIsSettingsOpen(false)} 
+
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
       />
     </>
   );

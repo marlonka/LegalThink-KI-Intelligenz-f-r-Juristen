@@ -6,6 +6,7 @@ import Loader from '../components/ui/Loader';
 import ContextPanel from '../components/ui/ContextPanel';
 import FileUploader from '../components/ui/FileUploader';
 import GroundingSources from '../components/ui/GroundingSources';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import { generateAnalysis, fileToBase64, FileData } from '../services/geminiService';
 import { PROMPTS, MODEL_PRO } from '../constants';
 import ReactMarkdown from 'react-markdown';
@@ -403,6 +404,18 @@ const ChronologyBuilder: React.FC = () => {
               value={textInput}
               onChange={(e) => setChronologyTextInput(e.target.value)}
             />
+            {/* DEMO BUTTON */}
+            {files.length === 0 && !textInput && (
+              <DemoLoadButton
+                demoFile={{ path: '/test-dummies/04_Sachverhalt_Chronologie_Projektverzug.md', name: 'Sachverhalt_Chronologie_Projektverzug.md' }}
+                onLoad={async (file) => {
+                  const text = await file.text();
+                  setChronologyTextInput(text);
+                  setChronologyContext("Prüfung eines potenziellen Schadensersatzanspruchs wegen Projektverzug. Gibt es Mitverschulden dritter oder der Parteien?");
+                }}
+                label="Muster-Sachverhalt (E-Mails) laden"
+              />
+            )}
           </div>
 
           <div className="mt-8">
