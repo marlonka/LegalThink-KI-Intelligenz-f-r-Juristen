@@ -332,6 +332,18 @@ const DpiaGenerator: React.FC = () => {
             onFileChange={handleFileChange}
             onRemove={removeDpiaFile}
           />
+          {/* DEMO BUTTON */}
+          {files.length === 0 && !textInput && (
+            <DemoLoadButton
+              demoFile={{ path: '/test-dummies/05_DSFA_Projekt_Employee_Monitoring.md', name: 'DSFA_Projekt_Employee_Monitoring.md' }}
+              onLoad={async (file) => {
+                const text = await file.text();
+                setDpiaTextInput(text);
+                setDpiaContext("Wir wollen dieses Tool unbedingt einführen. Gibt es harte Blocker, die wir vorlegen müssen?");
+              }}
+              label="Muster-Projekt (Mitarbeiterüberwachung) laden"
+            />
+          )}
         </div>
 
         <div className="mt-8 border-t border-firm-slate/10 pt-8">

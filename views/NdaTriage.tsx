@@ -287,6 +287,13 @@ const NdaTriage: React.FC = () => {
             onFileChange={handleFileChange}
             onRemove={() => setNdaFile(null)}
           />
+          {/* DEMO BUTTON */}
+          {!file && !text && (
+            <DemoLoadButton
+              demoFile={{ path: '/test-dummies/08_NDA_Vorpruefung_Risiko_NDA.md', name: 'NDA_Vorpruefung_Risiko.md' }}
+              onLoad={setNdaFile}
+            />
+          )}
         </div>
 
         <div className="pt-2">

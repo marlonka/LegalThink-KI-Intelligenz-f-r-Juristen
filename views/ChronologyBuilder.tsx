@@ -404,6 +404,18 @@ const ChronologyBuilder: React.FC = () => {
               value={textInput}
               onChange={(e) => setChronologyTextInput(e.target.value)}
             />
+            {/* DEMO BUTTON */}
+            {files.length === 0 && !textInput && (
+              <DemoLoadButton
+                demoFile={{ path: '/test-dummies/04_Sachverhalt_Chronologie_Projektverzug.md', name: 'Sachverhalt_Chronologie_Projektverzug.md' }}
+                onLoad={async (file) => {
+                  const text = await file.text();
+                  setChronologyTextInput(text);
+                  setChronologyContext("Prüfung eines potenziellen Schadensersatzanspruchs wegen Projektverzug. Gibt es Mitverschulden dritter oder der Parteien?");
+                }}
+                label="Muster-Sachverhalt (E-Mails) laden"
+              />
+            )}
           </div>
 
           <div className="mt-8">
