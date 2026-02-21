@@ -317,8 +317,8 @@ const RiskDetailItem: React.FC<{ risk: RiskPoint }> = ({ risk }) => {
   const score = risk.probability * risk.impact;
   let borderClass = 'border-firm-slate/15 hover:border-firm-slate/30';
   let bgBadge = 'bg-firm-paper border-firm-slate/10 text-firm-navy font-medium';
-  if (score >= 15) { borderClass = 'border-red-500/20 bg-[#FCF5F5]'; bgBadge = 'bg-red-500 text-white border-red-600 shadow-sm'; }
-  else if (score >= 8) { borderClass = 'border-amber-400/30 bg-[#FCFAF4]'; bgBadge = 'bg-amber-400 text-amber-900 border-amber-500 shadow-sm'; }
+  if (score >= 15) { borderClass = 'border-red-500/20 bg-[#FCF5F5] dark:bg-red-500/10 dark:border-red-500/20'; bgBadge = 'bg-red-500 text-white border-red-600 shadow-sm'; }
+  else if (score >= 8) { borderClass = 'border-amber-400/30 bg-[#FCFAF4] dark:bg-amber-500/10 dark:border-amber-500/20'; bgBadge = 'bg-amber-400 text-amber-900 border-amber-500 shadow-sm'; }
   else { borderClass = 'border-emerald-500/20 bg-[#F4FCF7]'; bgBadge = 'bg-emerald-500 text-white border-emerald-600 shadow-sm'; }
 
   return (

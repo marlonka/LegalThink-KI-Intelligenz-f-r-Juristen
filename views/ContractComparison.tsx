@@ -333,8 +333,8 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
   };
   const getSeverityColor = () => {
     switch (change.severity) {
-      case 'CRITICAL': return 'bg-red-50 border-red-500/20';
-      case 'MAJOR': return 'bg-[#FCFAF4] border-amber-400/30';
+      case 'CRITICAL': return 'bg-red-50 dark:bg-red-500/10 border-red-500/20';
+      case 'MAJOR': return 'bg-[#FCFAF4] dark:bg-amber-500/10 border-amber-400/30 dark:border-amber-500/20';
       default: return 'bg-firm-paper border-firm-slate/10';
     }
   };

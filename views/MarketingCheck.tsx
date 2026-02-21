@@ -203,7 +203,7 @@ const MarketingCheck: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <span className="font-bold text-firm-navy text-[16px]">{issue.issueCategory}</span>
                   </div>
-                  <span className={`text-[9px] uppercase font-bold px-2.5 py-1 rounded-full border tracking-wider shadow-sm ${issue.riskLevel === 'HOCH' ? 'bg-red-50 text-red-600 border-red-500/20' : issue.riskLevel === 'MITTEL' ? 'bg-amber-50 text-amber-600 border-amber-400/30' : 'bg-firm-paper text-firm-navy font-medium border-firm-slate/10'}`}>
+                  <span className={`text-[9px] uppercase font-bold px-2.5 py-1 rounded-full border tracking-wider shadow-sm ${issue.riskLevel === 'HOCH' ? 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-200 border-red-500/20' : issue.riskLevel === 'MITTEL' ? 'bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-200 border-amber-400/30' : 'bg-firm-paper text-firm-navy font-medium border-firm-slate/10'}`}>
                     RISIKO: {issue.riskLevel}
                   </span>
                 </div>
@@ -225,7 +225,7 @@ const MarketingCheck: React.FC = () => {
                       </div>
                       <button
                         onClick={() => navigator.clipboard.writeText(issue.safeAlternative)}
-                        className="mt-3 text-[11px] text-emerald-600 font-bold hover:text-emerald-700 transition-colors flex items-center gap-1.5 uppercase tracking-wider bg-emerald-50 px-3 py-1.5 rounded-full w-fit hover:bg-emerald-100"
+                        className="mt-3 text-[11px] text-emerald-600 font-bold hover:text-emerald-700 transition-colors flex items-center gap-1.5 uppercase tracking-wider bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1.5 rounded-full w-fit hover:bg-emerald-100 dark:hover:bg-emerald-500/20"
                       >
                         <Copy size={12} /> Text kopieren
                       </button>

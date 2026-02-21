@@ -477,7 +477,7 @@ const ContractReview: React.FC = () => {
                             <h3 className="text-xs font-bold text-firm-slate uppercase tracking-widest">Detail-Prüfung ({filteredClauses?.length})</h3>
                             <div className="flex bg-firm-card rounded-xl border border-firm-slate/15 p-1 shadow-sm">
                                 <button onClick={() => setFilter('ALL')} className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-colors ${filter === 'ALL' ? 'bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] shadow' : 'text-firm-slate hover:bg-firm-paper'}`}>Alle</button>
-                                <button onClick={() => setFilter('DEALBREAKER')} className={`px-4 py-1.5 text-xs font-bold rounded-lg flex items-center gap-1.5 transition-colors ${filter === 'DEALBREAKER' ? 'bg-red-50 text-red-600 shadow-sm border border-red-100' : 'text-firm-slate hover:bg-firm-paper'}`}>
+                                <button onClick={() => setFilter('DEALBREAKER')} className={`px-4 py-1.5 text-xs font-bold rounded-lg flex items-center gap-1.5 transition-colors ${filter === 'DEALBREAKER' ? 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-200 shadow-sm border border-red-100 dark:border-red-500/30' : 'text-firm-slate hover:bg-firm-paper'}`}>
                                     <AlertTriangle size={12} className={filter === 'DEALBREAKER' ? 'text-red-500' : ''} /> Kritisch
                                 </button>
                             </div>
@@ -650,7 +650,7 @@ const ContractReview: React.FC = () => {
                                 </button>
                                 <button
                                     onClick={() => setAggressiveness('AGGRESSIVE')}
-                                    className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'AGGRESSIVE' ? 'bg-red-50 border-red-200 shadow-sm ring-1 ring-red-100 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-red-100 hover:text-red-600 hover:bg-red-50/30'}`}
+                                    className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'AGGRESSIVE' ? 'bg-red-50 dark:bg-red-500/10 border-red-200 dark:border-red-500/30 shadow-sm ring-1 ring-red-100 dark:ring-red-500/30 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-red-100 dark:hover:border-red-500/30 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-50/30 dark:hover:bg-red-500/10'}`}
                                 >
                                     <Swords size={20} className={aggressiveness === 'AGGRESSIVE' ? 'text-red-500' : 'text-firm-slate/50'} />
                                     <span className={`text-[13px] font-bold ${aggressiveness === 'AGGRESSIVE' ? 'text-red-700' : ''}`}>Streng (Maximal)</span>
@@ -714,14 +714,14 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                 color: 'bg-red-500',
                 border: 'border-red-500/30',
                 hoverBorder: 'hover:border-red-500/50',
-                bg: 'bg-[#FCF5F5]',
+                bg: 'bg-[#FCF5F5] dark:bg-red-500/10',
                 text: 'text-red-700'
             };
             case 'GELB': return {
                 color: 'bg-amber-400',
                 border: 'border-amber-400/30',
                 hoverBorder: 'hover:border-amber-400/60',
-                bg: 'bg-[#FCFAF4]',
+                bg: 'bg-[#FCFAF4] dark:bg-amber-500/10',
                 text: 'text-amber-700'
             };
             default: return {

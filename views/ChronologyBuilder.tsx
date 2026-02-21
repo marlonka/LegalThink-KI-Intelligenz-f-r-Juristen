@@ -220,7 +220,7 @@ const ChronologyBuilder: React.FC = () => {
             <button onClick={handleDownload} className="p-2.5 text-firm-slate/50 hover:text-firm-navy hover:bg-firm-paper rounded-xl transition-colors" title="Als Markdown herunterladen">
               <Download size={18} />
             </button>
-            <button onClick={() => { setChronologyResult(null); setIsEditing(false); setChronologyQuestions(null); }} className="p-2.5 text-firm-slate/50 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors" title="Neu beginnen">
+            <button onClick={() => { setChronologyResult(null); setIsEditing(false); setChronologyQuestions(null); }} className="p-2.5 text-firm-slate/50 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl transition-colors" title="Neu beginnen">
               <RefreshCw size={18} />
             </button>
           </div>
@@ -432,7 +432,7 @@ const ChronologyBuilder: React.FC = () => {
             />
           </div>
 
-          <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto mt-8">
+          <div className="bg-[#FCF5F5] dark:bg-red-500/10 border border-red-500/10 dark:border-red-500/20 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 dark:text-red-200 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto mt-8">
             <strong className="block font-bold">Berufsrechtlicher Hinweis:</strong> Keine Klarnamen verwenden. Anonymisierung ist Pflicht.
           </div>
         </Card>

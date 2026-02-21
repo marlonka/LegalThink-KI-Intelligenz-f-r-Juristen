@@ -176,7 +176,7 @@ const DpiaGenerator: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <div className={`border-l-2 rounded-r-xl p-4 flex items-start gap-3 shadow-sm ${mode === 'CREATE' ? 'bg-[#FCFAF4] border-amber-400/50 text-firm-navy' : 'bg-[#F4FCF7] border-emerald-500/50 text-firm-navy'}`}>
+          <div className={`border-l-2 rounded-r-xl p-4 flex items-start gap-3 shadow-sm ${mode === 'CREATE' ? 'bg-[#FCFAF4] dark:bg-amber-500/10 border-amber-400/50 dark:border-amber-500/30 text-firm-navy dark:text-amber-100' : 'bg-[#F4FCF7] dark:bg-emerald-500/10 border-emerald-500/50 dark:border-emerald-500/30 text-firm-navy dark:text-emerald-100'}`}>
             <Info size={18} className={`shrink-0 mt-0.5 ${mode === 'CREATE' ? 'text-amber-500' : 'text-emerald-500'}`} />
             <p className="text-[13px] leading-relaxed opacity-90 max-w-4xl">
               <strong className="font-bold text-firm-navy">{mode === 'CREATE' ? "Standard-Modell (DSK): " : "Delta & Update: "}</strong>
@@ -379,7 +379,7 @@ const DpiaGenerator: React.FC = () => {
           />
         </div>
 
-        <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto mt-8">
+        <div className="bg-[#FCF5F5] dark:bg-red-500/10 border border-red-500/10 dark:border-red-500/20 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 dark:text-red-200 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto mt-8">
           <strong className="block font-bold">ACHTUNG:</strong>
           Keine Klarnamen oder personenbezogene Daten hochladen.
         </div>
