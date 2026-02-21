@@ -207,7 +207,7 @@ const ChronologyBuilder: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleEditMode}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-bold transition-all shadow-sm ${isEditing ? 'bg-firm-navy text-white shadow-firm' : 'bg-white text-firm-navy border border-firm-slate/15 hover:border-firm-slate/30 hover:bg-firm-paper/30'}`}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-bold transition-all shadow-sm ${isEditing ? 'bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] shadow-firm' : 'bg-firm-card text-firm-navy border border-firm-slate/15 hover:border-firm-slate/30 hover:bg-firm-paper/30'}`}
             >
               {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
               {isEditing ? 'Speichern' : 'Editor'}
@@ -226,7 +226,7 @@ const ChronologyBuilder: React.FC = () => {
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <Card className={`border-0 shadow-firm-lg bg-white rounded-[2rem] p-6 md:p-10 relative overflow-hidden ${isEditing ? 'ring-2 ring-firm-navy/20' : ''}`}>
+          <Card className={`border-0 shadow-firm-lg bg-firm-card rounded-[2rem] p-6 md:p-10 relative overflow-hidden ${isEditing ? 'ring-2 ring-firm-navy/20' : ''}`}>
             {isEditing ? (
               <div className="animate-enter relative z-10">
                 <div className="flex items-center gap-2 mb-3 text-[10px] font-bold text-firm-navy uppercase tracking-widest pl-1">
@@ -246,7 +246,7 @@ const ChronologyBuilder: React.FC = () => {
                   remarkPlugins={[remarkGfm]}
                   components={{
                     table: ({ node, ...props }) => (
-                      <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-white">
+                      <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-firm-card">
                         <table className="w-full text-left border-collapse min-w-[600px]" {...props} />
                       </div>
                     ),
@@ -298,7 +298,7 @@ const ChronologyBuilder: React.FC = () => {
                 <span className="font-bold text-[13px] uppercase tracking-wider">Sachverhalt ergänzen</span>
               </button>
             ) : (
-              <div className="bg-white border-0 rounded-3xl p-6 md:p-8 shadow-firm animate-enter relative">
+              <div className="bg-firm-card border-0 rounded-3xl p-6 md:p-8 shadow-firm animate-enter relative">
                 <button onClick={() => setIsRefining(false)} className="absolute top-6 right-6 text-firm-slate/40 hover:text-firm-navy transition-colors"><X size={20} /></button>
                 <h3 className="text-xl font-bold text-firm-navy font-serif mb-6 flex items-center gap-3">
                   <div className="p-1.5 bg-firm-paper rounded-lg"><FilePlus size={18} className="text-neon-cyan" /></div>
@@ -311,7 +311,7 @@ const ChronologyBuilder: React.FC = () => {
                       <button onClick={() => removeRefineFile(idx)} className="text-firm-slate/40 hover:text-red-500 transition-colors"><XCircle size={16} /></button>
                     </div>
                   ))}
-                  <label className="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-dashed border-firm-slate/20 hover:border-firm-accent rounded-xl text-[13px] font-bold text-firm-slate/60 hover:text-firm-accent cursor-pointer transition-colors w-full justify-center shadow-sm">
+                  <label className="inline-flex items-center gap-2 px-4 py-2.5 bg-firm-card border border-dashed border-firm-slate/20 hover:border-firm-accent rounded-xl text-[13px] font-bold text-firm-slate/60 hover:text-firm-accent cursor-pointer transition-colors w-full justify-center shadow-sm">
                     <Upload size={16} /> Zusatzdokument hochladen
                     <input type="file" className="hidden" accept=".pdf,.docx,.txt" multiple onChange={handleRefineFileChange} />
                   </label>
@@ -332,18 +332,18 @@ const ChronologyBuilder: React.FC = () => {
           </div>
           <div className="flex-1">
             {!questions ? (
-              <div className="bg-white border border-firm-slate/10 shadow-sm rounded-3xl p-8 h-full flex flex-col items-center justify-center text-center group cursor-pointer hover:shadow-firm hover:border-firm-slate/20 transition-all duration-300" onClick={handleGenerateQuestions}>
+              <div className="bg-firm-card border border-firm-slate/10 shadow-sm rounded-3xl p-8 h-full flex flex-col items-center justify-center text-center group cursor-pointer hover:shadow-firm hover:border-firm-slate/20 transition-all duration-300" onClick={handleGenerateQuestions}>
                 <div className="bg-firm-paper p-4 rounded-full mb-4 text-neon-lime group-hover:scale-110 transition-transform duration-300">
                   <MessageCircleQuestion size={32} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold text-firm-navy font-serif mb-2">Lücken entdeckt?</h3>
                 <p className="text-[13px] text-firm-slate/60 mb-6 max-w-xs">Lassen Sie die KI automatisiert Fragen an den Mandanten generieren, um offene Punkte zu klären.</p>
-                <Button variant="secondary" onClick={handleGenerateQuestions} disabled={questionLoading} className="shadow-sm border-firm-slate/15 bg-white hover:border-firm-slate/30">
+                <Button variant="secondary" onClick={handleGenerateQuestions} disabled={questionLoading} className="shadow-sm border-firm-slate/15 bg-firm-card hover:border-firm-slate/30">
                   {questionLoading ? "Generiere..." : "Mandanten-Fragen generieren"}
                 </Button>
               </div>
             ) : (
-              <div className="bg-white border-0 shadow-firm rounded-3xl p-6 md:p-8 h-full animate-enter flex flex-col relative overflow-hidden">
+              <div className="bg-firm-card border-0 shadow-firm rounded-3xl p-6 md:p-8 h-full animate-enter flex flex-col relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-neon-lime/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
                 <h3 className="text-xl font-bold text-firm-navy font-serif mb-4 flex items-center gap-3 relative z-10">
                   <div className="p-1.5 bg-firm-paper rounded-lg"><MessageCircleQuestion size={18} className="text-neon-lime" /></div>
@@ -352,7 +352,7 @@ const ChronologyBuilder: React.FC = () => {
                 <div className="prose prose-sm md:prose-base text-firm-navy font-medium flex-1 overflow-y-auto mb-6 pr-2 relative z-10">
                   <ReactMarkdown>{questions}</ReactMarkdown>
                 </div>
-                <Button variant="secondary" fullWidth onClick={() => copyRichText(questions)} className="!py-3 shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30 mt-auto relative z-10">
+                <Button variant="secondary" fullWidth onClick={() => copyRichText(questions)} className="!py-3 shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30 mt-auto relative z-10">
                   <Copy size={16} className="mr-2" /> Direkt kopieren
                 </Button>
               </div>
@@ -367,7 +367,7 @@ const ChronologyBuilder: React.FC = () => {
     <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-32 max-w-5xl mx-auto">
       <motion.div variants={itemVariants}>
         <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
           <div className="flex items-center gap-4 mb-10 mt-2">
             <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
               <History size={28} strokeWidth={1.5} />

@@ -52,10 +52,10 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                 // COLLAPSED STATE: "Trigger Bar"
                 <button
                     onClick={() => setIsExpanded(true)}
-                    className="w-full group flex items-center justify-between bg-white hover:bg-firm-paper border border-firm-slate/30 hover:border-firm-accent/50 p-5 rounded-3xl shadow-sm hover:shadow-firm transition-all duration-300"
+                    className="w-full group flex items-center justify-between bg-firm-card hover:bg-firm-paper border border-firm-slate/30 hover:border-firm-accent/50 p-5 rounded-3xl shadow-sm hover:shadow-firm transition-all duration-300"
                 >
                     <div className="flex items-center gap-4">
-                        <div className="bg-firm-paper border border-firm-slate/5 text-firm-navy p-3 rounded-xl group-hover:bg-firm-navy group-hover:border-firm-navy group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow group-hover:scale-105">
+                        <div className="bg-firm-paper border border-firm-slate/5 text-firm-navy p-3 rounded-xl group-hover:bg-[#05050A] group-hover:border-[#05050A] group-hover:text-white dark:group-hover:bg-firm-accent dark:group-hover:text-[#05050A] transition-all duration-300 shadow-sm group-hover:shadow group-hover:scale-105">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M7.498 15.25H4.372c-1.026 0-1.945-.694-2.054-1.715a12.137 12.137 0 0 1-.068-1.285c0-2.848.992-5.464 2.649-7.521C5.287 4.247 5.886 4 6.504 4h4.016a4.5 4.5 0 0 1 1.423.23l3.114 1.04a4.5 4.5 0 0 0 1.423.23h1.294M7.498 15.25c.618 0 .991.724.725 1.282A7.471 7.471 0 0 0 7.5 19.75 2.25 2.25 0 0 0 9.75 22a.75.75 0 0 0 .75-.75v-.633c0-.573.11-1.14.322-1.672.304-.76.93-1.33 1.653-1.715a9.04 9.04 0 0 0 2.86-2.4c.498-.634 1.226-1.08 2.032-1.08h.384m-10.253 1.5H9.7m8.075-9.75c.01.05.027.1.05.148.593 1.2.925 2.55.925 3.977 0 1.487-.36 2.89-.999 4.125m.023-8.25c-.076-.365.183-.75.575-.75h.908c.889 0 1.713.518 1.972 1.368.339 1.11.521 2.287.521 3.507 0 1.553-.295 3.036-.831 4.398-.306.774-1.086 1.227-1.918 1.227h-1.053c-.472 0-.745-.556-.5-.96a8.95 8.95 0 0 0 .303-.54" />
                             </svg>
@@ -73,21 +73,21 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                 </button>
             ) : (
                 // EXPANDED STATE: "Composer"
-                <div className="bg-white rounded-3xl border border-firm-slate/25 shadow-firm overflow-hidden transition-all duration-300 relative">
+                <div className="bg-firm-card rounded-3xl border border-firm-slate/25 shadow-firm overflow-hidden transition-all duration-300 relative">
 
                     <div className="px-5 py-3 bg-firm-paper/80 border-b border-firm-slate/10 flex items-center justify-between">
                         <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar max-w-[85%]">
                             <span className="text-[10px] font-bold text-firm-slate/40 uppercase tracking-widest mr-2 shrink-0">Kontext:</span>
 
                             {files.map((file, idx) => (
-                                <span key={`f-${idx}`} className="flex items-center gap-1.5 bg-white border border-firm-slate/10 px-2.5 py-1 rounded-lg text-[12px] font-medium text-firm-navy shadow-sm whitespace-nowrap">
+                                <span key={`f-${idx}`} className="flex items-center gap-1.5 bg-firm-card border border-firm-slate/10 px-2.5 py-1 rounded-lg text-[12px] font-medium text-firm-navy shadow-sm whitespace-nowrap">
                                     <Paperclip size={12} className="text-firm-slate/40" /> {file.name}
                                     <button onClick={() => removeFile(idx)} className="hover:text-red-500 ml-1.5 text-firm-slate/30 transition-colors"><X size={12} /></button>
                                 </span>
                             ))}
 
                             {state.referenceUrls.map((url, idx) => (
-                                <span key={`u-${idx}`} className="flex items-center gap-1.5 bg-white border border-firm-slate/10 text-firm-navy px-2.5 py-1 rounded-lg text-[12px] font-medium whitespace-nowrap shadow-sm">
+                                <span key={`u-${idx}`} className="flex items-center gap-1.5 bg-firm-card border border-firm-slate/10 text-firm-navy px-2.5 py-1 rounded-lg text-[12px] font-medium whitespace-nowrap shadow-sm">
                                     <Globe size={12} className="text-firm-slate/40" /> {new URL(url).hostname}
                                     <button onClick={() => removeReferenceUrl(url)} className="hover:text-red-500 ml-1.5 text-firm-slate/30 transition-colors"><X size={12} /></button>
                                 </span>
@@ -100,7 +100,7 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                             )}
                         </div>
 
-                        <button onClick={() => setIsExpanded(false)} className="text-firm-slate/40 hover:text-firm-navy p-1.5 rounded-lg hover:bg-white transition-colors">
+                        <button onClick={() => setIsExpanded(false)} className="text-firm-slate/40 hover:text-firm-navy p-1.5 rounded-lg hover:bg-firm-card transition-colors">
                             <X size={18} />
                         </button>
                     </div>
@@ -148,7 +148,7 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
 
                                     {/* Inline Popover for URL */}
                                     {showUrlInput && (
-                                        <div className="absolute bottom-full left-0 mb-3 w-80 bg-white rounded-2xl shadow-firm-lg border border-firm-slate/15 p-2 flex gap-2 animate-enter z-20">
+                                        <div className="absolute bottom-full left-0 mb-3 w-80 bg-firm-card rounded-2xl shadow-firm-lg border border-firm-slate/15 p-2 flex gap-2 animate-enter z-20">
                                             <input
                                                 type="text"
                                                 value={urlInput}
@@ -158,7 +158,7 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                                                 onKeyDown={(e) => e.key === 'Enter' && handleAddUrl()}
                                                 autoFocus
                                             />
-                                            <button onClick={handleAddUrl} disabled={!urlInput} className="bg-firm-navy text-white w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[#1e293b] transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                                            <button onClick={handleAddUrl} disabled={!urlInput} className="bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] w-10 h-10 flex items-center justify-center rounded-xl hover:bg-[#1e293b] transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
                                                 <ArrowUp size={18} strokeWidth={2} />
                                             </button>
                                         </div>
@@ -173,7 +173,7 @@ const RefinementLoop: React.FC<RefinementLoopProps> = ({ onRefine, loading, cont
                             px-6 py-3 rounded-xl text-[14px] font-bold transition-all flex items-center gap-2.5 shadow-sm active:scale-95
                             ${loading || (!text.trim() && files.length === 0)
                                         ? 'bg-firm-paper/50 text-firm-slate/40 cursor-not-allowed border border-firm-slate/10'
-                                        : 'bg-firm-navy text-white hover:bg-[#1e293b] shadow-firm hover:shadow-firm-lg border border-transparent'
+                                        : 'bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] hover:bg-[#1e293b] shadow-firm hover:shadow-firm-lg border border-transparent'
                                     }
                         `}
                             >

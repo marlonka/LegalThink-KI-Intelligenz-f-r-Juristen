@@ -26,10 +26,10 @@ const LegalModal: React.FC<LegalModalProps> = ({ onAccept }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-firm-navy/90 backdrop-blur-md animate-enter">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200">
-        <div className="bg-firm-navy p-6 flex items-center gap-4">
-          <div className="p-3 bg-white/10 rounded-full text-white">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-enter">
+      <div className="bg-firm-card rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-firm-border">
+        <div className="bg-[#05050A] p-6 flex items-center gap-4">
+          <div className="p-3 bg-firm-card/10 rounded-full text-white">
             <Scale size={24} />
           </div>
           <div>
@@ -38,7 +38,7 @@ const LegalModal: React.FC<LegalModalProps> = ({ onAccept }) => {
           </div>
         </div>
         
-        <div className="p-8 max-h-[60vh] overflow-y-auto space-y-6 text-sm text-slate-700 leading-relaxed scrollbar-thin scrollbar-thumb-slate-300">
+        <div className="p-8 max-h-[60vh] overflow-y-auto space-y-6 text-sm text-firm-slate leading-relaxed scrollbar-thin scrollbar-thumb-slate-300">
           
           <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-r text-red-900 text-xs">
             <div className="flex items-center gap-2 mb-1 font-bold">
@@ -85,7 +85,7 @@ const LegalModal: React.FC<LegalModalProps> = ({ onAccept }) => {
 
         </div>
 
-        <div className="p-6 bg-slate-50 border-t border-slate-200 flex justify-end gap-4">
+        <div className="p-6 bg-firm-paper border-t border-firm-border flex justify-end gap-4">
           <Button onClick={handleAccept} fullWidth>
             <CheckCircle size={18} />
             Ich bestätige: Keine Personendaten & Bedingungen akzeptiert

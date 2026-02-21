@@ -165,11 +165,11 @@ const DpiaGenerator: React.FC = () => {
             {mode === 'CREATE' ? 'Entwurf: DSFA (Art. 35)' : 'Ergebnis: DSFA Update'}
           </h2>
           <div className="flex gap-3">
-            <Button variant="secondary" onClick={handleCopy} className="!py-2.5 !px-4 text-xs shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30">
+            <Button variant="secondary" onClick={handleCopy} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren (Word)'}
             </Button>
-            <Button variant="secondary" onClick={() => { setDpiaAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-white hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setDpiaAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
               Neu Starten
             </Button>
           </div>
@@ -185,14 +185,14 @@ const DpiaGenerator: React.FC = () => {
             </p>
           </div>
         </div>
-        <Card className="border border-firm-slate/10 shadow-firm bg-white rounded-3xl p-6 md:p-10 relative overflow-hidden">
+        <Card className="border border-firm-slate/10 shadow-firm bg-firm-card rounded-3xl p-6 md:p-10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-firm-paper/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
           <div className="prose prose-sm md:prose-base max-w-none text-firm-navy font-medium prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
                 table: ({ node, ...props }) => (
-                  <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-white">
+                  <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-firm-card">
                     <table className="w-full text-left border-collapse min-w-[600px]" {...props} />
                   </div>
                 ),
@@ -230,8 +230,8 @@ const DpiaGenerator: React.FC = () => {
         </Card>
         {mode === 'UPDATE' && (
           <div className="mt-12 animate-enter max-w-5xl mx-auto">
-            <div className="bg-white border-0 shadow-firm-lg rounded-3xl p-8 relative overflow-hidden">
-              <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-firm-navy via-neon-cyan to-firm-navy opacity-80 left-0" />
+            <div className="bg-firm-card border-0 shadow-firm-lg rounded-3xl p-8 relative overflow-hidden">
+              <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-neon-cyan to-firm-navy opacity-80 left-0" />
               <h3 className="text-2xl font-bold text-firm-navy font-serif mb-2 flex items-center gap-3">
                 <div className="p-2 bg-firm-paper rounded-xl"><FileCheck size={24} className="text-neon-cyan" /></div>
                 Dokument finalisieren (Merge)
@@ -252,7 +252,7 @@ const DpiaGenerator: React.FC = () => {
                       <button onClick={() => removeRefinementFile(idx)} className="text-firm-slate/40 hover:text-red-500 ml-1 transition-colors"><XCircle size={16} /></button>
                     </div>
                   ))}
-                  <label className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-dashed border-firm-slate/20 hover:border-firm-accent rounded-lg text-[13px] font-bold tracking-wider uppercase text-firm-slate/60 hover:text-firm-accent cursor-pointer transition-colors shadow-sm hover:shadow">
+                  <label className="inline-flex items-center gap-2 px-4 py-2 bg-firm-card border border-dashed border-firm-slate/20 hover:border-firm-accent rounded-lg text-[13px] font-bold tracking-wider uppercase text-firm-slate/60 hover:text-firm-accent cursor-pointer transition-colors shadow-sm hover:shadow">
                     <PlusCircle size={16} /> Datei hinzufügen
                     <input type="file" className="hidden" accept=".pdf,.docx,.txt" multiple onChange={handleRefinementFileChange} />
                   </label>
@@ -289,9 +289,9 @@ const DpiaGenerator: React.FC = () => {
   return (
     <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-10 mt-2">
-          <div className={`p-3 rounded-2xl text-white shadow-sm ${mode === 'CREATE' ? 'bg-firm-navy' : 'bg-firm-accent'}`}>
+          <div className={`p-3 rounded-2xl text-white shadow-sm ${mode === 'CREATE' ? 'bg-[#05050A] dark:bg-firm-card' : 'bg-firm-accent'}`}>
             {mode === 'CREATE' ? <Fingerprint size={28} strokeWidth={1.5} /> : <ArrowLeftRight size={28} strokeWidth={1.5} />}
           </div>
           <div>
@@ -309,14 +309,14 @@ const DpiaGenerator: React.FC = () => {
         <div className="bg-firm-paper/50 p-1.5 rounded-xl flex gap-1.5 relative w-full mb-8 shadow-sm border border-firm-slate/10">
           <button
             onClick={() => setDpiaMode('CREATE')}
-            className={`flex-1 py-3 rounded-lg text-[13px] uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 ${mode === 'CREATE' ? 'bg-white text-firm-navy shadow-sm border border-firm-slate/5' : 'text-firm-slate/50 hover:text-firm-navy hover:bg-white/50'}`}
+            className={`flex-1 py-3 rounded-lg text-[13px] uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 ${mode === 'CREATE' ? 'bg-firm-card text-firm-navy shadow-sm border border-firm-slate/5' : 'text-firm-slate/50 hover:text-firm-navy hover:bg-firm-card/50'}`}
           >
             <PlusCircle size={16} />
             Neu erstellen
           </button>
           <button
             onClick={() => setDpiaMode('UPDATE')}
-            className={`flex-1 py-3 rounded-lg text-[13px] uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 ${mode === 'UPDATE' ? 'bg-white text-firm-accent shadow-sm border border-firm-slate/5' : 'text-firm-slate/50 hover:text-firm-accent hover:bg-white/50'}`}
+            className={`flex-1 py-3 rounded-lg text-[13px] uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 ${mode === 'UPDATE' ? 'bg-firm-card text-firm-accent shadow-sm border border-firm-slate/5' : 'text-firm-slate/50 hover:text-firm-accent hover:bg-firm-card/50'}`}
           >
             <RefreshCw size={16} />
             Aktualisieren (Delta)

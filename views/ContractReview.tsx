@@ -358,7 +358,7 @@ const ContractReview: React.FC = () => {
 
                         <div className="flex gap-2 items-center">
                             {/* View Toggle */}
-                            <div className="hidden lg:flex bg-white border border-firm-slate/15 rounded-xl p-1 mr-2 shadow-sm">
+                            <div className="hidden lg:flex bg-firm-card border border-firm-slate/15 rounded-xl p-1 mr-2 shadow-sm">
                                 <button onClick={() => setViewMode('SPLIT')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SPLIT' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Geteilte Ansicht"><Columns size={16} /></button>
                                 <button onClick={() => setViewMode('SINGLE')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SINGLE' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Leseansicht (Vollbild)"><FileText size={16} /></button>
                             </div>
@@ -367,11 +367,11 @@ const ContractReview: React.FC = () => {
                                 {copiedBriefing ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
                                 {copiedBriefing ? 'Kopiert' : 'Bericht kopieren'}
                             </Button>
-                            <Button onClick={handleGenerateClientLetter} className="!py-2.5 !px-4 text-xs bg-firm-navy text-white hover:bg-firm-navy/90 !rounded-xl shadow-firm">
+                            <Button onClick={handleGenerateClientLetter} className="!py-2.5 !px-4 text-xs bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] hover:bg-firm-navy/90 !rounded-xl shadow-firm">
                                 <Mail size={16} className="text-firm-accent" />
                                 Mandanten-Brief
                             </Button>
-                            <button onClick={() => { setContractFile(null); setContractAnalysis(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-navy bg-white border border-firm-slate/10 rounded-full hover:shadow-sm transition-all">
+                            <button onClick={() => { setContractFile(null); setContractAnalysis(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-navy bg-firm-card border border-firm-slate/10 rounded-full hover:shadow-sm transition-all">
                                 <X size={18} />
                             </button>
                         </div>
@@ -383,7 +383,7 @@ const ContractReview: React.FC = () => {
 
                     {/* LEFT PANE: DOCUMENT VIEWER */}
                     <div className={`hidden lg:flex flex-col h-full bg-firm-paper border border-firm-slate/15 rounded-2xl shadow-inner overflow-hidden relative ${viewMode === 'SINGLE' ? '!hidden' : ''}`}>
-                        <div className="bg-white border-b border-firm-slate/15 px-5 py-3 flex items-center justify-between z-10 shrink-0">
+                        <div className="bg-firm-card border-b border-firm-slate/15 px-5 py-3 flex items-center justify-between z-10 shrink-0">
                             <span className="text-xs font-bold text-firm-slate uppercase tracking-wider">Originaldokument</span>
                             <div className="flex items-center gap-3">
                                 <span className="text-xs text-firm-slate/60 truncate max-w-[200px]">{file?.name}</span>
@@ -404,13 +404,13 @@ const ContractReview: React.FC = () => {
                                     className="w-full h-full block"
                                 />
                             ) : extractedWordText ? (
-                                <div className="w-full h-full bg-white overflow-y-auto p-12 shadow-inner">
+                                <div className="w-full h-full bg-firm-card overflow-y-auto p-12 shadow-inner">
                                     <div className="max-w-2xl mx-auto font-serif text-[15px] text-firm-navy leading-relaxed whitespace-pre-wrap">
                                         {extractedWordText}
                                     </div>
                                 </div>
                             ) : (
-                                <div className="flex flex-col items-center justify-center h-full text-firm-slate/40 p-8 text-center bg-white/50">
+                                <div className="flex flex-col items-center justify-center h-full text-firm-slate/40 p-8 text-center bg-firm-card/50">
                                     <FileText size={48} className="mb-4 opacity-30" strokeWidth={1} />
                                     <p className="font-bold text-sm text-firm-navy">Vorschau nicht verfügbar</p>
                                     <p className="text-xs mt-2 max-w-xs text-firm-slate">
@@ -442,7 +442,7 @@ const ContractReview: React.FC = () => {
                         )}
 
                         {/* 2. EXECUTIVE SUMMARY */}
-                        <div className="mb-8 shrink-0 bg-white border border-firm-slate/10 rounded-3xl p-6 md:p-8 shadow-firm relative">
+                        <div className="mb-8 shrink-0 bg-firm-card border border-firm-slate/10 rounded-3xl p-6 md:p-8 shadow-firm relative">
                             <div className="absolute top-0 left-0 w-1.5 h-full bg-firm-navy rounded-l-3xl"></div>
                             <div className="flex flex-col md:flex-row md:items-center gap-6 mb-6">
                                 <div style={{ width: 96, height: 96, flexShrink: 0, position: 'relative' }}>
@@ -474,8 +474,8 @@ const ContractReview: React.FC = () => {
                         {/* 3. CLAUSE FILTERS */}
                         <div className="flex items-center justify-between py-5 sticky top-0 bg-firm-paper/90 z-20 backdrop-blur-md border-b border-firm-slate/5 mb-4">
                             <h3 className="text-xs font-bold text-firm-slate uppercase tracking-widest">Detail-Prüfung ({filteredClauses?.length})</h3>
-                            <div className="flex bg-white rounded-xl border border-firm-slate/15 p-1 shadow-sm">
-                                <button onClick={() => setFilter('ALL')} className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-colors ${filter === 'ALL' ? 'bg-firm-navy text-white shadow' : 'text-firm-slate hover:bg-firm-paper'}`}>Alle</button>
+                            <div className="flex bg-firm-card rounded-xl border border-firm-slate/15 p-1 shadow-sm">
+                                <button onClick={() => setFilter('ALL')} className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-colors ${filter === 'ALL' ? 'bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] shadow' : 'text-firm-slate hover:bg-firm-paper'}`}>Alle</button>
                                 <button onClick={() => setFilter('DEALBREAKER')} className={`px-4 py-1.5 text-xs font-bold rounded-lg flex items-center gap-1.5 transition-colors ${filter === 'DEALBREAKER' ? 'bg-red-50 text-red-600 shadow-sm border border-red-100' : 'text-firm-slate hover:bg-firm-paper'}`}>
                                     <AlertTriangle size={12} className={filter === 'DEALBREAKER' ? 'text-red-500' : ''} /> Kritisch
                                 </button>
@@ -499,8 +499,8 @@ const ContractReview: React.FC = () => {
                 {/* REDESIGNED CLIENT LETTER MODAL (FULLY TRANSPARENT OVERLAY, NO BLUR) */}
                 {showClientEmail && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent animate-enter pointer-events-none">
-                        <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] border border-slate-300 ring-4 ring-slate-900/5 pointer-events-auto">
-                            <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-white">
+                        <div className="bg-firm-card w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] border border-slate-300 ring-4 ring-slate-900/5 pointer-events-auto">
+                            <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-firm-card">
                                 <h3 className="font-bold font-serif flex items-center gap-2 text-firm-navy text-base">
                                     <Mail size={18} className="text-firm-accent" /> Mandanten-Briefing (Entwurf)
                                 </h3>
@@ -509,7 +509,7 @@ const ContractReview: React.FC = () => {
                                 </button>
                             </div>
 
-                            <div className="flex-1 overflow-y-auto p-8 bg-white">
+                            <div className="flex-1 overflow-y-auto p-8 bg-firm-card">
                                 {!clientEmailContent ? (
                                     <div className="flex flex-col items-center justify-center h-64">
                                         {emailLoading ? (
@@ -553,7 +553,7 @@ const ContractReview: React.FC = () => {
         <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-6 pb-32 max-w-5xl mx-auto">
             <motion.div variants={itemVariants}>
                 <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
 
                     <div className="flex items-center gap-4 mb-8">
                         <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
@@ -585,7 +585,7 @@ const ContractReview: React.FC = () => {
                             <label className="block text-xs font-bold text-firm-navy mb-2 group-focus-within:text-firm-accent transition-colors">Vertragstyp</label>
                             <div className="relative">
                                 <select
-                                    className="w-full appearance-none bg-firm-paper border border-firm-slate/10 text-firm-navy text-[15px] rounded-2xl p-4 pr-10 focus:ring-4 focus:ring-firm-accent/10 focus:border-firm-accent outline-none font-medium transition-all shadow-sm hover:border-firm-slate/20 hover:bg-white"
+                                    className="w-full appearance-none bg-firm-paper border border-firm-slate/10 text-firm-navy text-[15px] rounded-2xl p-4 pr-10 focus:ring-4 focus:ring-firm-accent/10 focus:border-firm-accent outline-none font-medium transition-all shadow-sm hover:border-firm-slate/20 hover:bg-firm-card"
                                     value={selectValue}
                                     onChange={(e) => {
                                         const val = e.target.value;
@@ -612,14 +612,14 @@ const ContractReview: React.FC = () => {
                             <div className="flex bg-firm-paper p-1.5 rounded-xl border border-firm-slate/10 w-full shadow-inner">
                                 <button
                                     onClick={() => setContractPerspective('BUYER')}
-                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-white shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-white/50'}`}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-firm-card shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
                                 >
                                     {perspectiveLabels.BUYER.Icon && <perspectiveLabels.BUYER.Icon size={16} className={perspective === 'BUYER' ? 'text-firm-accent' : ''} />}
                                     {perspectiveLabels.BUYER.label}
                                 </button>
                                 <button
                                     onClick={() => setContractPerspective('SELLER')}
-                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-white shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-white/50'}`}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-firm-card shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
                                 >
                                     {perspectiveLabels.SELLER.Icon && <perspectiveLabels.SELLER.Icon size={16} className={perspective === 'SELLER' ? 'text-firm-accent' : ''} />}
                                     {perspectiveLabels.SELLER.label}
@@ -632,7 +632,7 @@ const ContractReview: React.FC = () => {
                             <div className="flex items-center gap-3">
                                 <button
                                     onClick={() => setAggressiveness('MODERATE')}
-                                    className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'MODERATE' ? 'bg-white border-firm-accent/30 shadow-firm-glow ring-1 ring-firm-accent/10 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-firm-slate/30 hover:bg-white'}`}
+                                    className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'MODERATE' ? 'bg-firm-card border-firm-accent/30 shadow-firm-glow ring-1 ring-firm-accent/10 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-firm-slate/30 hover:bg-firm-card'}`}
                                 >
                                     <Briefcase size={20} className={aggressiveness === 'MODERATE' ? 'text-firm-accent' : 'text-firm-slate/50'} />
                                     <span className={`text-[13px] font-bold ${aggressiveness === 'MODERATE' ? 'text-firm-navy' : ''}`}>Marktstandard</span>
@@ -657,13 +657,13 @@ const ContractReview: React.FC = () => {
                                     <Scale size={18} className="text-firm-accent" />
                                     <span className="truncate font-bold">{referenceFile.name}</span>
                                 </div>
-                                <button onClick={() => setReferenceFile(null)} className="text-firm-slate/40 hover:text-red-500 p-1.5 rounded-full hover:bg-white transition-colors bg-white/50">
+                                <button onClick={() => setReferenceFile(null)} className="text-firm-slate/40 hover:text-red-500 p-1.5 rounded-full hover:bg-firm-card transition-colors bg-firm-card/50">
                                     <X size={16} />
                                 </button>
                             </div>
                         ) : (
                             <label className="flex items-center gap-5 p-5 border-2 border-dashed border-firm-slate/15 rounded-2xl cursor-pointer hover:bg-firm-paper hover:border-firm-accent/50 transition-all duration-300 group">
-                                <div className="w-12 h-12 rounded-xl bg-firm-paper border border-firm-slate/10 flex items-center justify-center text-firm-slate/40 group-hover:bg-firm-navy group-hover:text-firm-accent group-hover:border-firm-navy transition-all duration-300 shadow-sm">
+                                <div className="w-12 h-12 rounded-xl bg-firm-paper border border-firm-slate/10 flex items-center justify-center text-firm-slate/40 group-hover:bg-[#05050A] group-hover:text-firm-accent group-hover:border-[#05050A] dark:group-hover:bg-firm-card dark:group-hover:border-firm-border transition-all duration-300 shadow-sm">
                                     <Scale size={20} />
                                 </div>
                                 <div className="flex-1">
@@ -726,8 +726,8 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
     const config = getStatusConfig();
 
     return (
-        <motion.div layout className={`bg-white rounded-[1.5rem] border overflow-hidden transition-colors duration-300 ${expanded ? config.border : 'border-firm-slate/15 hover:border-firm-slate/30'} ${expanded ? 'shadow-firm' : 'shadow-sm'}`}>
-            <motion.div layout className={`p-5 flex items-start justify-between cursor-pointer transition-colors duration-300 ${expanded ? config.bg : 'bg-white hover:bg-firm-paper/50'}`} onClick={() => setExpanded(!expanded)}>
+        <motion.div layout className={`bg-firm-card rounded-[1.5rem] border overflow-hidden transition-colors duration-300 ${expanded ? config.border : 'border-firm-slate/15 hover:border-firm-slate/30'} ${expanded ? 'shadow-firm' : 'shadow-sm'}`}>
+            <motion.div layout className={`p-5 flex items-start justify-between cursor-pointer transition-colors duration-300 ${expanded ? config.bg : 'bg-firm-card hover:bg-firm-paper/50'}`} onClick={() => setExpanded(!expanded)}>
                 <div className="flex items-start gap-4">
                     <div className={`mt-1.5 w-2.5 h-2.5 rounded-full shrink-0 shadow-sm ${config.color}`} />
                     <div className="-mt-0.5">
@@ -735,7 +735,7 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                         {clause.relevantParagraph && (<p className="text-[11px] text-firm- font-medium font-bold mt-1 uppercase tracking-wider">{clause.relevantParagraph}</p>)}
                     </div>
                 </div>
-                <motion.div animate={{ rotate: expanded ? 180 : 0 }} className={`p-1 rounded-full bg-white/50 border border-white/50 ${expanded ? 'text-firm-navy' : 'text-firm-slate/40'}`}>
+                <motion.div animate={{ rotate: expanded ? 180 : 0 }} className={`p-1 rounded-full bg-firm-card/50 border border-firm-card/50 ${expanded ? 'text-firm-navy' : 'text-firm-slate/40'}`}>
                     <ChevronDown size={16} />
                 </motion.div>
             </motion.div>
@@ -747,7 +747,7 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                         exit={{ height: 0, opacity: 0, transition: { height: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.1 } } }}
                         className="overflow-hidden"
                     >
-                        <div className="px-6 pb-7 pt-4 bg-white border-t border-firm-slate/5">
+                        <div className="px-6 pb-7 pt-4 bg-firm-card border-t border-firm-slate/5">
                             <div className="space-y-6">
                                 <div className="text-[15px] text-firm-navy leading-relaxed font-medium">
                                     {clause.analysis}
@@ -777,7 +777,7 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                                             }}>Kopieren</button>
                                         </div>
                                         {/* Styled like Word Track Changes - High End Edition */}
-                                        <div className="text-[13px] bg-white border border-green-200/60 text-firm-navy p-4 rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] select-all relative group overflow-hidden">
+                                        <div className="text-[13px] bg-firm-card border border-green-200/60 text-firm-navy p-4 rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] select-all relative group overflow-hidden">
                                             <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></div>
                                             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <span className="text-[9px] uppercase font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-200/50">Neu</span>

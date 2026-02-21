@@ -30,8 +30,8 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate }) => {
 
   return (
     <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 w-full flex justify-center px-4">
-      {/* The Tool Dock - Dark Navy, very sleek */}
-      <nav className="flex items-center gap-2 bg-firm-navy/95 backdrop-blur-xl shadow-dock rounded-2xl px-3 py-2 border border-firm-slate/20 overflow-x-auto max-w-full no-scrollbar">
+      {/* The Tool Dock - Always dark for visual anchor */}
+      <nav className="flex items-center gap-2 bg-[#05050A]/95 backdrop-blur-xl shadow-dock rounded-2xl px-3 py-2 border border-[#334155]/20 overflow-x-auto max-w-full no-scrollbar">
         {navItems.map((item) => {
           const isActive = currentView === item.id;
           const Icon = item.icon;
@@ -42,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate }) => {
               onClick={() => onNavigate(item.id)}
               className={`
                 relative flex items-center justify-center min-w-[3.5rem] h-12 rounded-xl transition-all duration-300 group
-                ${isActive ? 'bg-firm-accent/10 text-firm-accent' : 'text-firm-slate hover:text-firm-paper hover:bg-firm-paper/5'}
+                ${isActive ? 'bg-firm-accent/15 text-firm-accent' : 'text-[#94A3B8] hover:text-white hover:bg-white/5'}
               `}
               title={item.label}
             >

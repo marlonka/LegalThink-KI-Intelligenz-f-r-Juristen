@@ -15,7 +15,7 @@ const RiskHeatmap: React.FC<RiskHeatmapProps> = ({ points, activeCell, onCellCli
   };
 
   const getCellColor = (prob: number, imp: number, isActive: boolean, hasRisks: boolean) => {
-    if (!hasRisks) return 'bg-white hover:bg-slate-50';
+    if (!hasRisks) return 'bg-firm-card hover:bg-slate-50';
     
     const score = prob * imp;
     let base = '';
@@ -37,7 +37,7 @@ const RiskHeatmap: React.FC<RiskHeatmapProps> = ({ points, activeCell, onCellCli
   };
 
   return (
-    <div className="relative p-2 md:p-8 bg-white rounded-xl border border-slate-200 shadow-sm mt-8 select-none">
+    <div className="relative p-2 md:p-8 bg-firm-card rounded-xl border border-slate-200 shadow-sm mt-8 select-none">
       
       <div className="flex gap-4 md:gap-8">
         {/* Y-Axis Label */}

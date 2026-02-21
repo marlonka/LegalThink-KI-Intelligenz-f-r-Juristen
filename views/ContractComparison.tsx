@@ -178,18 +178,18 @@ const ContractComparison: React.FC = () => {
             </div>
           </div>
           <div className="flex gap-3">
-            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30">
+            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Synopse kopieren'}
             </Button>
-            <Button variant="secondary" onClick={() => { setComparisonFiles(null, null); setComparisonAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-white hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setComparisonFiles(null, null); setComparisonAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
               Neu Starten
             </Button>
           </div>
         </div>
 
         {/* Strategic Summary */}
-        <div className="bg-white p-8 rounded-3xl shadow-firm border border-firm-slate/10 relative overflow-hidden group">
+        <div className="bg-firm-card p-8 rounded-3xl shadow-firm border border-firm-slate/10 relative overflow-hidden group">
           <div className="absolute top-0 left-0 w-1.5 h-full bg-firm-accent group-hover:w-2 transition-all duration-300"></div>
           <h3 className="font-bold text-firm-navy font-serif mb-4 text-xl flex items-center gap-3">
             Strategische Einschätzung
@@ -220,7 +220,7 @@ const ContractComparison: React.FC = () => {
   return (
     <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
 
         <div className="flex items-center gap-4 mb-10 mt-2">
           <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
@@ -279,7 +279,7 @@ const ContractComparison: React.FC = () => {
       </div>
 
       {playbook && (
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 animate-enter bg-white py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 animate-enter bg-firm-card py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
           <BookOpen size={14} className="text-firm-accent" />
           <span>Abgleich mit Playbook: <strong className="text-firm-navy">{playbook.name}</strong></span>
         </div>
@@ -313,17 +313,17 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-firm-slate/15 shadow-sm overflow-hidden hover:shadow-firm transition-shadow duration-300 group">
+    <div className="bg-firm-card rounded-2xl border border-firm-slate/15 shadow-sm overflow-hidden hover:shadow-firm transition-shadow duration-300 group">
       <div className={`px-6 py-4 flex items-center justify-between border-b transition-colors duration-300 group-hover:bg-opacity-50 ${getSeverityColor()}`}>
         <div className="flex items-center gap-3">
           {getIcon()}
           <h4 className="font-bold text-firm-navy text-[16px] leading-snug">{change.clauseTitle}</h4>
         </div>
         <div className="flex gap-2">
-          <span className="text-[9px] uppercase font-bold px-2.5 py-1 bg-white/80 rounded-full text-firm-navy font-medium shadow-sm border border-firm-slate/5 tracking-wider">
+          <span className="text-[9px] uppercase font-bold px-2.5 py-1 bg-firm-card/80 rounded-full text-firm-navy font-medium shadow-sm border border-firm-slate/5 tracking-wider">
             {translateType(change.changeType)}
           </span>
-          <span className="text-[9px] uppercase font-bold px-2.5 py-1 bg-white rounded-full shadow-sm text-firm-navy tracking-wider border border-firm-slate/5">
+          <span className="text-[9px] uppercase font-bold px-2.5 py-1 bg-firm-card rounded-full shadow-sm text-firm-navy tracking-wider border border-firm-slate/5">
             {translateSeverity(change.severity)}
           </span>
         </div>
@@ -337,7 +337,7 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
             {change.originalText || "(Nicht vorhanden / Neu)"}
           </p>
         </div>
-        <div className="p-6 bg-white">
+        <div className="p-6 bg-firm-card">
           <p className="text-[10px] uppercase text-firm-accent font-bold mb-3 tracking-widest flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-firm-accent"></span> Neu (V2)
           </p>
@@ -346,7 +346,7 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
           </p>
         </div>
       </div>
-      <div className="p-6 bg-white rounded-b-2xl">
+      <div className="p-6 bg-firm-card rounded-b-2xl">
         <div className="mb-5">
           <span className="text-[10px] font-bold text-firm-slate/50 uppercase tracking-widest">Rechtliche Konsequenz</span>
           <p className="text-[14px] md:text-[15px] text-firm-navy mt-1.5 leading-relaxed font-medium">{change.legalImpact}</p>

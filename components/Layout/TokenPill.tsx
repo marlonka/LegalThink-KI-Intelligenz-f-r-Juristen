@@ -16,7 +16,7 @@ const TokenPill: React.FC = () => {
 
   return (
     <div className="fixed top-6 right-6 z-50 animate-enter">
-      <div className="flex items-center gap-3 px-4 py-2 bg-firm-navy/95 backdrop-blur-xl rounded-full shadow-firm-lg border border-firm-accent/20 text-xs font-mono text-firm-paper hover:scale-[1.02] transition-transform duration-300 ease-out-expo cursor-help group">
+      <div className="flex items-center gap-3 px-4 py-2 bg-[#05050A]/95 backdrop-blur-xl rounded-full shadow-firm-lg border border-firm-accent/20 text-xs font-mono text-[#FAFAFA] hover:scale-[1.02] transition-transform duration-300 ease-out-expo cursor-help group">
 
         {/* API Calls Counter - Hidden on Mobile */}
         <div className="hidden md:flex items-center gap-2">

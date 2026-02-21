@@ -149,11 +149,11 @@ const MarketingCheck: React.FC = () => {
             <p className="text-xs text-firm-slate/60 font-mono tracking-wider font-medium mt-1">Zielgruppe: {audience || 'Verbraucher (Allgemein)'}</p>
           </div>
           <div className="flex gap-3">
-            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30">
+            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren'}
             </Button>
-            <Button variant="secondary" onClick={() => { setMarketingText(''); setMarketingFile(null); setMarketingAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-white hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setMarketingText(''); setMarketingFile(null); setMarketingAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
               Neu Starten
             </Button>
           </div>
@@ -169,11 +169,11 @@ const MarketingCheck: React.FC = () => {
 
         <div className={`p-8 md:p-10 rounded-3xl text-white shadow-firm-lg relative overflow-hidden group ${isHighRisk ? 'bg-red-700' : isMediumRisk ? 'bg-amber-600' : 'bg-emerald-600'}`}>
           <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-firm-card/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700"></div>
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <h3 className="text-[10px] font-bold opacity-80 uppercase tracking-widest mb-3 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-white"></span> Abmahn-Risiko (UWG)
+                <span className="w-1.5 h-1.5 rounded-full bg-firm-card"></span> Abmahn-Risiko (UWG)
               </h3>
               <div className="text-5xl md:text-6xl font-bold font-serif mb-4 flex items-baseline gap-1">
                 {data.abmahnRiskScore}
@@ -181,7 +181,7 @@ const MarketingCheck: React.FC = () => {
               </div>
               <p className="font-serif text-[15px] leading-relaxed max-w-xl opacity-90">{data.summary}</p>
             </div>
-            <div className="bg-white/10 border border-white/20 p-5 rounded-full backdrop-blur-sm self-start md:self-auto">
+            <div className="bg-firm-card/10 border border-firm-card/20 p-5 rounded-full backdrop-blur-sm self-start md:self-auto">
               {isHighRisk ? <AlertOctagon size={48} /> : <ShieldCheck size={48} />}
             </div>
           </div>
@@ -197,7 +197,7 @@ const MarketingCheck: React.FC = () => {
             </div>
           ) : (
             data.issues.map((issue, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-firm-slate/15 shadow-sm overflow-hidden hover:shadow-firm transition-shadow duration-300">
+              <div key={idx} className="bg-firm-card rounded-2xl border border-firm-slate/15 shadow-sm overflow-hidden hover:shadow-firm transition-shadow duration-300">
                 <div className="px-6 py-4 border-b border-firm-slate/10 flex items-center justify-between bg-firm-paper/30">
                   <div className="flex items-center gap-3">
                     <span className="font-bold text-firm-navy text-[16px]">{issue.issueCategory}</span>
@@ -261,7 +261,7 @@ const MarketingCheck: React.FC = () => {
   return (
     <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-8 mt-2">
           <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
             <Megaphone size={28} strokeWidth={1.5} />
@@ -342,7 +342,7 @@ const MarketingCheck: React.FC = () => {
       </div>
 
       {playbook && (
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 animate-enter bg-white py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 animate-enter bg-firm-card py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
           <BookOpen size={14} className="text-firm-accent" />
           <span>Abgleich mit Corporate Wording: <strong className="text-firm-navy">{playbook.name}</strong></span>
         </div>

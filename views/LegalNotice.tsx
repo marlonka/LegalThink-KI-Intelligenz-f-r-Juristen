@@ -14,7 +14,7 @@ const LegalNotice: React.FC = () => {
 
       <Card>
          <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-          <div className="p-2 bg-firm-navy rounded-lg text-white">
+          <div className="p-2 bg-[#05050A] rounded-lg text-white dark:bg-firm-card dark:text-firm-navy">
             <Bot size={24} />
           </div>
           <h3 className="text-xl font-bold text-firm-navy font-serif">EU AI Act (KI-Verordnung)</h3>
@@ -63,7 +63,7 @@ const LegalNotice: React.FC = () => {
 
       <Card>
         <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-          <div className="p-2 bg-firm-navy rounded-lg text-white">
+          <div className="p-2 bg-[#05050A] rounded-lg text-white dark:bg-firm-card dark:text-firm-navy">
             <Github size={24} />
           </div>
           <h3 className="text-xl font-bold text-firm-navy font-serif">Lizenz & Haftung (MIT / BGB)</h3>

@@ -24,7 +24,7 @@ const ContextPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-firm-slate/10 shadow-firm p-6 md:p-8 animate-enter flex-shrink-0">
+    <div className="bg-firm-card rounded-3xl border border-firm-slate/10 shadow-firm p-6 md:p-8 animate-enter flex-shrink-0">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-firm-paper text-firm-navy rounded-xl shadow-sm border border-firm-slate/5">
           <Globe size={20} strokeWidth={1.5} />
@@ -54,7 +54,7 @@ const ContextPanel: React.FC = () => {
             <button
               onClick={handleAddUrl}
               disabled={!urlInput.trim()}
-              className="px-4 py-3 bg-firm-navy text-white rounded-xl hover:bg-[#1e293b] disabled:opacity-50 transition-colors shadow-sm disabled:shadow-none"
+              className="px-4 py-3 bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] rounded-xl hover:bg-[#1e293b] disabled:opacity-50 transition-colors shadow-sm disabled:shadow-none"
             >
               <Plus size={20} />
             </button>
@@ -99,7 +99,7 @@ const ContextPanel: React.FC = () => {
               onClick={() => toggleSearch(!state.useSearch)}
               className={`relative w-12 h-6 rounded-full transition-colors duration-300 shadow-inner ${state.useSearch ? 'bg-firm-accent' : 'bg-firm-slate/20'}`}
             >
-              <span className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full shadow-sm transition-transform duration-300 ${state.useSearch ? 'translate-x-6' : 'translate-x-0'}`} />
+              <span className={`absolute top-1 left-1 bg-firm-card w-4 h-4 rounded-full shadow-sm transition-transform duration-300 ${state.useSearch ? 'translate-x-6' : 'translate-x-0'}`} />
             </button>
           </div>
 

@@ -125,11 +125,11 @@ const ComplianceCheck: React.FC = () => {
         <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-center justify-between border-b border-firm-slate/15 pb-6 gap-4">
           <h2 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Technischer Abgleich (DSGVO)</h2>
           <div className="flex gap-3">
-            <Button variant="secondary" onClick={handleCopy} className="!py-2.5 !px-4 text-xs shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30">
+            <Button variant="secondary" onClick={handleCopy} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren (für z.B. Word)'}
             </Button>
-            <Button variant="secondary" onClick={() => { setComplianceFile(null); setComplianceResult(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-white hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setComplianceFile(null); setComplianceResult(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
               Neu Starten
             </Button>
           </div>
@@ -152,14 +152,14 @@ const ComplianceCheck: React.FC = () => {
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <Card className="border-0 shadow-firm-lg bg-white rounded-[2rem] p-6 md:p-10 relative overflow-hidden">
+          <Card className="border-0 shadow-firm-lg bg-firm-card rounded-[2rem] p-6 md:p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-firm-paper/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
             <div className="prose prose-sm md:prose-base max-w-none text-firm-navy font-medium prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
                   table: ({ node, ...props }) => (
-                    <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-white">
+                    <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-firm-card">
                       <table className="w-full text-left border-collapse min-w-[600px]" {...props} />
                     </div>
                   ),
@@ -208,7 +208,7 @@ const ComplianceCheck: React.FC = () => {
     <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-32 max-w-5xl mx-auto">
       <motion.div variants={itemVariants}>
         <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
           <div className="flex items-center gap-4 mb-8 mt-2">
             <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
               <Shield size={28} strokeWidth={1.5} />
@@ -249,7 +249,7 @@ const ComplianceCheck: React.FC = () => {
       </motion.div>
 
       {playbook && (
-        <motion.div variants={itemVariants} className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 bg-white py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
+        <motion.div variants={itemVariants} className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 bg-firm-card py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
           <BookOpen size={14} className="text-firm-accent" />
           <span>Aktives Playbook: <strong className="text-firm-navy">{playbook.name}</strong></span>
         </motion.div>

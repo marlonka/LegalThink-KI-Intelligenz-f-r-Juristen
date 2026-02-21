@@ -147,11 +147,11 @@ const RiskAssessment: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-firm-slate/15 pb-6 gap-4">
           <h2 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Risiko-Matrix</h2>
           <div className="flex gap-3">
-            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30">
+            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren'}
             </Button>
-            <Button variant="secondary" onClick={() => { setRiskText(''); setRiskDisputeValue(''); setRiskAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-white hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setRiskText(''); setRiskDisputeValue(''); setRiskAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
               Neu Starten
             </Button>
           </div>
@@ -164,7 +164,7 @@ const RiskAssessment: React.FC = () => {
           </div>
         )}
 
-        <Card className="bg-gradient-to-br from-firm-navy to-[#1e2a3b] text-white border-0 shadow-firm-lg relative overflow-hidden rounded-3xl p-8">
+        <Card className="bg-gradient-to-br from-[#05050A] to-[#1e2a3b] text-white border-0 shadow-firm-lg relative overflow-hidden rounded-3xl p-8">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-firm-accent/20 via-firm-accent to-firm-accent/20"></div>
           <div className="relative z-10">
             <h3 className="text-white/60 text-[10px] uppercase tracking-widest mb-3 font-bold flex items-center gap-2">
@@ -173,7 +173,7 @@ const RiskAssessment: React.FC = () => {
             <div className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6 font-serif">{data.overallRiskLevel}</div>
             <p className="text-[15px] md:text-[16px] font-medium leading-relaxed max-w-3xl opacity-90">{data.executiveSummary}</p>
             {disputeValue && (
-              <div className="inline-flex items-center gap-3 bg-white/5 px-4 py-2 rounded-xl border border-white/10 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-3 bg-firm-card/5 px-4 py-2 rounded-xl border border-firm-card/10 backdrop-blur-sm">
                 <Euro size={16} className="text-firm-accent" />
                 <span className="text-[13px] font-bold text-white/90 tracking-wider uppercase">Streitwertbasis: {disputeValue}</span>
               </div>
@@ -182,7 +182,7 @@ const RiskAssessment: React.FC = () => {
         </Card>
 
         {data.economicImpactAnalysis && (
-          <div className="bg-white p-6 md:p-8 rounded-3xl shadow-firm border border-firm-slate/10 relative overflow-hidden group">
+          <div className="bg-firm-card p-6 md:p-8 rounded-3xl shadow-firm border border-firm-slate/10 relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-1.5 h-full bg-firm-accent/60 group-hover:bg-firm-accent transition-colors duration-300"></div>
             <h4 className="text-[10px] font-bold text-firm-slate/60 mb-3 uppercase tracking-widest flex items-center gap-2">
               Wirtschaftliche Betrachtung
@@ -207,7 +207,7 @@ const RiskAssessment: React.FC = () => {
             {activeCell ? (
               <button
                 onClick={() => setActiveCell(null)}
-                className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider bg-firm-paper text-firm-navy border border-firm-slate/15 px-3 py-1.5 rounded-full hover:bg-white hover:border-firm-slate/30 hover:shadow-sm transition-all"
+                className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider bg-firm-paper text-firm-navy border border-firm-slate/15 px-3 py-1.5 rounded-full hover:bg-firm-card hover:border-firm-slate/30 hover:shadow-sm transition-all"
               >
                 <X size={12} className="text-firm-accent" />
                 Filter: P{activeCell.prob} / I{activeCell.imp} (Löschen)
@@ -240,7 +240,7 @@ const RiskAssessment: React.FC = () => {
   return (
     <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-10 mt-2">
           <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
             <AlertTriangle size={28} strokeWidth={1.5} />
@@ -289,7 +289,7 @@ const RiskAssessment: React.FC = () => {
       </div>
 
       {playbook && (
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 animate-enter bg-white py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 animate-enter bg-firm-card py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
           <BookOpen size={14} className="text-firm-accent" />
           <span>Aktives Playbook: <strong className="text-firm-navy">{playbook.name}</strong></span>
         </div>
@@ -308,7 +308,7 @@ const RiskDetailItem: React.FC<{ risk: RiskPoint }> = ({ risk }) => {
   else { borderClass = 'border-emerald-500/20 bg-[#F4FCF7]'; bgBadge = 'bg-emerald-500 text-white border-emerald-600 shadow-sm'; }
 
   return (
-    <div className={`bg-white rounded-2xl border overflow-hidden transition-all duration-300 ${borderClass} hover:shadow-firm group`}>
+    <div className={`bg-firm-card rounded-2xl border overflow-hidden transition-all duration-300 ${borderClass} hover:shadow-firm group`}>
       <div className="p-5 flex items-start justify-between cursor-pointer" onClick={() => setExpanded(!expanded)}>
         <div className="flex items-start gap-4">
           <div className={`mt-0.5 px-3 py-1.5 rounded-lg text-xs font-bold w-14 text-center border ${bgBadge}`}>

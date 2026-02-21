@@ -58,7 +58,7 @@ const GroundingSources: React.FC<GroundingSourcesProps> = ({ metadata }) => {
                 className="group flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200"
               >
                 {/* Index Badge */}
-                <div className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-slate-100 text-slate-500 text-xs font-mono font-bold group-hover:bg-firm-navy group-hover:text-white transition-colors mt-0.5">
+                <div className="shrink-0 flex items-center justify-center w-6 h-6 rounded bg-slate-100 text-slate-500 text-xs font-mono font-bold group-hover:bg-[#05050A] group-hover:text-white dark:group-hover:bg-firm-accent dark:group-hover:text-[#05050A] transition-colors mt-0.5">
                     {index}
                 </div>
 

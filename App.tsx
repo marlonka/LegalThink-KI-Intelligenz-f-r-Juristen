@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from './components/Layout/Header';
 import Navigation from './components/Layout/Navigation';
@@ -19,6 +18,7 @@ import LegalNotice from './views/LegalNotice';
 import { View } from './types';
 import { TokenProvider } from './contexts/TokenContext';
 import { AppProvider, useAppContext } from './contexts/AppContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 // Separated InnerApp to consume Context for layout logic
 const InnerApp: React.FC = () => {
@@ -76,27 +76,27 @@ const InnerApp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-firm-paper relative selection:bg-firm-accent/20 font-sans text-firm-navy">
+    <div className="min-h-screen flex flex-col bg-firm-paper relative selection:bg-firm-accent/20 font-sans text-firm-navy transition-colors duration-300">
 
       {/* Background Ambience - Premium Editorial */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Subtle radial gradient instead of flat color */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-firm-paper to-firm-paper" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[rgba(var(--color-firm-light),1)] via-firm-paper to-firm-paper transition-colors duration-300" />
         {/* Distinctive gold ambient glow - Expanded to prevent cutoff on ultrawide monitors */}
-        <div className="absolute top-[-30%] right-[-20%] w-[150vw] md:w-[120vw] lg:w-[1500px] h-[1000px] md:h-[1500px] rounded-[100%] bg-firm-accent/5 blur-[120px] md:blur-[180px]" />
+        <div className="absolute top-[-30%] right-[-20%] w-[150vw] md:w-[120vw] lg:w-[1500px] h-[1000px] md:h-[1500px] rounded-[100%] bg-firm-accent/5 blur-[120px] md:blur-[180px] transition-colors duration-300" />
       </div>
 
       {/* Legal Gatekeeper */}
       <LegalModal onAccept={() => { }} />
 
-      <Header currentView={currentView} />
+      <Header currentView={currentView} onNavigate={setCurrentView} />
       <TokenPill />
 
-      <main className={`flex-1 w-full mx-auto px-6 pt-8 md:pt-12 pb-48 relative z-10 transition-[max-width] duration-500 ease-in-out ${containerClass}`}>
+      <main className={`flex-1 w-full mx-auto px-6 pt-8 md:pt-12 pb-48 relative z-10 transition-[max-width,colors] duration-500 ease-in-out ${containerClass}`}>
         {renderView()}
 
         {/* Risk-Reduced Disclaimer Footer */}
-        <div className="mt-12 text-center border-t border-firm-slate/10 pt-8 pb-4 opacity-70">
+        <div className="mt-12 text-center border-t border-firm-border pt-8 pb-4 opacity-70 transition-colors duration-300">
           <p className="text-[10px] text-firm-slate uppercase tracking-widest font-bold">
             LegalThink – KI-Assistenz für Rechtsanwälte
           </p>
@@ -116,7 +116,7 @@ const InnerApp: React.FC = () => {
         </div>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-firm-paper via-firm-paper/90 to-transparent pointer-events-none z-20" />
+      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-firm-paper via-firm-paper/90 to-transparent pointer-events-none z-20 transition-colors duration-300" />
 
       <Navigation currentView={currentView} onNavigate={setCurrentView} />
     </div>
@@ -125,11 +125,13 @@ const InnerApp: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <TokenProvider>
-      <AppProvider>
-        <InnerApp />
-      </AppProvider>
-    </TokenProvider>
+    <ThemeProvider>
+      <TokenProvider>
+        <AppProvider>
+          <InnerApp />
+        </AppProvider>
+      </TokenProvider>
+    </ThemeProvider>
   );
 };
 

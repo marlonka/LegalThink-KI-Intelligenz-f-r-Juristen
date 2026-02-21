@@ -140,11 +140,11 @@ const NdaTriage: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-firm-slate/15 pb-6 gap-4">
           <h2 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Ersteinschätzung (NDA)</h2>
           <div className="flex gap-3">
-            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30">
+            <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren'}
             </Button>
-            <Button variant="secondary" onClick={() => { setNdaText(''); setNdaFile(null); setNdaAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-white hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setNdaText(''); setNdaFile(null); setNdaAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
               Neu Starten
             </Button>
           </div>
@@ -159,11 +159,11 @@ const NdaTriage: React.FC = () => {
 
         <div className={`relative overflow-hidden rounded-3xl p-8 md:p-10 text-white ${bgClass} shadow-firm-lg group`}>
           <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent"></div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-firm-card/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700"></div>
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-[10px] font-bold text-white/80 uppercase tracking-widest flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-white"></span> Handlungsempfehlung
+                <span className="w-1.5 h-1.5 rounded-full bg-firm-card"></span> Handlungsempfehlung
               </h3>
             </div>
             <div className="text-5xl font-bold mb-6 tracking-tight font-serif">
@@ -178,7 +178,7 @@ const NdaTriage: React.FC = () => {
         <GroundingSources metadata={metadata} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="md:col-span-2 border border-firm-slate/10 shadow-sm p-6 bg-white hover:shadow-md transition-shadow">
+          <Card className="md:col-span-2 border border-firm-slate/10 shadow-sm p-6 bg-firm-card hover:shadow-md transition-shadow">
             <div className="flex items-center gap-3 mb-3 text-firm-navy">
               <Clock size={18} className="text-firm-accent" />
               <h4 className="font-bold font-serif text-[15px]">Fristen & Laufzeit</h4>
@@ -187,7 +187,7 @@ const NdaTriage: React.FC = () => {
           </Card>
 
           {data.keyFindings.map((finding, idx) => (
-            <Card key={idx} className="border border-firm-slate/10 shadow-sm p-5 bg-white hover:border-firm-slate/30 transition-colors">
+            <Card key={idx} className="border border-firm-slate/10 shadow-sm p-5 bg-firm-card hover:border-firm-slate/30 transition-colors">
               <span className="text-[10px] text-firm-slate/50 font-bold uppercase tracking-widest block mb-2">{finding.label}</span>
               <div className="flex items-start justify-between">
                 <span className="font-serif text-[15px] text-firm-navy leading-tight pr-4">{finding.value}</span>
@@ -205,7 +205,7 @@ const NdaTriage: React.FC = () => {
   return (
     <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-8 mt-2">
           <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
             <FileCheck size={28} strokeWidth={1.5} />

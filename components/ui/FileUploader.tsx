@@ -47,7 +47,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         onClick={handleClick}
         className="group relative w-full p-6 border-2 border-firm-slate/15 bg-firm-paper/30 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer hover:border-firm-accent hover:bg-firm-paper/80 transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.01)]"
       >
-        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-4 text-firm-navy shadow-sm border border-firm-slate/5 group-hover:scale-105 transition-transform duration-300">
+        <div className="w-14 h-14 bg-firm-card rounded-2xl flex items-center justify-center mb-4 text-firm-navy shadow-sm border border-firm-slate/5 group-hover:scale-105 transition-transform duration-300">
           <FileText size={26} strokeWidth={1.5} />
         </div>
         <h3 className="text-[14px] font-bold text-firm-navy mb-1.5 truncate max-w-xs">{fileList[0].name}</h3>
@@ -80,7 +80,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
       {multiple && fileList.length > 0 && (
         <div className="space-y-3 mb-4">
           {fileList.map((f, idx) => (
-            <div key={idx} className="flex items-center justify-between p-4 bg-white border border-firm-slate/10 rounded-xl shadow-sm hover:border-firm-slate/20 transition-colors">
+            <div key={idx} className="flex items-center justify-between p-4 bg-firm-card border border-firm-slate/10 rounded-xl shadow-sm hover:border-firm-slate/20 transition-colors">
               <div className="flex items-center gap-4 overflow-hidden">
                 <div className="p-2 bg-firm-paper rounded-lg">
                   <FileText size={18} className="text-firm-navy shrink-0" strokeWidth={1.5} />
@@ -107,7 +107,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         `}
       >
         <div className={`
-          rounded-2xl bg-firm-paper border border-firm-slate/5 text-firm-navy group-hover:bg-firm-navy group-hover:border-firm-navy group-hover:text-white transition-all duration-300 flex items-center justify-center mb-4 shadow-sm group-hover:shadow group-hover:scale-105
+          rounded-2xl bg-firm-paper border border-firm-slate/5 text-firm-navy group-hover:bg-[#05050A] group-hover:border-[#05050A] group-hover:text-white dark:group-hover:bg-firm-accent dark:group-hover:text-[#05050A] transition-all duration-300 flex items-center justify-center mb-4 shadow-sm group-hover:shadow group-hover:scale-105
           ${variant === 'compact' ? 'w-10 h-10' : 'w-14 h-14'}
         `}>
           <Icon size={variant === 'compact' ? 20 : 28} strokeWidth={1.5} />

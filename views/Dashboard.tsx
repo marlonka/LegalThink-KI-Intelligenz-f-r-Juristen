@@ -113,7 +113,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
       </motion.div>
 
       {/* Context / Playbook Configuration Card */}
-      <motion.div variants={itemVariants} className="bg-gradient-to-br from-firm-navy via-[#111926] to-[#0A0F1C] rounded-[2rem] p-8 shadow-firm-lg text-white relative overflow-hidden group border border-white/5">
+      <motion.div variants={itemVariants} className="bg-gradient-to-br from-[#05050A] via-[#111926] to-[#0A0F1C] rounded-[2rem] p-8 shadow-firm-lg text-white relative overflow-hidden group border border-firm-card/5">
         <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-700 text-firm-accent">
           <Scale size={180} />
         </div>
@@ -130,7 +130,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
             <p className="text-slate-300/80 text-sm max-w-xl leading-relaxed font-medium">
               Laden Sie Ihr anwaltliches Playbook hoch. Wir nutzen dieses Wissen im Hintergrund, um der KI den exakten juristischen Kontext, Ihre Vorlagen und Ihren Verhandlungsstil zu injizieren.
               <br />
-              <span className="text-xs text-white/90 mt-4 block p-3.5 bg-white/10 rounded-xl border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+              <span className="text-xs text-white/90 mt-4 block p-3.5 bg-firm-card/10 rounded-xl border border-firm-card/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
                 <strong className="text-firm-accent mr-1">Tipp:</strong> Laden Sie Ihre Standard-AGB, "Must-Haves" für Vertragsprüfungen oder ein Mandantenprofil hoch. Erhöht die Präzision massiv.
               </span>
             </p>
@@ -144,7 +144,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           </div>
 
           <div className="relative shrink-0 w-full md:w-auto">
-            <button className="w-full bg-firm-paper text-firm-navy px-6 py-3.5 rounded-2xl text-sm font-bold shadow-firm hover:bg-white transition-all duration-300 pointer-events-none whitespace-nowrap active:scale-95">
+            <button className="w-full bg-firm-paper text-firm-navy px-6 py-3.5 rounded-2xl text-sm font-bold shadow-firm hover:bg-firm-card transition-all duration-300 pointer-events-none whitespace-nowrap active:scale-95">
               {state.playbookFile ? 'Playbook aktualisieren' : 'Playbook hochladen'}
             </button>
             <input
@@ -172,7 +172,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
               key={action.title}
               onClick={() => onNavigate(action.view)}
               className={`
-                group bg-white border border-firm-slate/15 rounded-[2rem] p-8 text-left transition-colors duration-500 ease-out-expo
+                group bg-firm-card border border-firm-slate/15 rounded-[2rem] p-8 text-left transition-colors duration-500 ease-out-expo
                 hover:shadow-firm-lg hover:border-firm-accent/30
               `}
             >
