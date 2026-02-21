@@ -34,7 +34,9 @@ const InnerApp: React.FC = () => {
   // Some views need a lot of horizontal space (Split Views, Tables)
   const isWideMode =
     (currentView === View.CONTRACT_REVIEW && state.contractReview.analysis !== null) ||
-    (currentView === View.CONTRACT_COMPARISON && state.comparison.analysis !== null);
+    (currentView === View.CONTRACT_COMPARISON && state.comparison.analysis !== null) ||
+    (currentView === View.NDA_TRIAGE && state.ndaTriage.analysis !== null) ||
+    (currentView === View.COMPLIANCE && state.compliance.result !== null);
 
   const containerClass = isWideMode
     ? "max-w-[95vw] xl:max-w-[1800px]"
