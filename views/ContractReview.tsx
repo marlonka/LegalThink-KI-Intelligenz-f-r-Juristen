@@ -44,7 +44,7 @@ const ContractReview: React.FC = () => {
     // States for UX Customization
     const [aggressiveness, setAggressiveness] = useState<'MODERATE' | 'AGGRESSIVE'>('MODERATE');
     // DEFAULT TO SINGLE VIEW AS REQUESTED
-    const [viewMode, setViewMode] = useState<'SINGLE' | 'SPLIT'>('SINGLE');
+    const [viewMode, setViewMode] = useState<'SPLIT' | 'SINGLE'>('SPLIT');
 
     const [copiedBriefing, setCopiedBriefing] = useState(false);
     const [filter, setFilter] = useState<'ALL' | 'DEALBREAKER'>('ALL');
@@ -422,11 +422,11 @@ const ContractReview: React.FC = () => {
                     </div>
 
                     {/* RIGHT PANE: ANALYSIS */}
-                    <div className="flex flex-col h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-firm-slate/20 pb-20">
+                    <div className="flex flex-col h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-firm-slate/20 pb-48">
 
                         {/* 1. GAP ANALYSIS WARNING */}
                         {data.missingClauses && data.missingClauses.length > 0 && (
-                            <div className="mb-8 bg-firm-paper border border-amber-200/50 rounded-2xl p-5 shadow-sm animate-enter relative overflow-hidden">
+                            <div className="mb-8 shrink-0 bg-firm-paper border border-amber-200/50 rounded-2xl p-5 shadow-sm animate-enter relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-1 h-full bg-amber-400"></div>
                                 <div className="flex items-center gap-2 mb-3 text-amber-700 font-bold text-sm uppercase tracking-wider">
                                     <ShieldAlert size={18} />
@@ -442,21 +442,31 @@ const ContractReview: React.FC = () => {
                         )}
 
                         {/* 2. EXECUTIVE SUMMARY */}
-                        <div className="mb-8 bg-white border border-firm-slate/10 rounded-3xl p-8 shadow-firm relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-1.5 h-full bg-firm-navy"></div>
-                            <div className="flex justify-between items-start mb-4">
-                                <h3 className="font-bold text-firm-navy font-serif text-xl">Management Summary</h3>
-                                <div className="bg-firm-paper border border-firm-slate/10 px-3 py-1.5 rounded-lg text-xs font-bold text-firm-navy shadow-sm">
-                                    Score: <span className={data.overallRiskScore > 70 ? 'text-red-600' : 'text-firm-accent'}>{data.overallRiskScore}/100</span>
+                        <div className="mb-8 shrink-0 bg-white border border-firm-slate/10 rounded-3xl p-6 md:p-8 shadow-firm relative">
+                            <div className="absolute top-0 left-0 w-1.5 h-full bg-firm-navy rounded-l-3xl"></div>
+                            <div className="flex flex-col md:flex-row md:items-center gap-6 mb-6">
+                                <div style={{ width: 96, height: 96, flexShrink: 0, position: 'relative' }}>
+                                    <svg viewBox="0 0 36 36" style={{ width: 96, height: 96 }} className="-rotate-90 drop-shadow-sm text-firm-paper">
+                                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                                        <path className={data.overallRiskScore > 70 ? 'text-red-500' : 'text-firm-accent'} strokeDasharray={`${data.overallRiskScore}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                                    </svg>
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-1">
+                                        <span className={`text-2xl font-black tracking-tighter leading-none ${data.overallRiskScore > 70 ? 'text-red-600' : 'text-firm-navy'}`}>{data.overallRiskScore}</span>
+                                        <span className="text-[9px] font-bold text-firm-slate/50 uppercase tracking-widest mt-0.5">Score</span>
+                                    </div>
+                                </div>
+                                <div className="flex-1 flex flex-col justify-center">
+                                    <h3 className="font-bold text-firm-navy font-serif text-2xl mb-1">Management Summary</h3>
+                                    <p className="text-xs font-bold text-firm-slate/60 uppercase tracking-widest">Risikobewertung & Handlungsempfehlung</p>
                                 </div>
                             </div>
-                            <p className="text-firm-navy/80 text-[15px] leading-relaxed font-serif">
-                                {data.executiveSummary}
+                            <p className="text-firm-navy text-[15px] md:text-[16px] leading-relaxed font-medium">
+                                {(data as any).executiveSummary || (data as any).summary || "Keine Zusammenfassung verfügbar. Bitte prüfen Sie die Details."}
                             </p>
                             {data.negotiationStrategy && (
-                                <div className="mt-6 pt-5 border-t border-firm-slate/10 bg-firm-paper/50 -mx-8 -mb-8 p-8">
+                                <div className="mt-6 pt-6 border-t border-firm-slate/10 bg-firm-paper/50 -mx-6 md:-mx-8 -mb-6 md:-mb-8 p-6 md:p-8 rounded-b-3xl">
                                     <span className="text-xs font-bold text-firm-slate/60 uppercase tracking-widest block mb-2">Strategische Empfehlung</span>
-                                    <p className="text-[15px] text-firm-accent font-serif italic leading-relaxed">{data.negotiationStrategy}</p>
+                                    <p className="text-firm-navy italic leading-relaxed font-medium">{data.negotiationStrategy}</p>
                                 </div>
                             )}
                         </div>
@@ -516,7 +526,7 @@ const ContractReview: React.FC = () => {
                                         )}
                                     </div>
                                 ) : (
-                                    <div className="prose prose-sm max-w-none text-slate-700 leading-relaxed font-serif">
+                                    <div className="prose prose-sm max-w-none text-slate-700 leading-relaxed font-medium">
                                         <ReactMarkdown>{clientEmailContent}</ReactMarkdown>
                                     </div>
                                 )}
@@ -551,7 +561,7 @@ const ContractReview: React.FC = () => {
                         </div>
                         <div>
                             <h3 className="text-2xl font-bold text-firm-navy font-serif">Vertragsanalyse</h3>
-                            <p className="text-[15px] text-firm-slate/80 mt-1">
+                            <p className="text-[15px] text-firm- font-medium mt-1">
                                 Umfassende Prüfung auf Risiken, Lücken und materielle Benachteiligungen.
                             </p>
                         </div>
@@ -667,9 +677,11 @@ const ContractReview: React.FC = () => {
                 </Card>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
-                <ContextPanel />
-            </motion.div>
+            {!data && (
+                <motion.div variants={itemVariants}>
+                    <ContextPanel />
+                </motion.div>
+            )}
 
             <motion.div variants={itemVariants} className="mt-8 relative z-10 w-full group">
                 <div className="absolute inset-0 bg-firm-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl" />
@@ -719,8 +731,8 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                 <div className="flex items-start gap-4">
                     <div className={`mt-1.5 w-2.5 h-2.5 rounded-full shrink-0 shadow-sm ${config.color}`} />
                     <div className="-mt-0.5">
-                        <h4 className="font-bold text-firm-navy text-[15px] font-serif leading-tight">{clause.title}</h4>
-                        {clause.relevantParagraph && (<p className="text-[11px] text-firm-slate/60 font-medium mt-1 uppercase tracking-wider">{clause.relevantParagraph}</p>)}
+                        <h4 className="font-bold text-firm-navy text-base leading-tight">{clause.title}</h4>
+                        {clause.relevantParagraph && (<p className="text-[11px] text-firm- font-medium font-bold mt-1 uppercase tracking-wider">{clause.relevantParagraph}</p>)}
                     </div>
                 </div>
                 <motion.div animate={{ rotate: expanded ? 180 : 0 }} className={`p-1 rounded-full bg-white/50 border border-white/50 ${expanded ? 'text-firm-navy' : 'text-firm-slate/40'}`}>
@@ -737,7 +749,7 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                     >
                         <div className="px-6 pb-7 pt-4 bg-white border-t border-firm-slate/5">
                             <div className="space-y-6">
-                                <div className="text-[15px] text-firm-navy/80 leading-relaxed font-serif">
+                                <div className="text-[15px] text-firm-navy leading-relaxed font-medium">
                                     {clause.analysis}
                                 </div>
 
@@ -747,7 +759,7 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                                         <Check size={18} className="text-firm-accent mt-0.5 shrink-0" />
                                         <div>
                                             <span className="font-bold text-[10px] uppercase tracking-widest block mb-1 text-firm-slate/60">Strategie & Empfehlung</span>
-                                            <div className="text-sm font-medium text-firm-navy leading-relaxed">{clause.recommendation}</div>
+                                            <div className="text-[15px] font-medium text-firm-navy leading-relaxed">{clause.recommendation}</div>
                                         </div>
                                     </div>
                                 )}
@@ -770,7 +782,7 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                                             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <span className="text-[9px] uppercase font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-200/50">Neu</span>
                                             </div>
-                                            <div className="font-serif leading-relaxed pl-2">
+                                            <div className="font-medium text-firm-navy leading-relaxed pl-2">
                                                 {clause.redline}
                                             </div>
                                         </div>

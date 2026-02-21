@@ -171,7 +171,7 @@ const RiskAssessment: React.FC = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-firm-accent"></span> Gesamtbewertung
             </h3>
             <div className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6 font-serif">{data.overallRiskLevel}</div>
-            <p className="text-[15px] text-white/80 leading-relaxed mb-6 font-serif max-w-3xl">{data.executiveSummary}</p>
+            <p className="-medium max-w-3xl">{data.executiveSummary}</p>
             {disputeValue && (
               <div className="inline-flex items-center gap-3 bg-white/5 px-4 py-2 rounded-xl border border-white/10 backdrop-blur-sm">
                 <Euro size={16} className="text-firm-accent" />
@@ -187,7 +187,7 @@ const RiskAssessment: React.FC = () => {
             <h4 className="text-[10px] font-bold text-firm-slate/60 mb-3 uppercase tracking-widest flex items-center gap-2">
               Wirtschaftliche Betrachtung
             </h4>
-            <p className="text-[15px] text-firm-navy font-serif leading-relaxed">{data.economicImpactAnalysis}</p>
+            <p className="-medium leading-relaxed">{data.economicImpactAnalysis}</p>
           </div>
         )}
 
@@ -247,7 +247,7 @@ const RiskAssessment: React.FC = () => {
           </div>
           <div>
             <h3 className="text-2xl font-bold text-firm-navy font-serif">Risiko-Bewertung</h3>
-            <p className="text-[15px] text-firm-slate/80 mt-1">Beschreiben Sie das rechtliche oder wirtschaftliche Szenario</p>
+            <p className="text-[15px] text-firm- font-medium mt-1">Beschreiben Sie das rechtliche oder wirtschaftliche Szenario</p>
           </div>
         </div>
 
@@ -272,7 +272,7 @@ const RiskAssessment: React.FC = () => {
           Details zum Sachverhalt
         </label>
         <textarea
-          className="w-full h-48 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
+          className="w-full h-48 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent -medium leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
           placeholder="Erläutern Sie den Fall... (z.B. Verletzung einer Vertraulichkeitsvereinbarung durch einen ehemaligen Mitarbeiter...)"
           value={text}
           onChange={(e) => setRiskText(e.target.value)}
@@ -302,7 +302,7 @@ const RiskDetailItem: React.FC<{ risk: RiskPoint }> = ({ risk }) => {
   const [expanded, setExpanded] = useState(true);
   const score = risk.probability * risk.impact;
   let borderClass = 'border-firm-slate/15 hover:border-firm-slate/30';
-  let bgBadge = 'bg-firm-paper border-firm-slate/10 text-firm-slate/80';
+  let bgBadge = 'bg-firm-paper border-firm-slate/10 text-firm- font-medium';
   if (score >= 15) { borderClass = 'border-red-500/20 bg-[#FCF5F5]'; bgBadge = 'bg-red-500 text-white border-red-600 shadow-sm'; }
   else if (score >= 8) { borderClass = 'border-amber-400/30 bg-[#FCFAF4]'; bgBadge = 'bg-amber-400 text-amber-900 border-amber-500 shadow-sm'; }
   else { borderClass = 'border-emerald-500/20 bg-[#F4FCF7]'; bgBadge = 'bg-emerald-500 text-white border-emerald-600 shadow-sm'; }
@@ -315,7 +315,7 @@ const RiskDetailItem: React.FC<{ risk: RiskPoint }> = ({ risk }) => {
             {score}
           </div>
           <div className="mt-0.5">
-            <h4 className="font-bold text-firm-navy text-[15px] font-serif leading-tight">{risk.category}</h4>
+            <h4 className="font-bold text-firm-navy -medium leading-tight">{risk.category}</h4>
             {!expanded && (
               <p className="text-[13px] text-firm-slate/60 mt-1.5 line-clamp-1 flex-1">{risk.description}</p>
             )}
@@ -328,7 +328,7 @@ const RiskDetailItem: React.FC<{ risk: RiskPoint }> = ({ risk }) => {
       {expanded && (
         <div className="px-5 pb-6 pt-0">
           <div className="pl-[4.5rem]">
-            <p className="text-[14px] text-firm-navy/80 leading-relaxed font-serif">{risk.description}</p>
+            <p className="-medium">{risk.description}</p>
             <div className="flex gap-6 mt-4 text-[10px] text-firm-slate/60 uppercase tracking-widest font-bold border-t border-firm-slate/10 pt-4">
               <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-firm-slate/30"></span> Wahrscheinlichkeit: <strong className="text-firm-navy text-xs">{risk.probability}/5</strong></span>
               <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-firm-slate/30"></span> Auswirkung: <strong className="text-firm-navy text-xs">{risk.impact}/5</strong></span>

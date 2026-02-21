@@ -154,7 +154,7 @@ const ComplianceCheck: React.FC = () => {
         <motion.div variants={itemVariants}>
           <Card className="border-0 shadow-firm-lg bg-white rounded-[2rem] p-6 md:p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-firm-paper/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-            <div className="prose prose-sm md:prose-base max-w-none text-firm-navy/80 prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
+            <div className="prose prose-sm md:prose-base max-w-none text-firm- font-medium prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -215,7 +215,7 @@ const ComplianceCheck: React.FC = () => {
             </div>
             <div>
               <h3 className="text-2xl font-bold text-firm-navy font-serif">Compliance Check</h3>
-              <p className="text-[15px] text-firm-slate/80 mt-1">
+              <p className="text-[15px] text-firm- font-medium mt-1">
                 Automatisierter Abgleich mit Art. 28 DSGVO (AVV) und Standardvertragsklauseln.
               </p>
             </div>

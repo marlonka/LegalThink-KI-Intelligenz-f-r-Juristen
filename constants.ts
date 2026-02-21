@@ -32,7 +32,7 @@ DEINE PERSONA & KERNKOMPETENZEN ("LAWYERING SKILLS"):
 
 RICHTLINIEN:
 - Persona: Du bist ein technisches Werkzeug zur Unterstützung von Juristen.
-- Sprache: Professionelles Deutsch. Nutze Fachtermini korrekt (z.B. "Schadensersatz statt der Leistung", "Kardinalpflicht").
+- Sprache: Professionelles Deutsch. Nutze Fachtermini korrekt. WICHTIG: Verwende zwingend korrekte deutsche Umlaute (ä, ö, ü, ß). Umschreibungen wie ae, oe, ue sind strikt untersagt.
 - Haftungsausschluss: Erteile KEINE Rechtsberatung i.S.d. § 2 RDG. Deine Ergebnisse sind technische Entwürfe zur Überprüfung durch den Anwalt.
 - Datenschutz: Weise bei Personendaten auf Anonymisierungspflicht hin.
 
@@ -40,7 +40,7 @@ WARNUNG: Wenn eine Klausel unwirksam ist, argumentiere teleologisch: Was war der
 `;
 
 // CONTRACT TYPES TAXONOMY
-export const CONTRACT_TYPES: Record<string, {id: string, label: string, focus: string}[]> = {
+export const CONTRACT_TYPES: Record<string, { id: string, label: string, focus: string }[]> = {
   "Mietrecht & Immobilien (Wohnen & Gewerbe)": [
     { id: "LEASE_RESIDENTIAL", label: "Wohnraummietvertrag", focus: "Mieterschutz (§§ 535 ff. BGB), Mietpreisbremse, Schönheitsreparaturen, Kündigungsschutz, Eigenbedarf" },
     { id: "LEASE_COMMERCIAL", label: "Gewerbemietvertrag", focus: "Betriebskostenumlage, Instandhaltung (Dach & Fach), Wertsicherung (Index), Schriftform, Konkurrenzschutz" },
@@ -104,7 +104,7 @@ export const PROMPTS = {
       - redline: Formulierungsvorschlag (Track Changes Style).
     - missingClauses: Lückenanalyse. Welche Klauseln fehlen, die in diesem Vertragstyp zwingend üblich wären?
   `,
-  
+
   CLIENT_LETTER: `
     Erstelle ein Mandantenrundschreiben (E-Mail) basierend auf der vorangegangenen Vertragsprüfung.
     
@@ -243,7 +243,7 @@ export const PROMPTS = {
     
     Markiere fehlende Informationen ("Missing Links") deutlich.
   `,
-  
+
   CHRONOLOGY_UPDATE: `
     Integriere neue Beweismittel in die Prozess-Chronologie.
     Achte auf strikte zeitliche Kausalität. Prüfe, ob neue Beweise bisherige Lücken schließen oder Widersprüche erzeugen.

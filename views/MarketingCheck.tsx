@@ -200,9 +200,9 @@ const MarketingCheck: React.FC = () => {
               <div key={idx} className="bg-white rounded-2xl border border-firm-slate/15 shadow-sm overflow-hidden hover:shadow-firm transition-shadow duration-300">
                 <div className="px-6 py-4 border-b border-firm-slate/10 flex items-center justify-between bg-firm-paper/30">
                   <div className="flex items-center gap-3">
-                    <span className="font-bold text-firm-navy text-[15px] font-serif">{issue.issueCategory}</span>
+                    <span className="font-bold text-firm-navy -medium">{issue.issueCategory}</span>
                   </div>
-                  <span className={`text-[9px] uppercase font-bold px-2.5 py-1 rounded-full border tracking-wider shadow-sm ${issue.riskLevel === 'HOCH' ? 'bg-red-50 text-red-600 border-red-500/20' : issue.riskLevel === 'MITTEL' ? 'bg-amber-50 text-amber-600 border-amber-400/30' : 'bg-firm-paper text-firm-slate/80 border-firm-slate/10'}`}>
+                  <span className={`text-[9px] uppercase font-bold px-2.5 py-1 rounded-full border tracking-wider shadow-sm ${issue.riskLevel === 'HOCH' ? 'bg-red-50 text-red-600 border-red-500/20' : issue.riskLevel === 'MITTEL' ? 'bg-amber-50 text-amber-600 border-amber-400/30' : 'bg-firm-paper text-firm- font-medium border-firm-slate/10'}`}>
                     RISIKO: {issue.riskLevel}
                   </span>
                 </div>
@@ -210,16 +210,16 @@ const MarketingCheck: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <p className="text-[10px] uppercase font-bold text-red-500/70 mb-2 tracking-widest flex items-center gap-1.5"><AlertOctagon size={12} /> Rechtliche Beanstandung</p>
-                      <div className="bg-[#FCF5F5] p-4 rounded-xl border border-red-500/10 text-firm-navy text-[15px] font-serif italic mb-4">
+                      <div className="bg-[#FCF5F5] p-4 rounded-xl border border-red-500/10 text-firm-navy -medium italic mb-4">
                         "{issue.textSnippet}"
                       </div>
-                      <p className="text-[13px] text-firm-slate/80 leading-relaxed">
+                      <p className="text-[13px] text-firm- font-medium leading-relaxed">
                         <span className="font-bold text-firm-navy block mb-1">Juristische Begründung:</span> {issue.legalExplanation}
                       </p>
                     </div>
                     <div className="border-t md:border-t-0 md:border-l border-firm-slate/10 pt-6 md:pt-0 md:pl-8">
                       <p className="text-[10px] uppercase font-bold text-emerald-600/70 mb-2 tracking-widest flex items-center gap-1.5"><Check size={12} /> Rechtskonformer Alternativvorschlag</p>
-                      <div className="bg-[#F4FCF7] p-4 rounded-xl border border-emerald-500/20 text-firm-navy text-[15px] font-serif font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
+                      <div className="bg-[#F4FCF7] p-4 rounded-xl border border-emerald-500/20 text-firm-navy -medium font-medium shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]">
                         "{issue.safeAlternative}"
                       </div>
                       <button
@@ -244,7 +244,7 @@ const MarketingCheck: React.FC = () => {
             </h4>
             <ul className="space-y-3 pl-1">
               {data.requiredDisclaimers.map((req, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-[14px] text-firm-navy/80 font-medium">
+                <li key={idx} className="flex items-start gap-3 text-[14px] text-firm- font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0"></span>
                   <span className="leading-relaxed">{req}</span>
                 </li>
@@ -268,7 +268,7 @@ const MarketingCheck: React.FC = () => {
           </div>
           <div>
             <h3 className="text-2xl font-bold text-firm-navy font-serif">Wettbewerbs-Radar (UWG)</h3>
-            <p className="text-[15px] text-firm-slate/80 mt-1">
+            <p className="text-[15px] text-firm- font-medium mt-1">
               Prävention von Unterlassungsansprüchen: Prüfung auf Irreführung, Greenwashing & PAngV.
             </p>
           </div>
@@ -298,7 +298,7 @@ const MarketingCheck: React.FC = () => {
                 value={audience}
                 onChange={(e) => setMarketingTargetAudience(e.target.value)}
               />
-              <div className="p-4 bg-firm-paper/80 border border-firm-slate/10 rounded-xl text-[13px] text-firm-navy/80 leading-relaxed shadow-sm mt-auto">
+              <div className="p-4 bg-firm-paper/80 border border-firm-slate/10 rounded-xl text-[13px] text-firm- font-medium leading-relaxed shadow-sm mt-auto">
                 <strong className="block mb-1.5 text-firm-navy flex items-center gap-1.5 font-bold"><Info size={14} className="text-firm-accent" /> Relevanz:</strong>
                 Bei "Health" (HCVO) oder "Finance" gelten strengste Maßstäbe.
               </div>
@@ -313,7 +313,7 @@ const MarketingCheck: React.FC = () => {
             <span className="h-px bg-firm-slate/10 flex-1"></span>
           </label>
           <textarea
-            className="w-full h-40 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
+            className="w-full h-40 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent -medium leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
             placeholder="Beispiel: 'Unser neues Super-Serum heilt alle Hautprobleme und ist 100% klimaneutral produziert...'"
             value={text}
             onChange={(e) => setMarketingText(e.target.value)}

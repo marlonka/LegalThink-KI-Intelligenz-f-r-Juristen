@@ -24,7 +24,7 @@ const ContextPanel: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-firm-slate/10 shadow-firm p-6 md:p-8 mt-8 animate-enter">
+    <div className="bg-white rounded-3xl border border-firm-slate/10 shadow-firm p-6 md:p-8 animate-enter flex-shrink-0">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-firm-paper text-firm-navy rounded-xl shadow-sm border border-firm-slate/5">
           <Globe size={20} strokeWidth={1.5} />

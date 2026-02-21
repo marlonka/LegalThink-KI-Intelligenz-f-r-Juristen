@@ -187,7 +187,7 @@ const DpiaGenerator: React.FC = () => {
         </div>
         <Card className="border border-firm-slate/10 shadow-firm bg-white rounded-3xl p-6 md:p-10 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-firm-paper/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-          <div className="prose prose-sm md:prose-base max-w-none text-firm-navy/80 prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
+          <div className="prose prose-sm md:prose-base max-w-none text-firm- font-medium prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -236,7 +236,7 @@ const DpiaGenerator: React.FC = () => {
                 <div className="p-2 bg-firm-paper rounded-xl"><FileCheck size={24} className="text-neon-cyan" /></div>
                 Dokument finalisieren (Merge)
               </h3>
-              <p className="text-[15px] text-firm-slate/80 mb-8 ml-[3.25rem] leading-relaxed max-w-2xl">
+              <p className="text-[15px] text-firm- font-medium mb-8 ml-[3.25rem] leading-relaxed max-w-2xl">
                 Ergänzen Sie fehlende Nachweise (PDF) oder geben Sie Anweisungen (z.B. "Übernehme TOMs aus Delta"),
                 um aus der Delta-Analyse ein <strong className="font-bold text-firm-navy">vollständiges, konsolidiertes Dokument</strong> zu generieren.
               </p>
@@ -266,7 +266,7 @@ const DpiaGenerator: React.FC = () => {
                   value={refinementText}
                   onChange={(e) => setRefinementText(e.target.value)}
                   placeholder='z.B.: "Das Risiko R1 wird durch die neue Verschlüsselung (siehe Delta) mitigiert. Bitte übernehme dies in den Hauptteil."'
-                  className="w-full h-32 p-4 rounded-xl bg-firm-paper/50 border border-firm-slate/15 text-[15px] font-serif leading-relaxed text-firm-navy focus:border-neon-cyan focus:ring-2 focus:ring-neon-cyan/20 outline-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all resize-none"
+                  className="w-full h-32 p-4 rounded-xl bg-firm-paper/50 border border-firm-slate/15 -medium leading-relaxed text-firm-navy focus:border-neon-cyan focus:ring-2 focus:ring-neon-cyan/20 outline-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all resize-none"
                 />
               </div>
               <div className="ml-[3.25rem]">
@@ -298,7 +298,7 @@ const DpiaGenerator: React.FC = () => {
             <h3 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">
               {mode === 'CREATE' ? 'Quellmaterial für neue DSFA' : 'Bestands-DSFA & Änderungen'}
             </h3>
-            <p className="text-[15px] text-firm-slate/80 mt-1">
+            <p className="text-[15px] text-firm- font-medium mt-1">
               {mode === 'CREATE'
                 ? "Laden Sie AVV, AGB, Datenschutzerklärungen hoch."
                 : "Laden Sie die alte DSFA (PDF) und neue Infos (Update-News, neue AGB) hoch."}
@@ -341,7 +341,7 @@ const DpiaGenerator: React.FC = () => {
             </label>
           </div>
           <textarea
-            className="w-full h-48 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] text-firm-navy placeholder-firm-slate/40 transition-all font-serif leading-relaxed shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
+            className="w-full h-48 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent -medium leading-relaxed shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
             placeholder={mode === 'CREATE'
               ? `Hier Text einfügen, z.B.:\n"Wir nutzen AWS in Frankfurt..."`
               : `Beschreiben Sie das Update, z.B.:\n"Copilot zeichnet nun auch Meetings auf (Audio/Video). Die Speicherdauer beträgt 30 Tage. Neue AGB von Microsoft vom 01.03.2025..."`}
@@ -357,7 +357,7 @@ const DpiaGenerator: React.FC = () => {
             <span className="h-px bg-firm-slate/10 flex-1"></span>
           </label>
           <textarea
-            className="w-full h-32 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
+            className="w-full h-32 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent -medium leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
             placeholder={mode === 'CREATE'
               ? "Beispiel: Wir nutzen dieses SaaS-Tool für das Bewerbermanagement..."
               : "Beispiel: Einführung in der Rechtsabteilung ab Q2 2025."}
@@ -384,7 +384,7 @@ const DpiaGenerator: React.FC = () => {
       </div>
 
       {playbook && (
-        <div className="mt-4 flex items-center justify-center gap-2 text-sm text-firm-navy/70 animate-enter">
+        <div className="mt-4 flex items-center justify-center gap-2 text-sm text-firm- font-medium animate-enter">
           <BookOpen size={14} />
           <span>Aktives Playbook: {playbook.name}</span>
         </div>

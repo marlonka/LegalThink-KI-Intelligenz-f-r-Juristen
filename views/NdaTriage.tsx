@@ -169,7 +169,7 @@ const NdaTriage: React.FC = () => {
             <div className="text-5xl font-bold mb-6 tracking-tight font-serif">
               {data.verdict === 'GRÜN' ? 'FREIGABE' : data.verdict === 'ROT' ? 'STOPP' : 'MANUELLE PRÜFUNG'}
             </div>
-            <p className="text-white/90 text-[15px] max-w-2xl font-serif leading-relaxed">
+            <p className="text-white/90 -medium leading-relaxed">
               {data.summary}
             </p>
           </div>
@@ -183,7 +183,7 @@ const NdaTriage: React.FC = () => {
               <Clock size={18} className="text-firm-accent" />
               <h4 className="font-bold font-serif text-[15px]">Fristen & Laufzeit</h4>
             </div>
-            <p className="text-sm text-firm-slate/80 leading-relaxed ml-7">{data.durationAnalysis}</p>
+            <p className="text-sm text-firm- font-medium leading-relaxed ml-7">{data.durationAnalysis}</p>
           </Card>
 
           {data.keyFindings.map((finding, idx) => (
@@ -212,7 +212,7 @@ const NdaTriage: React.FC = () => {
           </div>
           <div>
             <h3 className="text-2xl font-bold text-firm-navy font-serif">NDA Vorprüfung</h3>
-            <p className="text-[15px] text-firm-slate/80 mt-1">
+            <p className="text-[15px] text-firm- font-medium mt-1">
               Prüfung auf Marktstandards & benachteiligende Klauseln in Sekunden.
             </p>
           </div>
@@ -234,7 +234,7 @@ const NdaTriage: React.FC = () => {
             <span className="h-px bg-firm-slate/10 flex-1"></span>
           </label>
           <textarea
-            className="w-full h-40 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
+            className="w-full h-40 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent -medium leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
             placeholder="Fügen Sie hier den Text der Vereinbarung ein..."
             value={text}
             onChange={(e) => setNdaText(e.target.value)}

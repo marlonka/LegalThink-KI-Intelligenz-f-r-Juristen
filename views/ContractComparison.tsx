@@ -194,7 +194,7 @@ const ContractComparison: React.FC = () => {
           <h3 className="font-bold text-firm-navy font-serif mb-4 text-xl flex items-center gap-3">
             Strategische Einschätzung
           </h3>
-          <p className="text-firm-navy/80 text-[15px] leading-relaxed mb-6 font-serif">{data.summaryOfChanges}</p>
+          <p className="text-firm- font-medium -medium">{data.summaryOfChanges}</p>
           <div className="bg-firm-paper/50 p-4 rounded-xl text-sm font-medium text-firm-navy flex items-start gap-3 border border-firm-slate/10 md:items-center">
             <Info size={18} className="text-firm-accent shrink-0" />
             <span><strong className="text-firm-slate/60 uppercase tracking-widest text-[10px] block md:inline md:mr-2">Tone Shift</strong> {data.strategicShift}</span>
@@ -228,7 +228,7 @@ const ContractComparison: React.FC = () => {
           </div>
           <div>
             <h3 className="text-2xl font-bold text-firm-navy font-serif">Versionsvergleich</h3>
-            <p className="text-[15px] text-firm-slate/80 mt-1">
+            <p className="text-[15px] text-firm- font-medium mt-1">
               Laden Sie Ihren Entwurf und den Gegenentwurf hoch. <br className="hidden md:block" />
               Die KI erstellt eine präzise <strong>rechtliche Synopse</strong> (keine einfache Textdifferenz).
             </p>
@@ -317,10 +317,10 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
       <div className={`px-6 py-4 flex items-center justify-between border-b transition-colors duration-300 group-hover:bg-opacity-50 ${getSeverityColor()}`}>
         <div className="flex items-center gap-3">
           {getIcon()}
-          <h4 className="font-bold text-firm-navy text-[15px] font-serif">{change.clauseTitle}</h4>
+          <h4 className="font-bold text-firm-navy -medium">{change.clauseTitle}</h4>
         </div>
         <div className="flex gap-2">
-          <span className="text-[9px] uppercase font-bold px-2.5 py-1 bg-white/80 rounded-full text-firm-slate/80 shadow-sm border border-firm-slate/5 tracking-wider">
+          <span className="text-[9px] uppercase font-bold px-2.5 py-1 bg-white/80 rounded-full text-firm- font-medium shadow-sm border border-firm-slate/5 tracking-wider">
             {translateType(change.changeType)}
           </span>
           <span className="text-[9px] uppercase font-bold px-2.5 py-1 bg-white rounded-full shadow-sm text-firm-navy tracking-wider border border-firm-slate/5">
@@ -333,7 +333,7 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
           <p className="text-[10px] uppercase text-firm-slate/60 font-bold mb-3 tracking-widest flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-firm-slate/30"></span> Original (V1)
           </p>
-          <p className="text-[13px] text-firm-navy/60 font-serif leading-relaxed line-through decoration-firm-slate/30 decoration-1">
+          <p className="-medium leading-relaxed line-through decoration-firm-slate/30 decoration-1">
             {change.originalText || "(Nicht vorhanden / Neu)"}
           </p>
         </div>
@@ -341,7 +341,7 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
           <p className="text-[10px] uppercase text-firm-accent font-bold mb-3 tracking-widest flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-firm-accent"></span> Neu (V2)
           </p>
-          <p className="text-[13px] text-firm-navy font-serif leading-relaxed bg-[#F4FCF7] -mx-2 px-2 py-1 rounded-sm border-l-2 border-emerald-400">
+          <p className="-medium leading-relaxed bg-[#F4FCF7] -mx-2 px-2 py-1 rounded-sm border-l-2 border-emerald-400">
             {change.newText}
           </p>
         </div>
@@ -349,7 +349,7 @@ const DeltaCard: React.FC<{ change: ContractChange }> = ({ change }) => {
       <div className="p-6 bg-white">
         <div className="mb-5">
           <span className="text-[10px] font-bold text-firm-slate/50 uppercase tracking-widest">Rechtliche Konsequenz</span>
-          <p className="text-sm text-firm-navy/80 mt-1.5 leading-relaxed font-medium">{change.legalImpact}</p>
+          <p className="text-sm text-firm- font-medium mt-1.5 leading-relaxed font-medium">{change.legalImpact}</p>
         </div>
         <div className="bg-firm-paper p-4 rounded-xl border border-firm-slate/5 flex gap-3 text-sm text-firm-navy relative overflow-hidden">
           <div className="absolute top-0 left-0 w-1 h-full bg-firm-accent/30"></div>

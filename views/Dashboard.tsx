@@ -106,7 +106,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     <div className="space-y-8">
       {/* Intro Section - Reduced margins */}
       <motion.div variants={itemVariants} className="px-2 mt-2">
-        <p className="text-firm-slate/80 font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+        <p className="text-firm- font-medium text-sm md:text-base max-w-2xl leading-relaxed">
           <strong className="text-firm-navy">Wir machen 1x Anwälte zu 10x Anwälten.</strong> <br />
           Konzipiert für erfahrene Partner, spezialisierte Einzelanwälte und Rechtsabteilungen.
         </p>
@@ -187,7 +187,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
 
               <div>
                 <h3 className="font-bold text-firm-navy text-xl sm:text-2xl font-serif mb-2">{action.title}</h3>
-                <p className="text-sm text-firm-slate/80 font-medium leading-relaxed">{action.desc}</p>
+                <p className="text-sm text-firm- font-medium leading-relaxed">{action.desc}</p>
               </div>
             </motion.button>
           );
@@ -204,7 +204,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
             Datensicherheit & Vertraulichkeit
             <span className="text-[10px] bg-green-100/50 text-green-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-green-200/50">TLS gesichert</span>
           </h4>
-          <p className="text-xs text-firm-slate/80 leading-relaxed max-w-2xl">
+          <p className="text-xs text-firm- font-medium leading-relaxed max-w-2xl">
             Die Analyse erfolgt durch die <strong>Google Gemini API</strong>.
             Alle Dokumente werden nach der Verarbeitung verworfen und <strong>nicht</strong> für Modelltraining verwendet.
             Bitte beachten Sie Ihre berufsrechtliche Verschwiegenheitspflicht (§ 203 StGB).
