@@ -261,7 +261,7 @@ const MarketingCheck: React.FC = () => {
   return (
     <div className="space-y-8 pb-32 animate-enter max-w-4xl mx-auto">
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-8 mt-2">
           <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
             <Megaphone size={28} strokeWidth={1.5} />

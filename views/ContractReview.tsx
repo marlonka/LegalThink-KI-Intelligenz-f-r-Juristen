@@ -1,5 +1,6 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
+import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { Upload, FileText, ChevronDown, ChevronUp, Check, AlertTriangle, BookOpen, Copy, Briefcase, ShoppingCart, Mail, Scale, FileCheck, X, User, Home, Building, ShieldAlert, Swords, Eye, Columns, ExternalLink } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
@@ -16,6 +17,19 @@ import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
 import { copyRichText } from '../utils/clipboardUtils';
 import ReactMarkdown from 'react-markdown';
+
+const containerVariants: Variants = {
+    initial: { opacity: 0 },
+    animate: {
+        opacity: 1,
+        transition: { staggerChildren: 0.08 }
+    }
+};
+
+const itemVariants: Variants = {
+    initial: { opacity: 0, y: 15, scale: 0.98 },
+    animate: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 25 } }
+};
 
 const ContractReview: React.FC = () => {
     const { state, setContractFile, setContractPerspective, setContractAnalysis, setThinking } = useAppContext();
@@ -526,139 +540,144 @@ const ContractReview: React.FC = () => {
 
     // === UPLOAD VIEW ===
     return (
-        <div className="space-y-6 pb-32 animate-enter max-w-4xl mx-auto">
-            <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-                <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+        <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-6 pb-32 max-w-4xl mx-auto">
+            <motion.div variants={itemVariants}>
+                <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
 
-                <div className="flex items-center gap-4 mb-8">
-                    <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
-                        <FileText size={28} strokeWidth={1.5} />
-                    </div>
-                    <div>
-                        <h3 className="text-2xl font-bold text-firm-navy font-serif">Vertragsanalyse</h3>
-                        <p className="text-[15px] text-firm-slate/80 mt-1">
-                            Umfassende Prüfung auf Risiken, Lücken und materielle Benachteiligungen.
-                        </p>
-                    </div>
-                </div>
-
-                <div className="mb-10 bg-firm-paper/30 p-2 rounded-2xl border border-firm-slate/5">
-                    <FileUploader
-                        label="Dokument (PDF/Word) hier ablegen"
-                        files={file}
-                        onFileChange={handleFileChange}
-                        onRemove={() => setContractFile(null)}
-                    />
-                </div>
-                <div className="border-t border-firm-slate/10 pt-8 mt-4">
-                    <h4 className="text-xs font-bold text-firm-slate uppercase tracking-widest mb-5 flex items-center gap-2">
-                        <ShieldAlert size={14} className="text-firm-accent" />
-                        Strategischer Kontext
-                    </h4>
-
-                    <div className="mb-6">
-                        <label className="block text-xs font-bold text-firm-navy mb-2">Vertragstyp</label>
-                        <div className="relative">
-                            <select
-                                className="w-full appearance-none bg-firm-paper border border-firm-slate/15 text-firm-navy text-sm rounded-xl p-4 pr-10 focus:ring-2 focus:ring-firm-accent/50 focus:border-firm-accent outline-none font-medium transition-all shadow-sm hover:border-firm-slate/30"
-                                value={selectValue}
-                                onChange={(e) => {
-                                    const val = e.target.value;
-                                    if (!val) { setSelectedCategory(""); setSelectedType(""); return; }
-                                    const [cat, type] = val.split("::");
-                                    setSelectedCategory(cat); setSelectedType(type);
-                                }}
-                            >
-                                <option value="">Standardprüfung (Allgemein)</option>
-                                {Object.entries(categories).map(([category, types]) => (
-                                    <optgroup label={category} key={category} className="font-serif italic text-firm-slate">
-                                        {types.map(t => (
-                                            <option key={t.id} value={`${category}::${t.id}`} className="font-sans not-italic text-firm-navy">{t.label}</option>
-                                        ))}
-                                    </optgroup>
-                                ))}
-                            </select>
-                            <ChevronDown size={18} className="absolute right-4 top-4 text-firm-slate/50 pointer-events-none" />
+                    <div className="flex items-center gap-4 mb-8">
+                        <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
+                            <FileText size={28} strokeWidth={1.5} />
+                        </div>
+                        <div>
+                            <h3 className="text-2xl font-bold text-firm-navy font-serif">Vertragsanalyse</h3>
+                            <p className="text-[15px] text-firm-slate/80 mt-1">
+                                Umfassende Prüfung auf Risiken, Lücken und materielle Benachteiligungen.
+                            </p>
                         </div>
                     </div>
 
-                    <div className="mb-6">
-                        <label className="block text-xs font-bold text-firm-navy mb-2">Rolle des Mandanten</label>
-                        <div className="flex bg-firm-paper p-1.5 rounded-xl border border-firm-slate/10 w-full shadow-inner">
-                            <button
-                                onClick={() => setContractPerspective('BUYER')}
-                                className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-white shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-white/50'}`}
-                            >
-                                {perspectiveLabels.BUYER.Icon && <perspectiveLabels.BUYER.Icon size={16} className={perspective === 'BUYER' ? 'text-firm-accent' : ''} />}
-                                {perspectiveLabels.BUYER.label}
-                            </button>
-                            <button
-                                onClick={() => setContractPerspective('SELLER')}
-                                className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-white shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-white/50'}`}
-                            >
-                                {perspectiveLabels.SELLER.Icon && <perspectiveLabels.SELLER.Icon size={16} className={perspective === 'SELLER' ? 'text-firm-accent' : ''} />}
-                                {perspectiveLabels.SELLER.label}
-                            </button>
-                        </div>
+                    <div className="mb-10 bg-firm-paper/30 p-2 rounded-2xl border border-firm-slate/5">
+                        <FileUploader
+                            label="Dokument (PDF/Word) hier ablegen"
+                            files={file}
+                            onFileChange={handleFileChange}
+                            onRemove={() => setContractFile(null)}
+                        />
                     </div>
+                    <div className="border-t border-firm-slate/10 pt-8 mt-4">
+                        <h4 className="text-xs font-bold text-firm-slate uppercase tracking-widest mb-5 flex items-center gap-2">
+                            <ShieldAlert size={14} className="text-firm-accent" />
+                            Strategischer Kontext
+                        </h4>
 
-                    <div className="mt-6 mb-2">
-                        <label className="block text-xs font-bold text-firm-navy mb-2">Analyse-Schärfe</label>
-                        <div className="flex items-center gap-3">
-                            <button
-                                onClick={() => setAggressiveness('MODERATE')}
-                                className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'MODERATE' ? 'bg-white border-firm-accent/30 shadow-firm-glow ring-1 ring-firm-accent/10 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-firm-slate/30 hover:bg-white'}`}
-                            >
-                                <Briefcase size={20} className={aggressiveness === 'MODERATE' ? 'text-firm-accent' : 'text-firm-slate/50'} />
-                                <span className={`text-[13px] font-bold ${aggressiveness === 'MODERATE' ? 'text-firm-navy' : ''}`}>Marktstandard</span>
-                            </button>
-                            <button
-                                onClick={() => setAggressiveness('AGGRESSIVE')}
-                                className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'AGGRESSIVE' ? 'bg-red-50 border-red-200 shadow-sm ring-1 ring-red-100 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-red-100 hover:text-red-600 hover:bg-red-50/30'}`}
-                            >
-                                <Swords size={20} className={aggressiveness === 'AGGRESSIVE' ? 'text-red-500' : 'text-firm-slate/50'} />
-                                <span className={`text-[13px] font-bold ${aggressiveness === 'AGGRESSIVE' ? 'text-red-700' : ''}`}>Streng (Maximal)</span>
-                            </button>
-                        </div>
-                    </div>       </div>
-                <div className="pt-6 border-t border-firm-slate/10 mt-8">
-                    <div className="flex items-center justify-between mb-4 px-1">
-                        <span className="text-[10px] font-bold text-firm-slate/50 uppercase tracking-widest bg-firm-paper px-2 py-1 rounded inline-block">Vergleich mit Muster (Optional)</span>
-                    </div>
-
-                    {referenceFile ? (
-                        <div className="flex items-center justify-between p-4 bg-firm-paper border border-firm-accent/30 rounded-xl text-sm shadow-sm group">
-                            <div className="flex items-center gap-3 truncate text-firm-navy">
-                                <Scale size={18} className="text-firm-accent" />
-                                <span className="truncate font-bold">{referenceFile.name}</span>
+                        <div className="mb-6 group">
+                            <label className="block text-xs font-bold text-firm-navy mb-2 group-focus-within:text-firm-accent transition-colors">Vertragstyp</label>
+                            <div className="relative">
+                                <select
+                                    className="w-full appearance-none bg-firm-paper border border-firm-slate/10 text-firm-navy text-[15px] rounded-2xl p-4 pr-10 focus:ring-4 focus:ring-firm-accent/10 focus:border-firm-accent outline-none font-medium transition-all shadow-sm hover:border-firm-slate/20 hover:bg-white"
+                                    value={selectValue}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        if (!val) { setSelectedCategory(""); setSelectedType(""); return; }
+                                        const [cat, type] = val.split("::");
+                                        setSelectedCategory(cat); setSelectedType(type);
+                                    }}
+                                >
+                                    <option value="">Standardprüfung (Allgemein)</option>
+                                    {Object.entries(categories).map(([category, types]) => (
+                                        <optgroup label={category} key={category} className="font-serif italic text-firm-slate">
+                                            {types.map(t => (
+                                                <option key={t.id} value={`${category}::${t.id}`} className="font-sans not-italic text-firm-navy">{t.label}</option>
+                                            ))}
+                                        </optgroup>
+                                    ))}
+                                </select>
+                                <ChevronDown size={18} className="absolute right-4 top-4 text-firm-slate/50 pointer-events-none" />
                             </div>
-                            <button onClick={() => setReferenceFile(null)} className="text-firm-slate/40 hover:text-red-500 p-1.5 rounded-full hover:bg-white transition-colors bg-white/50">
-                                <X size={16} />
-                            </button>
                         </div>
-                    ) : (
-                        <label className="flex items-center gap-5 p-5 border-2 border-dashed border-firm-slate/15 rounded-2xl cursor-pointer hover:bg-firm-paper hover:border-firm-accent/50 transition-all duration-300 group">
-                            <div className="w-12 h-12 rounded-xl bg-firm-paper border border-firm-slate/10 flex items-center justify-center text-firm-slate/40 group-hover:bg-firm-navy group-hover:text-firm-accent group-hover:border-firm-navy transition-all duration-300 shadow-sm">
-                                <Scale size={20} />
-                            </div>
-                            <div className="flex-1">
-                                <span className="block text-sm font-bold text-firm-navy mb-0.5 group-hover:text-firm-accent transition-colors">Vergleichsdokument hochladen</span>
-                                <span className="block text-[13px] text-firm-slate/60">Laden Sie eine Vorlage hoch, um Abweichungen gezielt zu prüfen.</span>
-                            </div>
-                            <input type="file" className="hidden" accept=".pdf,.docx,.txt" onChange={handleReferenceFileChange} />
-                        </label>
-                    )}
-                </div>
-            </Card>
 
-            <ContextPanel />
+                        <div className="mb-6">
+                            <label className="block text-xs font-bold text-firm-navy mb-2">Rolle des Mandanten</label>
+                            <div className="flex bg-firm-paper p-1.5 rounded-xl border border-firm-slate/10 w-full shadow-inner">
+                                <button
+                                    onClick={() => setContractPerspective('BUYER')}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-white shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-white/50'}`}
+                                >
+                                    {perspectiveLabels.BUYER.Icon && <perspectiveLabels.BUYER.Icon size={16} className={perspective === 'BUYER' ? 'text-firm-accent' : ''} />}
+                                    {perspectiveLabels.BUYER.label}
+                                </button>
+                                <button
+                                    onClick={() => setContractPerspective('SELLER')}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-white shadow border border-firm-slate/5 text-firm-navy scale-[1.02]' : 'text-firm-slate hover:text-firm-navy hover:bg-white/50'}`}
+                                >
+                                    {perspectiveLabels.SELLER.Icon && <perspectiveLabels.SELLER.Icon size={16} className={perspective === 'SELLER' ? 'text-firm-accent' : ''} />}
+                                    {perspectiveLabels.SELLER.label}
+                                </button>
+                            </div>
+                        </div>
 
-            <div className="mt-8 relative z-10 w-full group">
+                        <div className="mt-6 mb-2">
+                            <label className="block text-xs font-bold text-firm-navy mb-2">Analyse-Schärfe</label>
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => setAggressiveness('MODERATE')}
+                                    className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'MODERATE' ? 'bg-white border-firm-accent/30 shadow-firm-glow ring-1 ring-firm-accent/10 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-firm-slate/30 hover:bg-white'}`}
+                                >
+                                    <Briefcase size={20} className={aggressiveness === 'MODERATE' ? 'text-firm-accent' : 'text-firm-slate/50'} />
+                                    <span className={`text-[13px] font-bold ${aggressiveness === 'MODERATE' ? 'text-firm-navy' : ''}`}>Marktstandard</span>
+                                </button>
+                                <button
+                                    onClick={() => setAggressiveness('AGGRESSIVE')}
+                                    className={`flex-1 flex flex-col items-center justify-center gap-1.5 py-4 rounded-xl border transition-all duration-300 ${aggressiveness === 'AGGRESSIVE' ? 'bg-red-50 border-red-200 shadow-sm ring-1 ring-red-100 px-0' : 'bg-firm-paper border-firm-slate/10 text-firm-slate hover:border-red-100 hover:text-red-600 hover:bg-red-50/30'}`}
+                                >
+                                    <Swords size={20} className={aggressiveness === 'AGGRESSIVE' ? 'text-red-500' : 'text-firm-slate/50'} />
+                                    <span className={`text-[13px] font-bold ${aggressiveness === 'AGGRESSIVE' ? 'text-red-700' : ''}`}>Streng (Maximal)</span>
+                                </button>
+                            </div>
+                        </div>       </div>
+                    <div className="pt-6 border-t border-firm-slate/10 mt-8">
+                        <div className="flex items-center justify-between mb-4 px-1">
+                            <span className="text-[10px] font-bold text-firm-slate/50 uppercase tracking-widest bg-firm-paper px-2 py-1 rounded inline-block">Vergleich mit Muster (Optional)</span>
+                        </div>
+
+                        {referenceFile ? (
+                            <div className="flex items-center justify-between p-4 bg-firm-paper border border-firm-accent/30 rounded-xl text-sm shadow-sm group">
+                                <div className="flex items-center gap-3 truncate text-firm-navy">
+                                    <Scale size={18} className="text-firm-accent" />
+                                    <span className="truncate font-bold">{referenceFile.name}</span>
+                                </div>
+                                <button onClick={() => setReferenceFile(null)} className="text-firm-slate/40 hover:text-red-500 p-1.5 rounded-full hover:bg-white transition-colors bg-white/50">
+                                    <X size={16} />
+                                </button>
+                            </div>
+                        ) : (
+                            <label className="flex items-center gap-5 p-5 border-2 border-dashed border-firm-slate/15 rounded-2xl cursor-pointer hover:bg-firm-paper hover:border-firm-accent/50 transition-all duration-300 group">
+                                <div className="w-12 h-12 rounded-xl bg-firm-paper border border-firm-slate/10 flex items-center justify-center text-firm-slate/40 group-hover:bg-firm-navy group-hover:text-firm-accent group-hover:border-firm-navy transition-all duration-300 shadow-sm">
+                                    <Scale size={20} />
+                                </div>
+                                <div className="flex-1">
+                                    <span className="block text-sm font-bold text-firm-navy mb-0.5 group-hover:text-firm-accent transition-colors">Vergleichsdokument hochladen</span>
+                                    <span className="block text-[13px] text-firm-slate/60">Laden Sie eine Vorlage hoch, um Abweichungen gezielt zu prüfen.</span>
+                                </div>
+                                <input type="file" className="hidden" accept=".pdf,.docx,.txt" onChange={handleReferenceFileChange} />
+                            </label>
+                        )}
+                    </div>
+                </Card>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+                <ContextPanel />
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-8 relative z-10 w-full group">
                 <div className="absolute inset-0 bg-firm-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl" />
-                <Button fullWidth onClick={handleAnalyze} disabled={!file} className="!py-4 text-base tracking-wide shadow-firm-lg relative">
+                <Button fullWidth onClick={handleAnalyze} disabled={!file} className="!py-4 text-base tracking-wide shadow-firm-lg relative rounded-2xl active:scale-[0.98] transition-transform">
                     Analyse starten
                 </Button>
-            </div>      </div>
+            </motion.div>
+        </motion.div >
     );
 };
 
@@ -695,8 +714,8 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
     const config = getStatusConfig();
 
     return (
-        <div className={`bg-white rounded-2xl border overflow-hidden transition-all duration-300 ${expanded ? config.border : 'border-firm-slate/15 hover:border-firm-slate/30'} ${expanded ? 'shadow-firm' : 'shadow-sm'}`}>
-            <div className={`p-5 flex items-start justify-between cursor-pointer transition-colors duration-300 ${expanded ? config.bg : 'bg-white hover:bg-firm-paper/50'}`} onClick={() => setExpanded(!expanded)}>
+        <motion.div layout className={`bg-white rounded-[1.5rem] border overflow-hidden transition-colors duration-300 ${expanded ? config.border : 'border-firm-slate/15 hover:border-firm-slate/30'} ${expanded ? 'shadow-firm' : 'shadow-sm'}`}>
+            <motion.div layout className={`p-5 flex items-start justify-between cursor-pointer transition-colors duration-300 ${expanded ? config.bg : 'bg-white hover:bg-firm-paper/50'}`} onClick={() => setExpanded(!expanded)}>
                 <div className="flex items-start gap-4">
                     <div className={`mt-1.5 w-2.5 h-2.5 rounded-full shrink-0 shadow-sm ${config.color}`} />
                     <div className="-mt-0.5">
@@ -704,56 +723,65 @@ const ClauseItem: React.FC<{ clause: ContractClause }> = ({ clause }) => {
                         {clause.relevantParagraph && (<p className="text-[11px] text-firm-slate/60 font-medium mt-1 uppercase tracking-wider">{clause.relevantParagraph}</p>)}
                     </div>
                 </div>
-                <div className={`p-1 rounded-full bg-white/50 border border-white/50 transition-transform duration-300 ${expanded ? 'rotate-180 text-firm-navy' : 'text-firm-slate/40'}`}>
+                <motion.div animate={{ rotate: expanded ? 180 : 0 }} className={`p-1 rounded-full bg-white/50 border border-white/50 ${expanded ? 'text-firm-navy' : 'text-firm-slate/40'}`}>
                     <ChevronDown size={16} />
-                </div>
-            </div>
-            {expanded && (
-                <div className="px-6 pb-7 pt-4 bg-white border-t border-firm-slate/5">
-                    <div className="space-y-6">
-                        <div className="text-[15px] text-firm-navy/80 leading-relaxed font-serif animate-enter">
-                            {clause.analysis}
+                </motion.div>
+            </motion.div>
+            <AnimatePresence initial={false}>
+                {expanded && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1, transition: { height: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.2, delay: 0.1 } } }}
+                        exit={{ height: 0, opacity: 0, transition: { height: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.1 } } }}
+                        className="overflow-hidden"
+                    >
+                        <div className="px-6 pb-7 pt-4 bg-white border-t border-firm-slate/5">
+                            <div className="space-y-6">
+                                <div className="text-[15px] text-firm-navy/80 leading-relaxed font-serif">
+                                    {clause.analysis}
+                                </div>
+
+                                {clause.recommendation && (
+                                    <div className="bg-firm-paper/50 p-4 rounded-xl border border-firm-slate/10 flex gap-3 items-start relative overflow-hidden group">
+                                        <div className="absolute top-0 left-0 w-1 h-full bg-firm-accent/50 group-hover:bg-firm-accent transition-colors"></div>
+                                        <Check size={18} className="text-firm-accent mt-0.5 shrink-0" />
+                                        <div>
+                                            <span className="font-bold text-[10px] uppercase tracking-widest block mb-1 text-firm-slate/60">Strategie & Empfehlung</span>
+                                            <div className="text-sm font-medium text-firm-navy leading-relaxed">{clause.recommendation}</div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* MAGIC REDLINE VISUALIZATION */}
+                                {clause.redline && (
+                                    <div className="mt-5">
+                                        <div className="flex items-center justify-between mb-2">
+                                            <h5 className="text-[10px] font-bold text-firm-slate/60 uppercase tracking-widest flex items-center gap-1.5">
+                                                <Eye size={12} className="text-firm-accent" /> Formulierungsvorschlag
+                                            </h5>
+                                            <button className="text-[10px] uppercase font-bold text-firm-accent hover:text-firm-navy transition-colors tracking-wider px-2 py-1 hover:bg-firm-paper rounded" onClick={(e) => {
+                                                e.stopPropagation();
+                                                navigator.clipboard.writeText(clause.redline || '');
+                                            }}>Kopieren</button>
+                                        </div>
+                                        {/* Styled like Word Track Changes - High End Edition */}
+                                        <div className="text-[13px] bg-white border border-green-200/60 text-firm-navy p-4 rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] select-all relative group overflow-hidden">
+                                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></div>
+                                            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <span className="text-[9px] uppercase font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-200/50">Neu</span>
+                                            </div>
+                                            <div className="font-serif leading-relaxed pl-2">
+                                                {clause.redline}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-
-                        {clause.recommendation && (
-                            <div className="bg-firm-paper/50 p-4 rounded-xl border border-firm-slate/10 flex gap-3 items-start relative overflow-hidden group">
-                                <div className="absolute top-0 left-0 w-1 h-full bg-firm-accent/50 group-hover:bg-firm-accent transition-colors"></div>
-                                <Check size={18} className="text-firm-accent mt-0.5 shrink-0" />
-                                <div>
-                                    <span className="font-bold text-[10px] uppercase tracking-widest block mb-1 text-firm-slate/60">Strategie & Empfehlung</span>
-                                    <div className="text-sm font-medium text-firm-navy leading-relaxed">{clause.recommendation}</div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* MAGIC REDLINE VISUALIZATION */}
-                        {clause.redline && (
-                            <div className="mt-5">
-                                <div className="flex items-center justify-between mb-2">
-                                    <h5 className="text-[10px] font-bold text-firm-slate/60 uppercase tracking-widest flex items-center gap-1.5">
-                                        <Eye size={12} className="text-firm-accent" /> Formulierungsvorschlag
-                                    </h5>
-                                    <button className="text-[10px] uppercase font-bold text-firm-accent hover:text-firm-navy transition-colors tracking-wider px-2 py-1 hover:bg-firm-paper rounded" onClick={(e) => {
-                                        e.stopPropagation();
-                                        navigator.clipboard.writeText(clause.redline || '');
-                                    }}>Kopieren</button>
-                                </div>
-                                {/* Styled like Word Track Changes - High End Edition */}
-                                <div className="text-[13px] bg-white border border-green-200/60 text-firm-navy p-4 rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] select-all relative group overflow-hidden">
-                                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></div>
-                                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <span className="text-[9px] uppercase font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded border border-green-200/50">Neu</span>
-                                    </div>
-                                    <div className="font-serif leading-relaxed pl-2">
-                                        {clause.redline}
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            )}
-        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
     );
 };
 

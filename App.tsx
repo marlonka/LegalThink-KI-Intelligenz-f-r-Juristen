@@ -4,6 +4,8 @@ import Header from './components/Layout/Header';
 import Navigation from './components/Layout/Navigation';
 import TokenPill from './components/Layout/TokenPill';
 import LegalModal from './components/Layout/LegalModal';
+import PageTransition from './components/Layout/PageTransition';
+import { AnimatePresence } from 'framer-motion';
 import Dashboard from './views/Dashboard';
 import ContractReview from './views/ContractReview';
 import ContractComparison from './views/ContractComparison';
@@ -39,31 +41,38 @@ const InnerApp: React.FC = () => {
     : "max-w-3xl";
 
   const renderView = () => {
+    let viewContent;
     switch (currentView) {
       case View.DASHBOARD:
-        return <Dashboard onNavigate={setCurrentView} />;
+        viewContent = <Dashboard onNavigate={setCurrentView} />; break;
       case View.CONTRACT_REVIEW:
-        return <ContractReview />;
+        viewContent = <ContractReview />; break;
       case View.CONTRACT_COMPARISON:
-        return <ContractComparison />;
-      // Fix: Corrected property name from NDA_Triage to NDA_TRIAGE as defined in types.ts
+        viewContent = <ContractComparison />; break;
       case View.NDA_TRIAGE:
-        return <NdaTriage />;
+        viewContent = <NdaTriage />; break;
       case View.COMPLIANCE:
-        return <ComplianceCheck />;
+        viewContent = <ComplianceCheck />; break;
       case View.DPIA_GENERATOR:
-        return <DpiaGenerator />;
+        viewContent = <DpiaGenerator />; break;
       case View.CHRONOLOGY_BUILDER:
-        return <ChronologyBuilder />;
+        viewContent = <ChronologyBuilder />; break;
       case View.RISK_ASSESSMENT:
-        return <RiskAssessment />;
+        viewContent = <RiskAssessment />; break;
       case View.MARKETING_CHECK:
-        return <MarketingCheck />;
+        viewContent = <MarketingCheck />; break;
       case View.LEGAL_NOTICE:
-        return <LegalNotice />;
+        viewContent = <LegalNotice />; break;
       default:
-        return <Dashboard onNavigate={setCurrentView} />;
+        viewContent = <Dashboard onNavigate={setCurrentView} />; break;
     }
+    return (
+      <AnimatePresence mode="wait">
+        <PageTransition viewKey={currentView}>
+          {viewContent}
+        </PageTransition>
+      </AnimatePresence>
+    );
   };
 
   return (
@@ -83,7 +92,7 @@ const InnerApp: React.FC = () => {
       <Header currentView={currentView} />
       <TokenPill />
 
-      <main className={`flex-1 w-full mx-auto px-6 pt-4 pb-48 relative z-10 transition-[max-width] duration-500 ease-in-out ${containerClass}`}>
+      <main className={`flex-1 w-full mx-auto px-6 pt-8 md:pt-12 pb-48 relative z-10 transition-[max-width] duration-500 ease-in-out ${containerClass}`}>
         {renderView()}
 
         {/* Risk-Reduced Disclaimer Footer */}

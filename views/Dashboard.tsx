@@ -3,6 +3,17 @@ import React from 'react';
 import { View } from '../types';
 import { ArrowUpRight, FileText, Shield, FileCheck, AlertTriangle, Lock, BookOpen, CheckCircle, Fingerprint, History, Scale, ArrowLeftRight, Megaphone } from 'lucide-react';
 import { useAppContext } from '../contexts/AppContext';
+import { motion, Variants } from 'framer-motion';
+
+const itemVariants: Variants = {
+  initial: { opacity: 0, scale: 0.95, y: 15 },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 350, damping: 25 }
+  }
+};
 
 interface DashboardProps {
   onNavigate: (view: View) => void;
@@ -92,17 +103,17 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <div className="space-y-8 animate-enter">
+    <div className="space-y-8">
       {/* Intro Section - Reduced margins */}
-      <div className="px-2 mt-2">
+      <motion.div variants={itemVariants} className="px-2 mt-2">
         <p className="text-firm-slate/80 font-medium text-sm md:text-base max-w-2xl leading-relaxed">
           <strong className="text-firm-navy">Wir machen 1x Anwälte zu 10x Anwälten.</strong> <br />
           Konzipiert für erfahrene Partner, spezialisierte Einzelanwälte und Rechtsabteilungen.
         </p>
-      </div>
+      </motion.div>
 
       {/* Context / Playbook Configuration Card */}
-      <div className="bg-gradient-to-br from-firm-navy via-[#111926] to-[#0A0F1C] rounded-3xl p-8 shadow-firm-lg text-white relative overflow-hidden group border border-firm-slate/10">
+      <motion.div variants={itemVariants} className="bg-gradient-to-br from-firm-navy via-[#111926] to-[#0A0F1C] rounded-[2rem] p-8 shadow-firm-lg text-white relative overflow-hidden group border border-white/5">
         <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-700 text-firm-accent">
           <Scale size={180} />
         </div>
@@ -133,7 +144,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           </div>
 
           <div className="relative shrink-0 w-full md:w-auto">
-            <button className="w-full bg-firm-paper text-firm-navy px-6 py-3.5 rounded-2xl text-sm font-bold shadow-firm hover:bg-white hover:scale-[1.02] transition-all duration-300 pointer-events-none whitespace-nowrap">
+            <button className="w-full bg-firm-paper text-firm-navy px-6 py-3.5 rounded-2xl text-sm font-bold shadow-firm hover:bg-white transition-all duration-300 pointer-events-none whitespace-nowrap active:scale-95">
               {state.playbookFile ? 'Playbook aktualisieren' : 'Playbook hochladen'}
             </button>
             <input
@@ -144,7 +155,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
             />
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Action Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -154,12 +165,15 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           const textClass = action.textClass || "text-firm-navy group-hover:text-firm-accent";
 
           return (
-            <button
+            <motion.button
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, y: -4 }}
+              whileTap={{ scale: 0.98 }}
               key={action.title}
               onClick={() => onNavigate(action.view)}
               className={`
-                group animate-scale bg-white border border-firm-slate/15 rounded-3xl p-7 text-left transition-all duration-500 ease-out-expo
-                hover:shadow-firm-lg hover:-translate-y-1 hover:border-firm-accent/30 stagger-${(index % 4) + 1}
+                group bg-white border border-firm-slate/15 rounded-[2rem] p-8 text-left transition-colors duration-500 ease-out-expo
+                hover:shadow-firm-lg hover:border-firm-accent/30
               `}
             >
               <div className="flex justify-between items-start mb-6">
@@ -175,20 +189,20 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                 <h3 className="font-bold text-firm-navy text-xl sm:text-2xl font-serif mb-2">{action.title}</h3>
                 <p className="text-sm text-firm-slate/80 font-medium leading-relaxed">{action.desc}</p>
               </div>
-            </button>
+            </motion.button>
           );
         })}
       </div>
 
       {/* Security Badge (Legally Accurate) */}
-      <div className="mx-2 mt-10 p-5 bg-firm-paper border border-firm-slate/10 rounded-2xl flex items-start gap-4">
+      <motion.div variants={itemVariants} className="mx-2 mt-10 p-5 bg-firm-paper border border-firm-slate/10 rounded-2xl flex items-start gap-4 shadow-firm-sm">
         <div className="bg-firm-slate/5 p-3 rounded-full shrink-0">
           <Lock size={18} className="text-firm-navy" />
         </div>
         <div>
           <h4 className="text-sm font-bold text-firm-navy mb-1 flex items-center gap-2">
             Datensicherheit & Vertraulichkeit
-            <span className="text-[10px] bg-green-100 text-green-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider">TLS gesichert</span>
+            <span className="text-[10px] bg-green-100/50 text-green-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-green-200/50">TLS gesichert</span>
           </h4>
           <p className="text-xs text-firm-slate/80 leading-relaxed max-w-2xl">
             Die Analyse erfolgt durch die <strong>Google Gemini API</strong>.
@@ -196,7 +210,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
             Bitte beachten Sie Ihre berufsrechtliche Verschwiegenheitspflicht (§ 203 StGB).
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

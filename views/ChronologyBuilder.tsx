@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
+import { motion, Variants, AnimatePresence } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Loader from '../components/ui/Loader';
@@ -14,6 +14,19 @@ import { Upload, FileText, XCircle, Info, Paperclip, FilePlus, Archive, Type, Ed
 import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
 import { copyRichText } from '../utils/clipboardUtils';
+
+const containerVariants: Variants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 }
+  }
+};
+
+const itemVariants: Variants = {
+  initial: { opacity: 0, y: 15, scale: 0.98 },
+  animate: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 25 } }
+};
 
 const ChronologyBuilder: React.FC = () => {
   const { state, addChronologyFile, removeChronologyFile, setChronologyTextInput, setChronologyContext, setChronologyResult, setChronologyQuestions, setThinking } = useAppContext();
@@ -185,8 +198,8 @@ const ChronologyBuilder: React.FC = () => {
 
   if (result) {
     return (
-      <div className="space-y-8 pb-48">
-        <div className="sticky top-20 z-30 bg-[#f8fafc]/95 backdrop-blur-md py-5 border-b border-firm-slate/15 -mx-2 px-2 flex flex-col md:flex-row md:items-center justify-between gap-4 animate-enter">
+      <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-48">
+        <motion.div variants={itemVariants} className="sticky top-20 z-30 bg-[#f8fafc]/95 backdrop-blur-md py-5 border-b border-firm-slate/15 -mx-2 px-2 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h2 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Sachverhalts-Chronologie</h2>
             <p className="text-xs text-firm-slate/60 font-mono tracking-wider font-medium mt-1">KI-Entwurf - Bearbeitbar</p>
@@ -210,67 +223,69 @@ const ChronologyBuilder: React.FC = () => {
               <RefreshCw size={18} />
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <Card className={`border border-firm-slate/10 shadow-firm bg-white rounded-3xl p-6 md:p-10 relative overflow-hidden animate-enter stagger-2 ${isEditing ? 'ring-2 ring-firm-navy/20' : ''}`}>
-          {isEditing ? (
-            <div className="animate-enter relative z-10">
-              <div className="flex items-center gap-2 mb-3 text-[10px] font-bold text-firm-navy uppercase tracking-widest pl-1">
-                <Type size={14} className="text-firm-accent" />
-                <span>Raw Editor (Markdown)</span>
+        <motion.div variants={itemVariants}>
+          <Card className={`border-0 shadow-firm-lg bg-white rounded-[2rem] p-6 md:p-10 relative overflow-hidden ${isEditing ? 'ring-2 ring-firm-navy/20' : ''}`}>
+            {isEditing ? (
+              <div className="animate-enter relative z-10">
+                <div className="flex items-center gap-2 mb-3 text-[10px] font-bold text-firm-navy uppercase tracking-widest pl-1">
+                  <Type size={14} className="text-firm-accent" />
+                  <span>Raw Editor (Markdown)</span>
+                </div>
+                <textarea
+                  value={editableText}
+                  onChange={(e) => setEditableText(e.target.value)}
+                  className="w-full h-[60vh] p-6 font-mono text-[13px] leading-relaxed bg-[#f8fafc] border border-firm-slate/15 rounded-2xl focus:outline-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-firm-navy resize-y shadow-inner transition-all"
+                  spellCheck={false}
+                />
               </div>
-              <textarea
-                value={editableText}
-                onChange={(e) => setEditableText(e.target.value)}
-                className="w-full h-[60vh] p-6 font-mono text-[13px] leading-relaxed bg-[#f8fafc] border border-firm-slate/15 rounded-2xl focus:outline-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-firm-navy resize-y shadow-inner transition-all"
-                spellCheck={false}
-              />
-            </div>
-          ) : (
-            <div className="prose prose-sm md:prose-base max-w-none text-firm-navy/80 prose-headings:font-serif prose-headings:text-firm-navy relative z-10 overflow-x-auto">
-              <ReactMarkdown
-                remarkPlugins={[remarkGfm]}
-                components={{
-                  table: ({ node, ...props }) => (
-                    <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-white">
-                      <table className="w-full text-left border-collapse min-w-[600px]" {...props} />
-                    </div>
-                  ),
-                  thead: ({ node, ...props }) => <thead className="bg-firm-paper/50" {...props} />,
-                  th: ({ node, ...props }) => <th className="p-4 text-[10px] font-bold text-firm-slate/60 uppercase tracking-widest border-b border-firm-slate/15" {...props} />,
-                  td: ({ node, children, ...props }) => {
-                    const renderChildren = (child: any): any => {
-                      if (typeof child === 'string') {
-                        const parts = child.split(/<br\s*\/?>/gi);
-                        if (parts.length > 1) {
-                          return parts.map((part, i) => (
-                            <React.Fragment key={i}>
-                              {part}
-                              {i < parts.length - 1 && <br />}
-                            </React.Fragment>
-                          ));
+            ) : (
+              <div className="prose prose-sm md:prose-base max-w-none text-firm-navy/80 prose-headings:font-serif prose-headings:text-firm-navy relative z-10 overflow-x-auto">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    table: ({ node, ...props }) => (
+                      <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-white">
+                        <table className="w-full text-left border-collapse min-w-[600px]" {...props} />
+                      </div>
+                    ),
+                    thead: ({ node, ...props }) => <thead className="bg-firm-paper/50" {...props} />,
+                    th: ({ node, ...props }) => <th className="p-4 text-[10px] font-bold text-firm-slate/60 uppercase tracking-widest border-b border-firm-slate/15" {...props} />,
+                    td: ({ node, children, ...props }) => {
+                      const renderChildren = (child: any): any => {
+                        if (typeof child === 'string') {
+                          const parts = child.split(/<br\s*\/?>/gi);
+                          if (parts.length > 1) {
+                            return parts.map((part, i) => (
+                              <React.Fragment key={i}>
+                                {part}
+                                {i < parts.length - 1 && <br />}
+                              </React.Fragment>
+                            ));
+                          }
                         }
-                      }
-                      if (Array.isArray(child)) return child.map(renderChildren);
-                      return child;
-                    };
+                        if (Array.isArray(child)) return child.map(renderChildren);
+                        return child;
+                      };
 
-                    return (
-                      <td className="p-4 text-[14px] text-firm-navy border-b border-firm-slate/10 whitespace-pre-wrap leading-relaxed" {...props}>
-                        {renderChildren(children)}
-                      </td>
-                    );
-                  }
-                }}
-              >
-                {result}
-              </ReactMarkdown>
-            </div>
-          )}
-          <GroundingSources metadata={metadata} />
-        </Card>
+                      return (
+                        <td className="p-4 text-[14px] text-firm-navy border-b border-firm-slate/10 whitespace-pre-wrap leading-relaxed" {...props}>
+                          {renderChildren(children)}
+                        </td>
+                      );
+                    }
+                  }}
+                >
+                  {result}
+                </ReactMarkdown>
+              </div>
+            )}
+            <GroundingSources metadata={metadata} />
+          </Card>
+        </motion.div>
 
-        <div className="mt-8 pt-8 flex flex-col md:flex-row gap-8 animate-enter stagger-3">
+        <motion.div variants={itemVariants} className="mt-8 pt-8 flex flex-col md:flex-row gap-8">
           <div className="flex-1">
             {!isRefining ? (
               <button
@@ -343,82 +358,84 @@ const ChronologyBuilder: React.FC = () => {
               </div>
             )}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="space-y-8 pb-32 animate-enter max-w-4xl mx-auto">
-      <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
-        <div className="flex items-center gap-4 mb-10 mt-2">
-          <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
-            <History size={28} strokeWidth={1.5} />
+    <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-32 max-w-4xl mx-auto">
+      <motion.div variants={itemVariants}>
+        <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+          <div className="flex items-center gap-4 mb-10 mt-2">
+            <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
+              <History size={28} strokeWidth={1.5} />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Sachverhalts-Architekt</h3>
+              <p className="text-[15px] text-firm-slate/80 mt-1">
+                Die KI erstellt aus Anlagen (PDF) und Textfragmenten (E-Mails) eine konsolidierte Zeittafel.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Sachverhalts-Architekt</h3>
-            <p className="text-[15px] text-firm-slate/80 mt-1">
-              Die KI erstellt aus Anlagen (PDF) und Textfragmenten (E-Mails) eine konsolidierte Zeittafel.
-            </p>
+
+          <div className="bg-firm-paper/30 p-2 md:p-4 rounded-2xl border border-firm-slate/5 mb-8">
+            <FileUploader
+              label="Anlagen / PDF hinzufügen"
+              multiple
+              files={files}
+              onFileChange={handleFileChange}
+              onRemove={removeChronologyFile}
+            />
           </div>
-        </div>
 
-        <div className="bg-firm-paper/30 p-2 md:p-4 rounded-2xl border border-firm-slate/5 mb-8">
-          <FileUploader
-            label="Anlagen / PDF hinzufügen"
-            multiple
-            files={files}
-            onFileChange={handleFileChange}
-            onRemove={removeChronologyFile}
-          />
-        </div>
+          <div className="mt-8 border-t border-firm-slate/10 pt-8">
+            <div className="flex items-center gap-2 mb-3">
+              <Type size={18} className="text-firm-accent" />
+              <label className="block text-[10px] font-bold text-firm-navy uppercase tracking-widest">
+                E-Mail-Verläufe / Text-Ausschnitte
+              </label>
+            </div>
+            <textarea
+              className="w-full h-48 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
+              placeholder={`Von: Mandant A\nAn: Gegner B\n...`}
+              value={textInput}
+              onChange={(e) => setChronologyTextInput(e.target.value)}
+            />
+          </div>
 
-        <div className="mt-8 border-t border-firm-slate/10 pt-8">
-          <div className="flex items-center gap-2 mb-3">
-            <Type size={18} className="text-firm-accent" />
-            <label className="block text-[10px] font-bold text-firm-navy uppercase tracking-widest">
-              E-Mail-Verläufe / Text-Ausschnitte
+          <div className="mt-8">
+            <label className="block text-[10px] font-bold text-firm-slate/50 uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
+              <span className="h-px bg-firm-slate/10 flex-1"></span>
+              Verfahrenskontext / Fokus der Untersuchung
+              <span className="h-px bg-firm-slate/10 flex-1"></span>
             </label>
+            <textarea
+              className="w-full h-32 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
+              placeholder="Beispiel: Fokus auf den Zugang der Kündigung..."
+              value={context}
+              onChange={(e) => setChronologyContext(e.target.value)}
+            />
           </div>
-          <textarea
-            className="w-full h-48 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
-            placeholder={`Von: Mandant A\nAn: Gegner B\n...`}
-            value={textInput}
-            onChange={(e) => setChronologyTextInput(e.target.value)}
-          />
-        </div>
 
-        <div className="mt-8">
-          <label className="block text-[10px] font-bold text-firm-slate/50 uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
-            <span className="h-px bg-firm-slate/10 flex-1"></span>
-            Verfahrenskontext / Fokus der Untersuchung
-            <span className="h-px bg-firm-slate/10 flex-1"></span>
-          </label>
-          <textarea
-            className="w-full h-32 p-5 rounded-xl bg-firm-paper/50 border border-firm-slate/15 resize-none focus:ring-2 focus:ring-firm-accent/30 focus:border-firm-accent text-[15px] font-serif leading-relaxed text-firm-navy placeholder-firm-slate/40 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] outline-none"
-            placeholder="Beispiel: Fokus auf den Zugang der Kündigung..."
-            value={context}
-            onChange={(e) => setChronologyContext(e.target.value)}
-          />
-        </div>
+          <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto mt-8">
+            <strong className="block font-bold">Berufsrechtlicher Hinweis:</strong> Keine Klarnamen verwenden. Anonymisierung ist Pflicht.
+          </div>
+        </Card>
+      </motion.div>
 
-        <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto mt-8">
-          <strong className="block font-bold">Berufsrechtlicher Hinweis:</strong> Keine Klarnamen verwenden. Anonymisierung ist Pflicht.
-        </div>
-      </Card>
-
-      <div className="animate-enter">
+      <motion.div variants={itemVariants}>
         <ContextPanel />
-      </div>
+      </motion.div>
 
-      <div className="mt-8 relative z-10 w-full group animate-enter">
+      <motion.div variants={itemVariants} className="mt-8 relative z-10 w-full group">
         <div className="absolute inset-0 bg-firm-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl" />
-        <Button fullWidth onClick={handleGenerate} disabled={files.length === 0 && !textInput.trim()} className="!py-4 text-base tracking-wide shadow-firm-lg relative">
+        <Button fullWidth onClick={handleGenerate} disabled={files.length === 0 && !textInput.trim()} className="!py-4 text-base tracking-wide shadow-firm-lg relative rounded-2xl active:scale-[0.98] transition-transform">
           Chronologie erstellen
         </Button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div >
   );
 };
 

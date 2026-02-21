@@ -97,8 +97,8 @@ export const generateAnalysis = async <T = any>({
   mediaResolution = "media_resolution_high",
   viewContext
 }: GenerationParams): Promise<ServiceResponse<T>> => {
-  // Fix: Directly check process.env.API_KEY for presence.
-  const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
+  // Get API key from Vite environment
+  const apiKey = (import.meta as any).env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error("API Key is missing. Bitte stellen Sie sicher, dass VITE_GEMINI_API_KEY in der .env Datei gesetzt ist.");
   }

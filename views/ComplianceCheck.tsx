@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { motion, Variants } from 'framer-motion';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Loader from '../components/ui/Loader';
@@ -15,6 +15,19 @@ import { Upload, FileText, Info, BookOpen, Copy, Check, Shield } from 'lucide-re
 import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
 import { copyRichText } from '../utils/clipboardUtils';
+
+const containerVariants: Variants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 }
+  }
+};
+
+const itemVariants: Variants = {
+  initial: { opacity: 0, y: 15, scale: 0.98 },
+  animate: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 25 } }
+};
 
 const ComplianceCheck: React.FC = () => {
   const { state, setComplianceFile, setComplianceResult, setThinking } = useAppContext();
@@ -108,8 +121,8 @@ const ComplianceCheck: React.FC = () => {
 
   if (result) {
     return (
-      <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-firm-slate/15 pb-6 gap-4">
+      <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-32 max-w-5xl mx-auto">
+        <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-center justify-between border-b border-firm-slate/15 pb-6 gap-4">
           <h2 className="text-2xl font-bold text-firm-navy font-serif tracking-tight">Technischer Abgleich (DSGVO)</h2>
           <div className="flex gap-3">
             <Button variant="secondary" onClick={handleCopy} className="!py-2.5 !px-4 text-xs shadow-sm bg-white border-firm-slate/15 hover:border-firm-slate/30">
@@ -120,10 +133,10 @@ const ComplianceCheck: React.FC = () => {
               Neu Starten
             </Button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col gap-4">
-          <div className="bg-[#FCFAF4] border border-amber-400/30 rounded-2xl p-4 flex items-start gap-4 text-[13px] text-amber-900 shadow-sm mt-2">
+        <motion.div variants={itemVariants} className="flex flex-col gap-4">
+          <div className="bg-[#FCFAF4] border border-amber-400/30 rounded-[1.5rem] p-5 flex items-start gap-4 text-[13px] text-amber-900 shadow-sm mt-2">
             <Info size={18} className="shrink-0 mt-0.5 text-amber-500" />
             <p className="leading-relaxed opacity-90">
               <strong className="font-bold text-amber-800">Hinweis zur KI-Nutzung:</strong> Dies ist ein technischer Abgleich mittels generativer KI.
@@ -136,104 +149,112 @@ const ComplianceCheck: React.FC = () => {
               <span>Prüfung gegen Playbook: <strong className="font-bold">{playbook.name}</strong></span>
             </div>
           )}
-        </div>
+        </motion.div>
 
-        <Card className="border border-firm-slate/10 shadow-firm bg-white rounded-3xl p-6 md:p-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-firm-paper/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-          <div className="prose prose-sm md:prose-base max-w-none text-firm-navy/80 prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={{
-                table: ({ node, ...props }) => (
-                  <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-white">
-                    <table className="w-full text-left border-collapse min-w-[600px]" {...props} />
-                  </div>
-                ),
-                thead: ({ node, ...props }) => <thead className="bg-firm-paper/50" {...props} />,
-                th: ({ node, ...props }) => <th className="p-4 text-[10px] font-bold text-firm-slate/60 uppercase tracking-widest border-b border-firm-slate/15" {...props} />,
-                td: ({ node, children, ...props }) => {
-                  const renderChildren = (child: any): any => {
-                    if (typeof child === 'string') {
-                      const parts = child.split(/<br\s*\/?>/gi);
-                      if (parts.length > 1) {
-                        return parts.map((part, i) => (
-                          <React.Fragment key={i}>
-                            {part}
-                            {i < parts.length - 1 && <br />}
-                          </React.Fragment>
-                        ));
+        <motion.div variants={itemVariants}>
+          <Card className="border-0 shadow-firm-lg bg-white rounded-[2rem] p-6 md:p-10 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-firm-paper/60 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="prose prose-sm md:prose-base max-w-none text-firm-navy/80 prose-headings:font-serif prose-headings:text-firm-navy prose-strong:text-firm-navy relative z-10">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  table: ({ node, ...props }) => (
+                    <div className="overflow-x-auto my-6 border border-firm-slate/15 rounded-xl shadow-sm bg-white">
+                      <table className="w-full text-left border-collapse min-w-[600px]" {...props} />
+                    </div>
+                  ),
+                  thead: ({ node, ...props }) => <thead className="bg-firm-paper/50" {...props} />,
+                  th: ({ node, ...props }) => <th className="p-4 text-[10px] font-bold text-firm-slate/60 uppercase tracking-widest border-b border-firm-slate/15" {...props} />,
+                  td: ({ node, children, ...props }) => {
+                    const renderChildren = (child: any): any => {
+                      if (typeof child === 'string') {
+                        const parts = child.split(/<br\s*\/?>/gi);
+                        if (parts.length > 1) {
+                          return parts.map((part, i) => (
+                            <React.Fragment key={i}>
+                              {part}
+                              {i < parts.length - 1 && <br />}
+                            </React.Fragment>
+                          ));
+                        }
                       }
-                    }
-                    if (Array.isArray(child)) return child.map(renderChildren);
-                    return child;
-                  };
+                      if (Array.isArray(child)) return child.map(renderChildren);
+                      return child;
+                    };
 
-                  return (
-                    <td className="p-4 text-[14px] text-firm-navy border-b border-firm-slate/10 whitespace-pre-wrap leading-relaxed" {...props}>
-                      {renderChildren(children)}
-                    </td>
-                  );
-                }
-              }}
-            >
-              {result}
-            </ReactMarkdown>
-          </div>
-          <GroundingSources metadata={metadata} />
-        </Card>
+                    return (
+                      <td className="p-4 text-[14px] text-firm-navy border-b border-firm-slate/10 whitespace-pre-wrap leading-relaxed" {...props}>
+                        {renderChildren(children)}
+                      </td>
+                    );
+                  }
+                }}
+              >
+                {result}
+              </ReactMarkdown>
+            </div>
+            <GroundingSources metadata={metadata} />
+          </Card>
+        </motion.div>
 
-        <RefinementLoop onRefine={handleRefine} loading={loading} contextType="Compliance-Bericht" />
-      </div>
+        <motion.div variants={itemVariants}>
+          <RefinementLoop onRefine={handleRefine} loading={loading} contextType="Compliance-Bericht" />
+        </motion.div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="space-y-8 pb-32 animate-enter max-w-4xl mx-auto">
-      <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
-        <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
-        <div className="flex items-center gap-4 mb-8 mt-2">
-          <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
-            <Shield size={28} strokeWidth={1.5} />
+    <motion.div variants={containerVariants} initial="initial" animate="animate" className="space-y-8 pb-32 max-w-4xl mx-auto">
+      <motion.div variants={itemVariants}>
+        <Card className="border-0 shadow-firm-lg rounded-[2rem] overflow-hidden relative">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-firm-navy via-firm-accent to-firm-navy opacity-80" />
+          <div className="flex items-center gap-4 mb-8 mt-2">
+            <div className="p-3 bg-firm-paper border border-firm-slate/10 rounded-2xl text-firm-navy shadow-sm">
+              <Shield size={28} strokeWidth={1.5} />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-firm-navy font-serif">Compliance Check</h3>
+              <p className="text-[15px] text-firm-slate/80 mt-1">
+                Automatisierter Abgleich mit Art. 28 DSGVO (AVV) und Standardvertragsklauseln.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-2xl font-bold text-firm-navy font-serif">Compliance Check</h3>
-            <p className="text-[15px] text-firm-slate/80 mt-1">
-              Automatisierter Abgleich mit Art. 28 DSGVO (AVV) und Standardvertragsklauseln.
-            </p>
+
+          <div className="bg-firm-paper/30 p-2 md:p-4 rounded-2xl border border-firm-slate/5 mb-6">
+            <FileUploader
+              label="AVV / DPA hochladen"
+              files={file}
+              onFileChange={handleFileChange}
+              onRemove={() => setComplianceFile(null)}
+            />
           </div>
-        </div>
 
-        <div className="bg-firm-paper/30 p-2 md:p-4 rounded-2xl border border-firm-slate/5 mb-6">
-          <FileUploader
-            label="AVV / DPA hochladen"
-            files={file}
-            onFileChange={handleFileChange}
-            onRemove={() => setComplianceFile(null)}
-          />
-        </div>
+          <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto">
+            <strong className="block font-bold">ACHTUNG:</strong>
+            Bitte schwärzen Sie alle personenbezogenen Daten (z.B. reale Namen, Unterschriften, präzise Adressen) <strong className="font-bold underline">VOR</strong> dem Upload.
+          </div>
+        </Card>
+      </motion.div>
 
-        <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 flex gap-3 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto">
-          <strong className="block font-bold">ACHTUNG:</strong>
-          Bitte schwärzen Sie alle personenbezogenen Daten (z.B. reale Namen, Unterschriften, präzise Adressen) <strong className="font-bold underline">VOR</strong> dem Upload.
-        </div>
-      </Card>
+      <motion.div variants={itemVariants}>
+        <ContextPanel />
+      </motion.div>
 
-      <ContextPanel />
-
-      <div className="mt-8 relative z-10 w-full group">
-        <div className="absolute inset-0 bg-firm-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-2xl" />
-        <Button fullWidth onClick={handleCheck} disabled={!file} className="!py-4 text-base tracking-wide shadow-firm-lg relative">
+      <motion.div variants={itemVariants} className="mt-8 relative z-10 w-full group">
+        <div className="absolute inset-0 bg-firm-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-[2rem]" />
+        <Button fullWidth onClick={handleCheck} disabled={!file} className="!py-4 text-base tracking-wide shadow-firm-lg relative rounded-2xl active:scale-[0.98] transition-transform">
           Abgleich starten
         </Button>
-      </div>
+      </motion.div>
 
       {playbook && (
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 animate-enter bg-white py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
+        <motion.div variants={itemVariants} className="mt-6 flex items-center justify-center gap-2 text-xs font-medium text-firm-slate/60 bg-white py-2 px-4 rounded-full border border-firm-slate/10 shadow-sm mx-auto w-fit">
           <BookOpen size={14} className="text-firm-accent" />
           <span>Aktives Playbook: <strong className="text-firm-navy">{playbook.name}</strong></span>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
