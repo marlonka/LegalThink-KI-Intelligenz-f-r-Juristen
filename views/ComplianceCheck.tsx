@@ -164,15 +164,15 @@ const ComplianceCheck: React.FC = () => {
           <div className="flex gap-3 items-center">
             {/* View Toggle */}
             <div className="hidden lg:flex bg-firm-card border border-firm-slate/15 rounded-xl p-1 mr-2 shadow-sm">
-              <button onClick={() => setViewMode('SPLIT')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SPLIT' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Geteilte Ansicht"><Columns size={16} /></button>
-              <button onClick={() => setViewMode('SINGLE')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SINGLE' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Leseansicht (Vollbild)"><FileText size={16} /></button>
+              <button onClick={() => setViewMode('SPLIT')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SPLIT' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-accent hover:bg-firm-accent/10'}`} title="Geteilte Ansicht"><Columns size={16} /></button>
+              <button onClick={() => setViewMode('SINGLE')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SINGLE' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-accent hover:bg-firm-accent/10'}`} title="Leseansicht (Vollbild)"><FileText size={16} /></button>
             </div>
 
             <Button variant="secondary" onClick={handleCopy} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren (für z.B. Word)'}
             </Button>
-            <button onClick={() => { setComplianceFile(null); setGlobalComplianceFile(null); setComplianceResult(null); setGlobalComplianceResult(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-navy bg-white dark:bg-firm-card border border-firm-slate/10 dark:border-firm-slate/20 rounded-full hover:shadow-sm dark:hover:bg-firm-card/80 transition-all">
+            <button onClick={() => { setComplianceFile(null); setGlobalComplianceFile(null); setComplianceResult(null); setGlobalComplianceResult(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-accent hover:bg-firm-accent/10 bg-white dark:bg-firm-card border border-firm-slate/10 dark:border-firm-slate/20 rounded-full hover:shadow-sm dark:hover:bg-firm-card/80 transition-all">
               <X size={18} />
             </button>
           </div>
@@ -188,7 +188,7 @@ const ComplianceCheck: React.FC = () => {
               <div className="flex items-center gap-3">
                 <span className="text-xs text-firm-slate/60 truncate max-w-[200px]">{file?.name}</span>
                 {fileUrl && (
-                  <a href={fileUrl} target="_blank" rel="noreferrer" className="text-firm-accent hover:text-firm-navy transition-colors bg-firm-paper p-1.5 rounded-md" title="In neuem Tab öffnen">
+                  <a href={fileUrl} target="_blank" rel="noreferrer" className="text-firm-accent hover:text-firm-accent hover:bg-firm-accent/10 transition-colors bg-firm-paper p-1.5 rounded-md" title="In neuem Tab öffnen">
                     <ExternalLink size={14} />
                   </a>
                 )}

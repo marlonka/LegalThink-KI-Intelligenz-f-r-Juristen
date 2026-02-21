@@ -154,7 +154,7 @@ const MarketingCheck: React.FC = () => {
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren'}
             </Button>
-            <Button variant="secondary" onClick={() => { setMarketingText(''); setMarketingFile(null); setMarketingAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setMarketingText(''); setMarketingFile(null); setMarketingAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-accent/10 hover:border-firm-accent/30 hover:text-firm-accent transition-colors">
               Neu Starten
             </Button>
           </div>

@@ -163,15 +163,15 @@ const NdaTriage: React.FC = () => {
 
             {/* View Toggle */}
             <div className="hidden lg:flex bg-firm-card border border-firm-slate/15 rounded-xl p-1 mr-2 shadow-sm">
-              <button onClick={() => setViewMode('SPLIT')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SPLIT' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Geteilte Ansicht"><Columns size={16} /></button>
-              <button onClick={() => setViewMode('SINGLE')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SINGLE' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Leseansicht (Vollbild)"><FileText size={16} /></button>
+              <button onClick={() => setViewMode('SPLIT')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SPLIT' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-accent hover:bg-firm-accent/10'}`} title="Geteilte Ansicht"><Columns size={16} /></button>
+              <button onClick={() => setViewMode('SINGLE')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SINGLE' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-accent hover:bg-firm-accent/10'}`} title="Leseansicht (Vollbild)"><FileText size={16} /></button>
             </div>
 
             <Button variant="secondary" onClick={handleCopyReport} className="!py-2.5 !px-4 text-xs shadow-sm bg-firm-card border-firm-slate/15 hover:border-firm-slate/30">
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren'}
             </Button>
-            <button onClick={() => { setNdaText(''); setNdaFile(null); setNdaAnalysis(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-navy bg-firm-card border border-firm-slate/10 rounded-full hover:shadow-sm transition-all">
+            <button onClick={() => { setNdaText(''); setNdaFile(null); setNdaAnalysis(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-accent hover:bg-firm-accent/10 bg-firm-card border border-firm-slate/10 rounded-full hover:shadow-sm transition-all">
               <X size={18} />
             </button>
           </div>
@@ -187,7 +187,7 @@ const NdaTriage: React.FC = () => {
               <div className="flex items-center gap-3">
                 <span className="text-xs text-firm-slate/60 truncate max-w-[200px]">{file?.name}</span>
                 {fileUrl && (
-                  <a href={fileUrl} target="_blank" rel="noreferrer" className="text-firm-accent hover:text-firm-navy transition-colors bg-firm-paper p-1.5 rounded-md" title="In neuem Tab öffnen">
+                  <a href={fileUrl} target="_blank" rel="noreferrer" className="text-firm-accent hover:text-firm-accent hover:bg-firm-accent/10 transition-colors bg-firm-paper p-1.5 rounded-md" title="In neuem Tab öffnen">
                     <ExternalLink size={14} />
                   </a>
                 )}

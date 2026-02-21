@@ -360,8 +360,8 @@ const ContractReview: React.FC = () => {
                         <div className="flex gap-2 items-center">
                             {/* View Toggle */}
                             <div className="hidden lg:flex bg-firm-card border border-firm-slate/15 rounded-xl p-1 mr-2 shadow-sm">
-                                <button onClick={() => setViewMode('SPLIT')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SPLIT' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Geteilte Ansicht"><Columns size={16} /></button>
-                                <button onClick={() => setViewMode('SINGLE')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SINGLE' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-navy'}`} title="Leseansicht (Vollbild)"><FileText size={16} /></button>
+                                <button onClick={() => setViewMode('SPLIT')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SPLIT' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-accent hover:bg-firm-accent/10'}`} title="Geteilte Ansicht"><Columns size={16} /></button>
+                                <button onClick={() => setViewMode('SINGLE')} className={`p-1.5 rounded-lg transition-colors ${viewMode === 'SINGLE' ? 'bg-firm-paper text-firm-navy shadow-sm' : 'text-firm-slate hover:text-firm-accent hover:bg-firm-accent/10'}`} title="Leseansicht (Vollbild)"><FileText size={16} /></button>
                             </div>
 
                             <Button variant="secondary" onClick={handleCopyBriefing} className="!py-2.5 !px-4 text-xs !rounded-xl">
@@ -372,7 +372,7 @@ const ContractReview: React.FC = () => {
                                 <Mail size={16} className="text-firm-accent" />
                                 Mandanten-Brief
                             </Button>
-                            <button onClick={() => { setContractFile(null); setContractAnalysis(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-navy bg-firm-card border border-firm-slate/10 rounded-full hover:shadow-sm transition-all">
+                            <button onClick={() => { setContractFile(null); setContractAnalysis(null); }} className="p-2 ml-2 text-firm-slate/50 hover:text-firm-accent hover:bg-firm-accent/10 bg-firm-card border border-firm-slate/10 rounded-full hover:shadow-sm transition-all">
                                 <X size={18} />
                             </button>
                         </div>
@@ -389,7 +389,7 @@ const ContractReview: React.FC = () => {
                             <div className="flex items-center gap-3">
                                 <span className="text-xs text-firm-slate/60 truncate max-w-[200px]">{file?.name}</span>
                                 {fileUrl && (
-                                    <a href={fileUrl} target="_blank" rel="noreferrer" className="text-firm-accent hover:text-firm-navy transition-colors bg-firm-paper p-1.5 rounded-md" title="In neuem Tab öffnen">
+                                    <a href={fileUrl} target="_blank" rel="noreferrer" className="text-firm-accent hover:text-firm-accent hover:bg-firm-accent/10 transition-colors bg-firm-paper p-1.5 rounded-md" title="In neuem Tab öffnen">
                                         <ExternalLink size={14} />
                                     </a>
                                 )}
@@ -623,14 +623,14 @@ const ContractReview: React.FC = () => {
                             <div className="flex bg-firm-paper p-1.5 rounded-xl border border-firm-slate/10 w-full shadow-inner">
                                 <button
                                     onClick={() => setContractPerspective('BUYER')}
-                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-firm-card shadow-sm border border-firm-slate/5 text-firm-navy' : 'border border-transparent text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'BUYER' ? 'bg-firm-card shadow-sm border border-firm-slate/5 text-firm-navy' : 'border border-transparent text-firm-slate hover:text-firm-accent hover:bg-firm-accent/5'}`}
                                 >
                                     {perspectiveLabels.BUYER.Icon && <perspectiveLabels.BUYER.Icon size={16} className={perspective === 'BUYER' ? 'text-firm-accent' : ''} />}
                                     {perspectiveLabels.BUYER.label}
                                 </button>
                                 <button
                                     onClick={() => setContractPerspective('SELLER')}
-                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-firm-card shadow-sm border border-firm-slate/5 text-firm-navy' : 'border border-transparent text-firm-slate hover:text-firm-navy hover:bg-firm-card/50'}`}
+                                    className={`flex-1 py-3 text-sm font-bold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 ${perspective === 'SELLER' ? 'bg-firm-card shadow-sm border border-firm-slate/5 text-firm-navy' : 'border border-transparent text-firm-slate hover:text-firm-accent hover:bg-firm-accent/5'}`}
                                 >
                                     {perspectiveLabels.SELLER.Icon && <perspectiveLabels.SELLER.Icon size={16} className={perspective === 'SELLER' ? 'text-firm-accent' : ''} />}
                                     {perspectiveLabels.SELLER.label}
@@ -674,7 +674,7 @@ const ContractReview: React.FC = () => {
                             </div>
                         ) : (
                             <label className="flex items-center gap-5 p-5 border-2 border-dashed border-firm-slate/15 rounded-2xl cursor-pointer hover:bg-firm-paper hover:border-firm-accent/50 transition-all duration-300 group">
-                                <div className="w-12 h-12 rounded-xl bg-firm-paper border border-firm-slate/10 flex items-center justify-center text-firm-slate/40 group-hover:bg-[#05050A] group-hover:text-firm-accent group-hover:border-[#05050A] dark:group-hover:bg-firm-card dark:group-hover:border-firm-border transition-all duration-300 shadow-sm">
+                                <div className="w-12 h-12 rounded-xl bg-firm-paper border border-firm-slate/10 flex items-center justify-center text-firm-slate/40 group-hover:bg-firm-accent/10 group-hover:text-firm-accent group-hover:border-firm-accent/30 dark:group-hover:bg-firm-card dark:group-hover:border-firm-border transition-all duration-300 shadow-sm">
                                     <Scale size={20} />
                                 </div>
                                 <div className="flex-1">

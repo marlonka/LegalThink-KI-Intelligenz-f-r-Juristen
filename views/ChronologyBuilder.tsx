@@ -214,10 +214,10 @@ const ChronologyBuilder: React.FC = () => {
               {isEditing ? 'Speichern' : 'Editor'}
             </button>
             <div className="h-6 w-px bg-firm-slate/10 mx-1"></div>
-            <button onClick={handleCopy} className="p-2.5 text-firm-slate/50 hover:text-firm-navy hover:bg-firm-paper rounded-xl transition-colors" title="Kopieren (Word)">
+            <button onClick={handleCopy} className="p-2.5 text-firm-slate/50 hover:text-firm-accent hover:bg-firm-accent/10 rounded-xl transition-colors" title="Kopieren (Word)">
               {copied ? <Check size={18} className="text-firm-accent" /> : <Copy size={18} />}
             </button>
-            <button onClick={handleDownload} className="p-2.5 text-firm-slate/50 hover:text-firm-navy hover:bg-firm-paper rounded-xl transition-colors" title="Als Markdown herunterladen">
+            <button onClick={handleDownload} className="p-2.5 text-firm-slate/50 hover:text-firm-accent hover:bg-firm-accent/10 rounded-xl transition-colors" title="Als Markdown herunterladen">
               <Download size={18} />
             </button>
             <button onClick={() => { setChronologyResult(null); setIsEditing(false); setChronologyQuestions(null); }} className="p-2.5 text-firm-slate/50 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl transition-colors" title="Neu beginnen">
@@ -300,7 +300,7 @@ const ChronologyBuilder: React.FC = () => {
               </button>
             ) : (
               <div className="bg-firm-card border-0 rounded-3xl p-6 md:p-8 shadow-firm animate-enter relative">
-                <button onClick={() => setIsRefining(false)} className="absolute top-6 right-6 text-firm-slate/40 hover:text-firm-navy transition-colors"><X size={20} /></button>
+                <button onClick={() => setIsRefining(false)} className="absolute top-6 right-6 text-firm-slate/40 hover:text-firm-accent transition-colors"><X size={20} /></button>
                 <h3 className="text-xl font-bold text-firm-navy font-serif mb-6 flex items-center gap-3">
                   <div className="p-1.5 bg-firm-paper rounded-lg"><FilePlus size={18} className="text-neon-cyan" /></div>
                   Beweismittel nachreichen

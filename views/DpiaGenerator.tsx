@@ -170,7 +170,7 @@ const DpiaGenerator: React.FC = () => {
               {copied ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
               {copied ? 'Kopiert' : 'Bericht kopieren (Word)'}
             </Button>
-            <Button variant="secondary" onClick={() => { setDpiaAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-card hover:text-firm-navy transition-colors">
+            <Button variant="secondary" onClick={() => { setDpiaAnalysis(null); }} className="!py-2.5 !px-4 text-xs bg-firm-paper border-firm-slate/10 hover:bg-firm-accent/10 hover:border-firm-accent/30 hover:text-firm-accent transition-colors">
               Neu Starten
             </Button>
           </div>
@@ -310,7 +310,7 @@ const DpiaGenerator: React.FC = () => {
         <div className="bg-firm-paper/50 p-1.5 rounded-xl flex gap-1.5 relative w-full mb-8 shadow-sm border border-firm-slate/10">
           <button
             onClick={() => setDpiaMode('CREATE')}
-            className={`flex-1 py-3 rounded-lg text-[13px] uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 ${mode === 'CREATE' ? 'bg-firm-card text-firm-navy shadow-sm border border-firm-slate/5' : 'text-firm-slate/50 hover:text-firm-navy hover:bg-firm-card/50'}`}
+            className={`flex-1 py-3 rounded-lg text-[13px] uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 ${mode === 'CREATE' ? 'bg-firm-card text-firm-navy shadow-sm border border-firm-slate/5' : 'border border-transparent text-firm-slate/50 hover:text-firm-accent hover:bg-firm-accent/5'}`}
           >
             <PlusCircle size={16} />
             Neu erstellen
