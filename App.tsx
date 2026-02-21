@@ -6,12 +6,12 @@ import TokenPill from './components/Layout/TokenPill';
 import LegalModal from './components/Layout/LegalModal';
 import Dashboard from './views/Dashboard';
 import ContractReview from './views/ContractReview';
-import ContractComparison from './views/ContractComparison'; 
+import ContractComparison from './views/ContractComparison';
 import NdaTriage from './views/NdaTriage';
 import ComplianceCheck from './views/ComplianceCheck';
 import RiskAssessment from './views/RiskAssessment';
 import DpiaGenerator from './views/DpiaGenerator';
-import ChronologyBuilder from './views/ChronologyBuilder'; 
+import ChronologyBuilder from './views/ChronologyBuilder';
 import MarketingCheck from './views/MarketingCheck';
 import LegalNotice from './views/LegalNotice';
 import { View } from './types';
@@ -30,12 +30,12 @@ const InnerApp: React.FC = () => {
 
   // DYNAMIC LAYOUT LOGIC
   // Some views need a lot of horizontal space (Split Views, Tables)
-  const isWideMode = 
+  const isWideMode =
     (currentView === View.CONTRACT_REVIEW && state.contractReview.analysis !== null) ||
     (currentView === View.CONTRACT_COMPARISON && state.comparison.analysis !== null);
 
-  const containerClass = isWideMode 
-    ? "max-w-[95vw] xl:max-w-[1800px]" 
+  const containerClass = isWideMode
+    ? "max-w-[95vw] xl:max-w-[1800px]"
     : "max-w-3xl";
 
   const renderView = () => {
@@ -44,7 +44,7 @@ const InnerApp: React.FC = () => {
         return <Dashboard onNavigate={setCurrentView} />;
       case View.CONTRACT_REVIEW:
         return <ContractReview />;
-      case View.CONTRACT_COMPARISON: 
+      case View.CONTRACT_COMPARISON:
         return <ContractComparison />;
       // Fix: Corrected property name from NDA_Triage to NDA_TRIAGE as defined in types.ts
       case View.NDA_TRIAGE:
@@ -53,7 +53,7 @@ const InnerApp: React.FC = () => {
         return <ComplianceCheck />;
       case View.DPIA_GENERATOR:
         return <DpiaGenerator />;
-      case View.CHRONOLOGY_BUILDER: 
+      case View.CHRONOLOGY_BUILDER:
         return <ChronologyBuilder />;
       case View.RISK_ASSESSMENT:
         return <RiskAssessment />;
@@ -67,44 +67,47 @@ const InnerApp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8fafc] relative selection:bg-slate-200 font-sans text-firm-navy">
-      
-      {/* Background Ambience - Minimal */}
+    <div className="min-h-screen flex flex-col bg-firm-paper relative selection:bg-firm-accent/20 font-sans text-firm-navy">
+
+      {/* Background Ambience - Premium Editorial */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] rounded-full bg-slate-100/40 blur-[150px]" />
+        {/* Subtle radial gradient instead of flat color */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-firm-paper to-firm-paper" />
+        {/* Distinctive gold ambient glow - Expanded to prevent cutoff on ultrawide monitors */}
+        <div className="absolute top-[-30%] right-[-20%] w-[150vw] md:w-[120vw] lg:w-[1500px] h-[1000px] md:h-[1500px] rounded-[100%] bg-firm-accent/5 blur-[120px] md:blur-[180px]" />
       </div>
 
       {/* Legal Gatekeeper */}
-      <LegalModal onAccept={() => {}} />
+      <LegalModal onAccept={() => { }} />
 
       <Header currentView={currentView} />
       <TokenPill />
-      
+
       <main className={`flex-1 w-full mx-auto px-6 pt-4 pb-48 relative z-10 transition-[max-width] duration-500 ease-in-out ${containerClass}`}>
         {renderView()}
-        
+
         {/* Risk-Reduced Disclaimer Footer */}
-        <div className="mt-12 text-center border-t border-slate-100 pt-8 pb-4 opacity-60">
-          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">
+        <div className="mt-12 text-center border-t border-firm-slate/10 pt-8 pb-4 opacity-70">
+          <p className="text-[10px] text-firm-slate uppercase tracking-widest font-bold">
             LegalThink – KI-Assistenz für Rechtsanwälte
           </p>
           <div className="flex justify-center gap-4 mt-2">
-             <button 
-               onClick={() => setCurrentView(View.LEGAL_NOTICE)}
-               className="text-[10px] text-firm-accent hover:underline font-medium"
-             >
-               Haftungsausschluss & Datenschutz
-             </button>
+            <button
+              onClick={() => setCurrentView(View.LEGAL_NOTICE)}
+              className="text-[10px] text-firm-accent hover:underline font-semibold transition-colors duration-200"
+            >
+              Haftungsausschluss & Datenschutz
+            </button>
           </div>
-          <p className="text-[10px] text-slate-400 mt-2 max-w-lg mx-auto leading-relaxed">
-            <strong>Wichtiger technischer Hinweis:</strong> Zur Analyse werden Daten an die <strong>Google Gemini API</strong> übertragen. 
-            Einzelheiten zur Datennutzung und Sicherheit entnehmen Sie bitte den <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noreferrer" className="underline">Google Gemini API Terms</a>. 
+          <p className="text-[10px] text-firm-slate/70 mt-3 max-w-lg mx-auto leading-relaxed">
+            <strong>Wichtiger technischer Hinweis:</strong> Zur Analyse werden Daten an die <strong>Google Gemini API</strong> übertragen.
+            Einzelheiten zur Datennutzung und Sicherheit entnehmen Sie bitte den <a href="https://ai.google.dev/gemini-api/terms" target="_blank" rel="noreferrer" className="underline hover:text-firm-accent transition-colors">Google Gemini API Terms</a>.
             LegalThink übernimmt keine Gewähr für die Einhaltung dieser Bedingungen durch Drittanbieter.
           </p>
         </div>
       </main>
 
-      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/90 to-transparent pointer-events-none z-20" />
+      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-firm-paper via-firm-paper/90 to-transparent pointer-events-none z-20" />
 
       <Navigation currentView={currentView} onNavigate={setCurrentView} />
     </div>

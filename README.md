@@ -3,20 +3,22 @@
 
 > **Vom 1x zum 10x Anwalt: Hochperformante KI-Vertragsanalyse und juristische Assistenz, maßgeschneidert für den deutschen Rechtsmarkt (BGB, DSGVO, UWG).**
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Status](https://img.shields.io/badge/status-beta-orange.svg) ![Tech](https://img.shields.io/badge/Powered%20by-Google%20Gemini-4285F4.svg)
-
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Status](https://img.shields.io/badge/status-beta-orange.svg) ![Model](https://img.shields.io/badge/Model-Gemini%203.1%20Pro-4285F4.svg) ![Aesthetic](https://img.shields.io/badge/UI-Minimal%20Editorial%20Luxury-D4AF37.svg)
 
 ## 🏛 Über LegalThink
 
-LegalThink überträgt die Leistungsfähigkeit modernster Sprachmodelle (LLMs) auf den deutschen Kanzleialltag. Inspiriert von internationalen Legal-Tech-Vorreitern, aber **streng optimiert auf deutsches Recht**, bietet diese Open-Source-Lösung eine lokale, datenschutzbewusste Oberfläche für juristische Analysen.
+LegalThink überträgt die Leistungsfähigkeit des brandneuen **Google Gemini 3.1 Pro Preview** Modells auf den deutschen Kanzleialltag. 
 
-Es ist kein "Chatbot", sondern eine Suite spezialisierter Werkzeuge für Partner, Associates und Rechtsabteilungen.
+Inspiriert von internationalen Legal-Tech-Vorreitern, aber **streng optimiert auf deutsches Recht**, bietet diese Open-Source-Lösung eine lokale, datenschutzbewusste Oberfläche für juristische Analysen. Das Interface besticht durch die neue Designsprache **"Minimal Editorial Luxury"** – konzipiert für erfahrene Partner, die Wert auf einen souveränen, klaren und visuell anspruchsvollen Arbeitsbereich legen.
+
+Es ist kein generischer "Chatbot", sondern eine Suite spezialisierter Werkzeuge für Partner, Associates und Rechtsabteilungen.
 
 ### Der "Wow-Faktor" für Ihre Kanzlei
 LegalThink agiert wie ein hochqualifizierter Associate, der nie müde wird:
-*   **Präzise:** Prüft Klauseln gegen BGB-Standards und aktuelle Rechtsprechung.
+*   **Präzise:** Prüft Klauseln gegen BGB-Standards und aktuelle Rechtsprechung (inklusive Google Search Grounding).
 *   **Schnell:** Erstellt Synopsen und Chronologien in Sekunden statt Stunden.
 *   **Strategisch:** Denkt mit – von der Verhandlungstaktik bis zur wirtschaftlichen Risikoanalyse.
+*   **Ästhetisch:** Eine Benutzeroberfläche out-of-the-box, die Mandanten und Kollegen beeindruckt.
 
 ---
 
@@ -24,7 +26,7 @@ LegalThink agiert wie ein hochqualifizierter Associate, der nie müde wird:
 
 ### 1. 📄 Vertragsanalyse & Redlining
 Laden Sie Verträge (PDF/Word) hoch. LegalThink seziert das Dokument nicht nur, es versteht es.
-*   **Ampelsystem:** Risiken werden sofort als Grün/Gelb/Rot klassifiziert.
+*   **Ampelsystem:** Risiken werden sofort in einer edlen Risiko-Matrix klassifiziert.
 *   **Lückenanalyse:** Findet Klauseln, die *fehlen* (z.B. fehlende Schutzklauseln in einem SaaS-Vertrag).
 *   **Redlining:** Generiert konkrete Formulierungsvorschläge für die Verhandlung ("Track Changes").
 
@@ -49,87 +51,55 @@ Prüft Marketing-Materialien und Webseiten-Texte auf "Abmahnfallen".
 *   Gleicht Aussagen mittels **Google Search Grounding** live gegen Fakten ab.
 
 ### 6. 🧠 Kanzlei-Playbooks
-Laden Sie Ihre eigenen Muster, AGBs oder "Corporate Wording" Richtlinien hoch. LegalThink prüft und schreibt dann genau in **Ihrem** Stil.
+Laden Sie Ihre eigenen Muster, AGBs oder "Corporate Wording" Richtlinien hoch. LegalThink prüft und schreibt dann genau in **Ihrem** Stil, wodurch die KI zum perfekten Votums-Schreiber wird.
 
 ---
 
 ## 🔒 Datenschutz & Sicherheit (WICHTIG)
 
-LegalThink ist eine "Client-Side Application". Das bedeutet:
-1.  Der Code läuft in Ihrem Browser.
-2.  Daten werden **nur** zur Analyse an die Google Gemini API (Enterprise Grade) gesendet.
+LegalThink ist eine "Client-Side Application" (React/Vite). Das bedeutet:
+1.  Der Code läuft in Ihrem Browser auf Ihrem Endgerät.
+2.  Daten werden **nur** zur Analyse an die Google Gemini API gesendet.
 3.  Es gibt keinen "LegalThink-Server", der Ihre Daten speichert.
 
-**⚠️ Warnung:**
-Laden Sie **niemals** Dokumente mit ungeschwärzten personenbezogenen Daten (Namen, Adressen, Unterschriften) hoch, es sei denn, Sie haben einen entsprechenden AVV mit Google. Die Verantwortung für die Anonymisierung liegt beim Nutzer.
+**⚠️ Wichtiger berufsrechtlicher Hinweis:**
+Die API von Google wird genutzt. Die Verantwortung für die Einhaltung von § 203 StGB (Verschwiegenheitspflicht) liegt beim Anwender. Laden Sie **niemals** Dokumente mit ungeschwärzten personenbezogenen Daten (Namen, Adressen, Unterschriften) hoch, es sei denn, Sie haben einen entsprechenden Vertrag (AVV) mit Google geschlossen, der dies legitimiert.
 
 ---
 
-## 💻 Installation (No-Code: Der einfache Weg)
+## 💻 Installation
 
-Sie brauchen **keine IT-Kenntnisse** und müssen keine komplexen Befehle tippen. Wir nutzen **Google Antigravity**, eine intelligente Software, bei der eine KI ("Agent") die Installation für Sie übernimmt.
+Diese Anwendung nutzt Vite für maximale Performance. Um das Programm lokal zu starten, folgen Sie diesen Schritten:
 
-### Schritt 1: Software laden
-1.  Laden Sie **Google Antigravity** herunter: [https://antigravity.google/download](https://antigravity.google/download)
-2.  Installieren und starten Sie das Programm.
-
-### Schritt 2: API Key besorgen
-Damit die KI juristisch arbeiten kann, benötigt sie einen Zugangsschlüssel.
-1.  Besuchen Sie [https://aistudio.google.com/api-keys](https://aistudio.google.com/api-keys).
+### Schritt 1: API Key besorgen
+Damit die KI juristisch arbeiten kann, benötigt sie Zugang zu **Gemini 3.1 Pro**.
+1.  Besuchen Sie [Google AI Studio](https://aistudio.google.com/api-keys).
 2.  Klicken Sie auf den blauen Button **"Create API Key"**.
-3.  Kopieren Sie den generierten Schlüssel (er beginnt mit `AIza...`).
+3.  Kopieren Sie den generierten Schlüssel.
 
-### Schritt 3: LegalThink installieren (In Antigravity)
-1.  Erstellen Sie auf Ihrem Computer einen leeren Ordner (z.B. "LegalThink").
-2.  Öffnen Sie diesen Ordner in Google Antigravity ("Open Folder").
-3.  Rechts sehen Sie ein Chat-Fenster ("Agent"). Kopieren Sie diesen Befehl dort hinein und drücken Sie Enter:
-    ```
-    /clone https://github.com/marlonka/LegalThink-KI-Intelligenz-f-r-Juristen .
-    ```
-    *(Wichtig: Der Punkt am Ende sorgt dafür, dass die Dateien direkt in Ihrem Ordner landen).*
+### Schritt 2: Code herunterladen & installieren
+Öffnen Sie Ihr Terminal (oder die Antigravity-Kommandozeile):
+```bash
+git clone https://github.com/marlonka/LegalThink-KI-Intelligenz-f-r-Juristen.git
+cd LegalThink-KI-Intelligenz-f-r-Juristen
+npm install
+```
 
-### Schritt 4: Schlüssel hinterlegen
-Wir müssen der App nun Ihren Schlüssel aus Schritt 2 geben. Das machen wir direkt im Editor, ohne komplizierte Windows-Einstellungen:
-1.  Klicken Sie in der linken Spalte (Dateiliste) mit der **rechten Maustaste** in den leeren Bereich.
-2.  Wählen Sie **"New File"** (Neue Datei).
-3.  Geben Sie der Datei exakt den Namen: `.env` (Punkt am Anfang nicht vergessen!).
-4.  Fügen Sie in diese Datei folgende Zeile ein:
-    ```text
-    API_KEY=Ihr-Kopierter-Schlüssel-Hier
-    ```
-5.  Speichern Sie die Datei (`Strg + S` oder `Cmd + S`).
+### Schritt 3: API Key in `.env.local` hinterlegen
+Sie müssen Vite autorisieren, indem Sie eine `.env.local` Datei im Hauptverzeichnis des Projekts anlegen.
 
-### Schritt 5: Starten
-Schreiben Sie nun einfach in den Chat rechts an die KI:
-> **"Bitte installiere alle Abhängigkeiten und starte die App."**
+Erstellen Sie eine Datei namens `.env.local` und fügen Sie exakt diese Zeile ein:
+```env
+VITE_GEMINI_API_KEY=Ihr-Kopierter-Schlüssel-Hier
+```
+*(Das Präfix `VITE_` ist zwingend erforderlich!)*
 
-Die KI führt nun alle technischen Schritte aus (`npm install`, `npm start`). Warten Sie kurz, bis sich LegalThink automatisch in Ihrem Browser öffnet (meist unter `http://localhost:1234`).
-
----
-
-## 🤓 Installation (Für Entwickler / Manuell)
-
-Falls Sie Node.js bereits installiert haben und das Terminal bevorzugen:
-
-1.  Repository klonen:
-    ```bash
-    git clone https://github.com/marlonka/LegalThink-KI-Intelligenz-f-r-Juristen.git
-    cd LegalThink-KI-Intelligenz-f-r-Juristen
-    ```
-2.  Abhängigkeiten installieren:
-    ```bash
-    npm install
-    ```
-3.  API Key setzen:
-    Erstellen Sie eine Datei `.env` im Hauptverzeichnis und fügen Sie ein:
-    ```bash
-    API_KEY="Ihr-Google-Gemini-Key-Hier"
-    ```
-4.  Anwendung starten:
-    ```bash
-    npm start
-    ```
-    Der Browser öffnet sich automatisch unter `http://localhost:1234`.
+### Schritt 4: LegalThink starten
+Starten Sie den Entwicklungsserver:
+```bash
+npm run dev
+```
+Rufen Sie nun [http://localhost:3000](http://localhost:3000) in Ihrem Browser auf, um die KI-Suite zu nutzen!
 
 ---
 
@@ -148,26 +118,8 @@ Diese Software ist ein technisches Hilfsmittel zur Unterstützung von Juristen (
 
 LegalThink ist Open Source. Wir laden Legal Engineers und entwickelnde Juristen herzlich ein, Pull Requests zu stellen, um das Tool gemeinsam zu verbessern.
 
----
-
 ## 📄 Lizenz (MIT)
 
 Copyright (c) 2026 LegalThink
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction...

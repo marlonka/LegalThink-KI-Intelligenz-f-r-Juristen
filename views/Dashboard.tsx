@@ -20,7 +20,7 @@ interface ActionItem {
 
 const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
   const { state, setPlaybookFile } = useAppContext();
-  
+
   const handlePlaybookUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setPlaybookFile(e.target.files[0]);
@@ -32,7 +32,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     {
       view: View.CONTRACT_REVIEW,
       title: "Vertragsanalyse",
-      desc: "Risikoprüfung & Redlining", 
+      desc: "Risikoprüfung & Redlining",
       icon: FileText,
       borderColor: "group-hover:border-firm-navy/30",
     },
@@ -45,19 +45,19 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
     },
     {
       view: View.CONTRACT_COMPARISON,
-      title: "Versionsvergleich (Synopse)", 
-      desc: "Abweichungsanalyse Entwurf vs. Gegenentwurf", 
+      title: "Versionsvergleich (Synopse)",
+      desc: "Abweichungsanalyse Entwurf vs. Gegenentwurf",
       icon: ArrowLeftRight,
       borderColor: "group-hover:border-firm-navy/30",
     },
     {
       view: View.NDA_TRIAGE,
       title: "NDA Vorprüfung",
-      desc: "Prüfung auf Marktstandards & Fristen", 
+      desc: "Prüfung auf Marktstandards & Fristen",
       icon: FileCheck,
       borderColor: "group-hover:border-firm-navy/30",
     },
-    
+
     // 2. STRATEGIC / ADVISORY
     {
       view: View.RISK_ASSESSMENT,
@@ -94,81 +94,86 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
   return (
     <div className="space-y-8 animate-enter">
       {/* Intro Section - Reduced margins */}
-      <div className="px-1 mt-2">
-        <p className="text-slate-500 font-medium text-sm max-w-2xl leading-relaxed">
-          <strong className="text-firm-navy">Wir machen 1x Anwälte zu 10x Anwälten.</strong> <br/>
+      <div className="px-2 mt-2">
+        <p className="text-firm-slate/80 font-medium text-sm md:text-base max-w-2xl leading-relaxed">
+          <strong className="text-firm-navy">Wir machen 1x Anwälte zu 10x Anwälten.</strong> <br />
           Konzipiert für erfahrene Partner, spezialisierte Einzelanwälte und Rechtsabteilungen.
         </p>
       </div>
 
       {/* Context / Playbook Configuration Card */}
-      <div className="bg-gradient-to-r from-firm-navy to-[#1e293b] rounded-xl p-6 shadow-firm-lg text-white relative overflow-hidden group">
-         <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-            <Scale size={120} />
-         </div>
-         
-         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div>
-               <div className="flex items-center gap-2 mb-2">
-                 <BookOpen size={20} className="text-neon-cyan" />
-                 <h3 className="font-bold font-serif text-lg text-white">Rechts-Kontext, Vorlagen & Standards</h3>
-               </div>
-               <p className="text-slate-300 text-sm max-w-lg leading-relaxed">
-                  Laden Sie Ihre Standards hoch. Wir nutzen dieses Wissen im Hintergrund, um der KI mehr Kontext zu Ihren Wünschen und der Situation zu geben.
-                  <br/>
-                  <span className="text-xs text-slate-400 mt-1 block">
-                    Geeignet z.B. für: <strong>Vertrags-Vorlagen, Verhandlungs-Playbooks, AGBs, Unternehmensprofile ("Wer sind wir?"), Mandanten-Briefings.</strong>
-                  </span>
-               </p>
-               
-               {state.playbookFile && (
-                 <div className="mt-3 flex items-center gap-2 text-xs font-medium text-neon-lime bg-neon-lime/10 px-3 py-1.5 rounded-full w-fit">
-                    <CheckCircle size={12} />
-                    <span>Aktiv: {state.playbookFile.name}</span>
-                 </div>
-               )}
-            </div>
+      <div className="bg-gradient-to-br from-firm-navy via-[#111926] to-[#0A0F1C] rounded-3xl p-8 shadow-firm-lg text-white relative overflow-hidden group border border-firm-slate/10">
+        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity duration-700 text-firm-accent">
+          <Scale size={180} />
+        </div>
 
-            <div className="relative shrink-0">
-                <button className="bg-white text-firm-navy px-5 py-2.5 rounded-lg text-sm font-bold shadow hover:bg-slate-100 transition-colors pointer-events-none whitespace-nowrap">
-                   {state.playbookFile ? 'Playbook aktualisieren' : 'Playbook hochladen'}
-                </button>
-                <input 
-                  type="file" 
-                  className="absolute inset-0 opacity-0 cursor-pointer"
-                  accept=".pdf,.docx,.txt"
-                  onChange={handlePlaybookUpload}
-                />
+        {/* Subtle Gold Glow on Hover */}
+        <div className="absolute inset-0 bg-firm-accent/0 group-hover:bg-firm-accent/5 transition-colors duration-700 pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-3">
+              <BookOpen size={24} className="text-firm-accent" />
+              <h3 className="font-bold font-serif text-xl sm:text-2xl text-white tracking-wide">Rechts-Kontext & Standards</h3>
             </div>
-         </div>
+            <p className="text-slate-300/80 text-sm max-w-xl leading-relaxed font-medium">
+              Laden Sie Ihr anwaltliches Playbook hoch. Wir nutzen dieses Wissen im Hintergrund, um der KI den exakten juristischen Kontext, Ihre Vorlagen und Ihren Verhandlungsstil zu injizieren.
+              <br />
+              <span className="text-xs text-white/90 mt-4 block p-3.5 bg-white/10 rounded-xl border border-white/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                <strong className="text-firm-accent mr-1">Tipp:</strong> Laden Sie Ihre Standard-AGB, "Must-Haves" für Vertragsprüfungen oder ein Mandantenprofil hoch. Erhöht die Präzision massiv.
+              </span>
+            </p>
+
+            {state.playbookFile && (
+              <div className="mt-4 flex items-center gap-2 text-xs font-bold text-firm-accent bg-firm-accent/10 px-4 py-2 rounded-full w-fit border border-firm-accent/20">
+                <CheckCircle size={14} />
+                <span>Aktiv: {state.playbookFile.name}</span>
+              </div>
+            )}
+          </div>
+
+          <div className="relative shrink-0 w-full md:w-auto">
+            <button className="w-full bg-firm-paper text-firm-navy px-6 py-3.5 rounded-2xl text-sm font-bold shadow-firm hover:bg-white hover:scale-[1.02] transition-all duration-300 pointer-events-none whitespace-nowrap">
+              {state.playbookFile ? 'Playbook aktualisieren' : 'Playbook hochladen'}
+            </button>
+            <input
+              type="file"
+              className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+              accept=".pdf,.docx,.txt"
+              onChange={handlePlaybookUpload}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Action Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {actions.map((action) => {
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {actions.map((action, index) => {
           const Icon = action.icon;
-          const bgClass = action.bgClass || "bg-slate-50 group-hover:bg-firm-navy";
-          const textClass = action.textClass || "text-firm-navy group-hover:text-white";
+          const bgClass = action.bgClass || "bg-firm-paper group-hover:bg-firm-navy group-hover:shadow-firm-glow";
+          const textClass = action.textClass || "text-firm-navy group-hover:text-firm-accent";
 
           return (
-            <button 
+            <button
               key={action.title}
               onClick={() => onNavigate(action.view)}
               className={`
-                group relative bg-white border border-slate-200 rounded-lg p-6 text-left transition-all duration-300 
-                hover:shadow-firm-lg hover:-translate-y-0.5 ${action.borderColor}
+                group animate-scale bg-white border border-firm-slate/15 rounded-3xl p-7 text-left transition-all duration-500 ease-out-expo
+                hover:shadow-firm-lg hover:-translate-y-1 hover:border-firm-accent/30 stagger-${(index % 4) + 1}
               `}
             >
-              <div className="flex justify-between items-start mb-5">
-                <div className={`p-3 rounded transition-colors duration-300 ${bgClass} ${textClass}`}>
-                  <Icon size={24} strokeWidth={1.5} />
+              <div className="flex justify-between items-start mb-6">
+                <div className={`p-4 rounded-2xl transition-all duration-500 ease-out-expo ${bgClass} ${textClass}`}>
+                  <Icon size={26} strokeWidth={1.5} />
                 </div>
-                <ArrowUpRight size={20} className="text-slate-300 group-hover:text-firm-navy transition-colors" />
+                <div className="bg-firm-paper group-hover:bg-firm-accent/10 p-2 rounded-full transition-colors duration-500">
+                  <ArrowUpRight size={20} className="text-firm-slate/40 group-hover:text-firm-accent transition-colors" />
+                </div>
               </div>
-              
+
               <div>
-                <h3 className="font-bold text-firm-navy text-lg font-serif mb-1">{action.title}</h3>
-                <p className="text-sm text-slate-500 font-medium">{action.desc}</p>
+                <h3 className="font-bold text-firm-navy text-xl sm:text-2xl font-serif mb-2">{action.title}</h3>
+                <p className="text-sm text-firm-slate/80 font-medium leading-relaxed">{action.desc}</p>
               </div>
             </button>
           );
@@ -176,17 +181,20 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
       </div>
 
       {/* Security Badge (Legally Accurate) */}
-      <div className="mx-1 mt-8 border-t border-slate-200 pt-6 flex items-start gap-4 opacity-80">
-        <div className="bg-slate-100 p-2 rounded-full">
-            <Lock size={16} className="text-firm-navy" />
+      <div className="mx-2 mt-10 p-5 bg-firm-paper border border-firm-slate/10 rounded-2xl flex items-start gap-4">
+        <div className="bg-firm-slate/5 p-3 rounded-full shrink-0">
+          <Lock size={18} className="text-firm-navy" />
         </div>
         <div>
-           <h4 className="text-sm font-bold text-firm-navy mb-1">Datensicherheit & Vertraulichkeit</h4>
-           <p className="text-xs text-slate-500 leading-relaxed max-w-md">
-             Die Analyse erfolgt durch die <strong>Google Gemini API</strong>. 
-             Die Datenübertragung ist TLS-verschlüsselt. 
-             Bitte beachten Sie Ihre berufsrechtliche Verschwiegenheitspflicht (§ 203 StGB) bei der Nutzung von Cloud-Diensten.
-           </p>
+          <h4 className="text-sm font-bold text-firm-navy mb-1 flex items-center gap-2">
+            Datensicherheit & Vertraulichkeit
+            <span className="text-[10px] bg-green-100 text-green-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider">TLS gesichert</span>
+          </h4>
+          <p className="text-xs text-firm-slate/80 leading-relaxed max-w-2xl">
+            Die Analyse erfolgt durch die <strong>Google Gemini API</strong>.
+            Alle Dokumente werden nach der Verarbeitung verworfen und <strong>nicht</strong> für Modelltraining verwendet.
+            Bitte beachten Sie Ihre berufsrechtliche Verschwiegenheitspflicht (§ 203 StGB).
+          </p>
         </div>
       </div>
     </div>

@@ -2,11 +2,11 @@
 export enum View {
   DASHBOARD = 'DASHBOARD',
   CONTRACT_REVIEW = 'CONTRACT_REVIEW',
-  CONTRACT_COMPARISON = 'CONTRACT_COMPARISON', 
+  CONTRACT_COMPARISON = 'CONTRACT_COMPARISON',
   NDA_TRIAGE = 'NDA_TRIAGE',
   COMPLIANCE = 'COMPLIANCE',
   DPIA_GENERATOR = 'DPIA_GENERATOR',
-  CHRONOLOGY_BUILDER = 'CHRONOLOGY_BUILDER', 
+  CHRONOLOGY_BUILDER = 'CHRONOLOGY_BUILDER',
   RISK_ASSESSMENT = 'RISK_ASSESSMENT',
   MARKETING_CHECK = 'MARKETING_CHECK', // NEW
   LEGAL_NOTICE = 'LEGAL_NOTICE'
@@ -34,7 +34,7 @@ export interface GroundingSupport {
 export interface GroundingMetadata {
   webSearchQueries?: string[];
   groundingChunks?: GroundingChunk[];
-  groundingSupports?: GroundingSupport[]; 
+  groundingSupports?: GroundingSupport[];
   searchEntryPoint?: {
     renderedContent: string;
   };
@@ -46,7 +46,7 @@ export interface ContractClause {
   analysis: string;
   recommendation?: string;
   redline?: string;
-  relevantParagraph?: string; 
+  relevantParagraph?: string;
 }
 
 export interface ContractAnalysisResponse {
@@ -54,7 +54,7 @@ export interface ContractAnalysisResponse {
   overallRiskScore: number;
   clauses: ContractClause[];
   missingClauses: string[];
-  negotiationStrategy?: string; 
+  negotiationStrategy?: string;
 }
 
 export interface ContractChange {
@@ -64,12 +64,12 @@ export interface ContractChange {
   originalText?: string;
   newText: string;
   legalImpact: string;
-  strategicComment: string; 
+  strategicComment: string;
 }
 
 export interface ComparisonResponse {
   summaryOfChanges: string;
-  strategicShift: string; 
+  strategicShift: string;
   changes: ContractChange[];
 }
 
@@ -96,7 +96,7 @@ export interface RiskAssessmentResponse {
   executiveSummary: string;
   overallRiskLevel: string;
   riskPoints: RiskPoint[];
-  economicImpactAnalysis?: string; 
+  economicImpactAnalysis?: string;
 }
 
 // NEW: Marketing Check Types
@@ -119,12 +119,12 @@ export interface MarketingCheckResponse {
 export interface AppState {
   playbookFile: File | null;
   isThinking: boolean;
-  referenceUrls: string[]; 
+  referenceUrls: string[];
   useSearch: boolean;
-  
+
   contractReview: {
     file: File | null;
-    perspective: 'BUYER' | 'SELLER' | 'NEUTRAL'; 
+    perspective: 'BUYER' | 'SELLER' | 'NEUTRAL';
     analysis: ContractAnalysisResponse | null;
     groundingMetadata: GroundingMetadata | null;
   };
@@ -135,7 +135,7 @@ export interface AppState {
     groundingMetadata: GroundingMetadata | null;
   };
   ndaTriage: {
-    file: File | null; 
+    file: File | null;
     text: string;
     analysis: NdaTriageResponse | null;
     groundingMetadata: GroundingMetadata | null;
@@ -148,17 +148,17 @@ export interface AppState {
   dpia: {
     mode: 'CREATE' | 'UPDATE';
     files: File[];
-    textInput: string; 
+    textInput: string;
     context: string;
     analysis: string | null;
     groundingMetadata: GroundingMetadata | null;
   };
-  chronology: { 
+  chronology: {
     files: File[];
-    textInput: string; 
+    textInput: string;
     context: string;
     result: string | null;
-    questions: string | null; 
+    questions: string | null;
     groundingMetadata: GroundingMetadata | null;
   };
   riskAssessment: {
@@ -191,14 +191,14 @@ export interface ServiceResponse<T> {
 }
 
 export interface Pricing {
-  input: number; 
-  cachedInput: number; 
-  output: number; 
+  input: number;
+  cachedInput: number;
+  output: number;
 }
 
 // UPDATED PRICING (USD per 1M Tokens) based on official list
 export const MODEL_PRICING: Record<string, Pricing> = {
-  'gemini-3-pro-preview': { input: 2.00, cachedInput: 0.20, output: 12.00 }, // Updated Cache from 0.50 to 0.20
+  'gemini-3.1-pro-preview': { input: 2.00, cachedInput: 0.20, output: 12.00 }, // Updated Cache from 0.50 to 0.20
   'gemini-3-flash-preview': { input: 0.50, cachedInput: 0.05, output: 3.00 }, // Updated Cache from 0.125 to 0.05
   'gemini-3-pro-image-preview': { input: 2.00, cachedInput: 0.20, output: 0.134 }, // Image output is technically per image/token equiv
 };

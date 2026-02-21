@@ -14,10 +14,10 @@ interface FileUploaderProps {
   icon?: React.ElementType;
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({ 
-  label = "Dokument(e) hier ablegen", 
-  sublabel = "Unterstützt: PDF, Word (.docx), Text (.txt) - Max. 20MB", 
-  accept = ".pdf,.docx,.txt", 
+const FileUploader: React.FC<FileUploaderProps> = ({
+  label = "Dokument(e) hier ablegen",
+  sublabel = "Unterstützt: PDF, Word (.docx), Text (.txt) - Max. 20MB",
+  accept = ".pdf,.docx,.txt",
   multiple = false,
   files,
   onFileChange,
@@ -43,31 +43,31 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   if (fileList.length > 0 && !multiple) {
     // Single file display mode (replacement style)
     return (
-      <div 
+      <div
         onClick={handleClick}
-        className="group relative w-full p-6 border-2 border-firm-navy/20 bg-firm-navy/5 rounded-xl flex flex-col items-center justify-center text-center cursor-pointer hover:bg-firm-navy/10 transition-all"
+        className="group relative w-full p-6 border-2 border-firm-slate/15 bg-firm-paper/30 rounded-2xl flex flex-col items-center justify-center text-center cursor-pointer hover:border-firm-accent hover:bg-firm-paper/80 transition-all duration-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.01)]"
       >
-        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-3 text-firm-navy shadow-sm">
-           <FileText size={24} />
+        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-4 text-firm-navy shadow-sm border border-firm-slate/5 group-hover:scale-105 transition-transform duration-300">
+          <FileText size={26} strokeWidth={1.5} />
         </div>
-        <h3 className="text-sm font-bold text-firm-navy mb-1 truncate max-w-xs">{fileList[0].name}</h3>
-        <p className="text-xs text-slate-500 mb-2">{(fileList[0].size / 1024).toFixed(0)} KB • Klicken zum Austauschen</p>
-        
+        <h3 className="text-[14px] font-bold text-firm-navy mb-1.5 truncate max-w-xs">{fileList[0].name}</h3>
+        <p className="text-[12px] font-medium text-firm-slate/50 mb-2 uppercase tracking-wider">{(fileList[0].size / 1024).toFixed(0)} KB • Klicken zum Austauschen</p>
+
         {onRemove && (
-           <button 
-             onClick={(e) => handleRemove(e, 0)}
-             className="absolute top-3 right-3 p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-colors"
-             title="Entfernen"
-           >
-             <X size={16} />
-           </button>
+          <button
+            onClick={(e) => handleRemove(e, 0)}
+            className="absolute top-4 right-4 p-2 text-firm-slate/40 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors"
+            title="Entfernen"
+          >
+            <X size={18} />
+          </button>
         )}
-        <input 
-          type="file" 
+        <input
+          type="file"
           ref={inputRef}
-          className="hidden" 
+          className="hidden"
           accept={accept}
-          onChange={onFileChange} 
+          onChange={onFileChange}
         />
       </div>
     );
@@ -78,54 +78,56 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     <div className="w-full">
       {/* List for multiple files if any exist */}
       {multiple && fileList.length > 0 && (
-        <div className="space-y-2 mb-3">
+        <div className="space-y-3 mb-4">
           {fileList.map((f, idx) => (
-             <div key={idx} className="flex items-center justify-between p-3 bg-white border border-slate-200 rounded-lg shadow-sm">
-                <div className="flex items-center gap-3 overflow-hidden">
-                    <FileText size={16} className="text-firm-navy shrink-0" />
-                    <span className="text-sm font-medium text-slate-700 truncate">{f.name}</span>
+            <div key={idx} className="flex items-center justify-between p-4 bg-white border border-firm-slate/10 rounded-xl shadow-sm hover:border-firm-slate/20 transition-colors">
+              <div className="flex items-center gap-4 overflow-hidden">
+                <div className="p-2 bg-firm-paper rounded-lg">
+                  <FileText size={18} className="text-firm-navy shrink-0" strokeWidth={1.5} />
                 </div>
-                {onRemove && (
-                  <button onClick={(e) => handleRemove(e, idx)} className="text-slate-400 hover:text-red-500">
-                    <X size={16} />
-                  </button>
-                )}
-             </div>
+                <span className="text-[14px] font-medium text-firm-navy truncate">{f.name}</span>
+              </div>
+              {onRemove && (
+                <button onClick={(e) => handleRemove(e, idx)} className="text-firm-slate/40 hover:text-red-500 p-2 hover:bg-red-50 rounded-lg transition-colors">
+                  <X size={18} />
+                </button>
+              )}
+            </div>
           ))}
         </div>
       )}
 
-      <div 
+      <div
         onClick={handleClick}
         className={`
-          relative w-full border-2 border-dashed border-slate-300 rounded-xl 
-          flex flex-col items-center justify-center text-center cursor-pointer transition-all group
-          hover:border-firm-navy/50 hover:bg-slate-50
-          ${variant === 'compact' ? 'p-4' : 'p-8'}
+          relative w-full border-2 border-dashed border-firm-slate/20 rounded-2xl 
+          flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 group
+          hover:border-firm-accent hover:bg-firm-paper/30
+          ${variant === 'compact' ? 'p-5' : 'p-10'}
         `}
       >
         <div className={`
-          rounded-full bg-slate-100 text-slate-500 group-hover:bg-firm-navy group-hover:text-white transition-colors flex items-center justify-center mb-3
-          ${variant === 'compact' ? 'w-8 h-8' : 'w-12 h-12'}
+          rounded-2xl bg-firm-paper border border-firm-slate/5 text-firm-navy group-hover:bg-firm-navy group-hover:border-firm-navy group-hover:text-white transition-all duration-300 flex items-center justify-center mb-4 shadow-sm group-hover:shadow group-hover:scale-105
+          ${variant === 'compact' ? 'w-10 h-10' : 'w-14 h-14'}
         `}>
-           <Icon size={variant === 'compact' ? 16 : 24} />
+          <Icon size={variant === 'compact' ? 20 : 28} strokeWidth={1.5} />
         </div>
-        
-        <h3 className={`font-bold text-firm-navy ${variant === 'compact' ? 'text-xs' : 'text-sm'} mb-1`}>
-            {label}
+
+        <h3 className={`font-bold text-firm-navy ${variant === 'compact' ? 'text-[13px] uppercase tracking-wider' : 'text-base tracking-wide'} mb-2`}>
+          {label}
         </h3>
-        
+
         {sublabel && (
-            <p className="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">{sublabel}</p>
+          <p className="text-[13px] text-firm-slate/60 max-w-sm mx-auto leading-relaxed font-medium">{sublabel}</p>
         )}
 
-        <input 
-          type="file" 
+        <input
+          type="file"
           ref={inputRef}
-          className="hidden" 
+          className="hidden"
           accept={accept}
           multiple={multiple}
-          onChange={onFileChange} 
+          onChange={onFileChange}
         />
       </div>
     </div>

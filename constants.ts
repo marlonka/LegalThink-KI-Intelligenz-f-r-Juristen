@@ -4,7 +4,7 @@ export const APP_DESCRIPTION = "KI-Assistenz für juristische Analysen";
 
 // Models
 export const MODEL_FLASH = "gemini-3-flash-preview";
-export const MODEL_PRO = "gemini-3-pro-preview";
+export const MODEL_PRO = "gemini-3.1-pro-preview";
 
 // System Instruction - "Star Lawyer" Persona Injection
 export const SYSTEM_INSTRUCTION_BASE = `

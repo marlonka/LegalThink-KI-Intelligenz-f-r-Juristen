@@ -12,16 +12,16 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate }) => {
   // Ordered by frequency of use for Lawyers
   const navItems = [
     { id: View.DASHBOARD, icon: LayoutGrid, label: 'Übersicht' },
-    
+
     // Core Tools (Daily)
     { id: View.CONTRACT_REVIEW, icon: FileText, label: 'Analyse' },
     { id: View.CHRONOLOGY_BUILDER, icon: History, label: 'Sachverhalt' },
-    { id: View.CONTRACT_COMPARISON, icon: ArrowLeftRight, label: 'Vergleich' }, 
-    
+    { id: View.CONTRACT_COMPARISON, icon: ArrowLeftRight, label: 'Vergleich' },
+
     // Standard Tools (Weekly)
     { id: View.NDA_TRIAGE, icon: FileCheck, label: 'Vorprüfung' },
     { id: View.RISK_ASSESSMENT, icon: AlertTriangle, label: 'Risiko' },
-    
+
     // Specialized Tools (Project based)
     { id: View.COMPLIANCE, icon: Shield, label: 'Compliance' },
     { id: View.MARKETING_CHECK, icon: Megaphone, label: 'UWG Radar' },
@@ -31,26 +31,26 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, onNavigate }) => {
   return (
     <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 w-full flex justify-center px-4">
       {/* The Tool Dock - Dark Navy, very sleek */}
-      <nav className="flex items-center gap-1 bg-firm-navy shadow-dock rounded-2xl px-2 py-2 border border-slate-700/50 overflow-x-auto max-w-full no-scrollbar">
+      <nav className="flex items-center gap-2 bg-firm-navy/95 backdrop-blur-xl shadow-dock rounded-2xl px-3 py-2 border border-firm-slate/20 overflow-x-auto max-w-full no-scrollbar">
         {navItems.map((item) => {
           const isActive = currentView === item.id;
           const Icon = item.icon;
-          
+
           return (
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
               className={`
-                relative flex items-center justify-center min-w-[3rem] h-12 rounded-xl transition-all duration-300
-                ${isActive ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white hover:bg-white/5'}
+                relative flex items-center justify-center min-w-[3.5rem] h-12 rounded-xl transition-all duration-300 group
+                ${isActive ? 'bg-firm-accent/10 text-firm-accent' : 'text-firm-slate hover:text-firm-paper hover:bg-firm-paper/5'}
               `}
               title={item.label}
             >
-              <Icon size={20} strokeWidth={2} />
-              
-              {/* Subtle Active Indicator */}
+              <Icon size={20} className={isActive ? "stroke-[2.5px]" : "stroke-[1.5px] group-hover:stroke-[2px]"} />
+
+              {/* Subtle Active Indicator - Gold Dash */}
               {isActive && (
-                <div className="absolute bottom-1 w-1 h-1 bg-white rounded-full"></div>
+                <div className="absolute -bottom-1 w-4 h-[2px] bg-firm-accent rounded-full shadow-firm-glow"></div>
               )}
             </button>
           );
