@@ -5,6 +5,7 @@ import Button from '../components/ui/Button';
 import Loader from '../components/ui/Loader';
 import ContextPanel from '../components/ui/ContextPanel';
 import FileUploader from '../components/ui/FileUploader';
+import DemoLoadButton from '../components/ui/DemoLoadButton'; // Added DemoLoadButton import
 import GroundingSources from '../components/ui/GroundingSources';
 import RefinementLoop from '../components/ui/RefinementLoop';
 import { generateAnalysis, fileToBase64, FileData } from '../services/geminiService';
@@ -123,9 +124,9 @@ const ComplianceCheck: React.FC = () => {
       setGlobalComplianceResult(response.data, response.groundingMetadata); // Update global state
       trackUsage(response.usage);
     } catch (error) {
-      setComplianceResult("Fehler beim Abgleich.", undefined); // Update local state
-      setMetadata(undefined); // Update local state
-      setGlobalComplianceResult("Fehler beim Abgleich.", undefined); // Update global state
+      setComplianceResult("Fehler beim Abgleich."); // Updated to remove undefined, as setComplianceResult expects string | null
+      setMetadata(null); // Updated to null for consistency with any | null
+      setGlobalComplianceResult("Fehler beim Abgleich.", null); // Updated to null for consistency with any | null
     } finally {
       setLoading(false);
       setThinking(false);
@@ -296,11 +297,20 @@ const ComplianceCheck: React.FC = () => {
 
           <div className="bg-firm-paper/30 p-2 md:p-4 rounded-2xl border border-firm-slate/5 mb-6">
             <FileUploader
-              label="AVV / DPA hochladen"
+              label="Dokument hochladen (PDF, DOCX, TXT)" // Changed label
               files={file}
               onFileChange={handleFileChange}
               onRemove={() => setComplianceFile(null)}
+              icon={FileCheck} // Pass the component
             />
+
+            {/* DEMO BUTTON */}
+            {!state.compliance.file && ( // Changed from !compliance.file to !state.compliance.file
+              <DemoLoadButton
+                demoFile={{ path: '/test-dummies/09_Compliance_Check_Horror_AVV.md', name: 'Compliance_Horror_AVV.md' }}
+                onLoad={setComplianceFile}
+              />
+            )}
           </div>
 
           <div className="bg-[#FCF5F5] border border-red-500/10 rounded-xl p-4 md:p-5 flex flex-col md:flex-row gap-2 md:gap-4 text-sm text-red-800/90 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] mx-auto font-medium">

@@ -10,11 +10,13 @@ import GroundingSources from '../components/ui/GroundingSources';
 import RefinementLoop from '../components/ui/RefinementLoop';
 import { fileToBase64, generateAnalysis, FileData } from '../services/geminiService';
 import { PROMPTS, MODEL_PRO } from '../constants';
-import { ComparisonResponse, ContractChange } from '../types';
+import { View, ComparisonResponse, ContractChange } from '../types';
 import { ComparisonSchema } from '../schemas';
 import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
 import { copyRichText } from '../utils/clipboardUtils';
+import { fetchDemoFile } from '../utils/demoUtils';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 
 const ContractComparison: React.FC = () => {
   const { state, setComparisonFiles, setComparisonAnalysis, setThinking } = useAppContext();
@@ -22,6 +24,7 @@ const ContractComparison: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
   const file1 = state.comparison.fileOriginal;
   const file2 = state.comparison.fileNew;
@@ -149,7 +152,7 @@ const ContractComparison: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  if (loading) {
+  if (loading || isAnalyzing) {
     return (
       <div className="min-h-[50vh] flex flex-col items-center justify-center animate-enter">
         <Loader messages={[
@@ -216,6 +219,19 @@ const ContractComparison: React.FC = () => {
     );
   }
 
+  const handleLoadDemo = async () => {
+    setIsAnalyzing(true);
+    try {
+      const dbFile1 = await fetchDemoFile('/test-dummies/02_Synopse_Dienstleistungsvertrag_V1_Original.md', 'Dienstleistungsvertrag_V1_Original.md');
+      const dbFile2 = await fetchDemoFile('/test-dummies/03_Synopse_Dienstleistungsvertrag_V2_Gegenentwurf.md', 'Dienstleistungsvertrag_V2_Gegenentwurf.md');
+      setComparisonFiles(dbFile1, dbFile2);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
   // UPLOAD VIEW
   return (
     <div className="space-y-8 pb-32 animate-enter max-w-5xl mx-auto">
@@ -265,6 +281,24 @@ const ContractComparison: React.FC = () => {
             />
           </div>
         </div>
+
+        {/* DEMO BUTTON */}
+        {state.isDemoMode && !state.comparison.fileOriginal && !state.comparison.fileNew && (
+          <DemoLoadButton
+            demoFile={{ path: '/test-dummies/02_Synopse_Dienstleistungsvertrag_V1_Original.md', name: 'dummy1' }} // Just to satisfy props, override click handler
+            onLoad={() => { }}
+          // Override click via wrapper below
+          />
+        )}
+        {/* Custom Demo wrapper for dual files */}
+        {state.isDemoMode && !state.comparison.fileOriginal && !state.comparison.fileNew && (
+          <div className="absolute inset-0 z-10" onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleLoadDemo();
+          }}></div>
+        )}
+
       </Card>
 
       <div className="animate-enter">

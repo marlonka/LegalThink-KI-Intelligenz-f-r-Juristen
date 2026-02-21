@@ -13,6 +13,7 @@ import { RiskAssessmentResponse, RiskPoint } from '../types';
 import { RiskAssessmentSchema } from '../schemas';
 import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import { Euro, BookOpen, Copy, Check, ChevronDown, ChevronUp, AlertTriangle, Filter, X } from 'lucide-react';
 import { copyRichText } from '../utils/clipboardUtils';
 

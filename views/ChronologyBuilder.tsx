@@ -6,6 +6,7 @@ import Loader from '../components/ui/Loader';
 import ContextPanel from '../components/ui/ContextPanel';
 import FileUploader from '../components/ui/FileUploader';
 import GroundingSources from '../components/ui/GroundingSources';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import { generateAnalysis, fileToBase64, FileData } from '../services/geminiService';
 import { PROMPTS, MODEL_PRO } from '../constants';
 import ReactMarkdown from 'react-markdown';

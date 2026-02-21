@@ -7,6 +7,7 @@ import ContextPanel from '../components/ui/ContextPanel';
 import FileUploader from '../components/ui/FileUploader';
 import GroundingSources from '../components/ui/GroundingSources';
 import RefinementLoop from '../components/ui/RefinementLoop';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import { generateAnalysis, fileToBase64, FileData } from '../services/geminiService';
 import { PROMPTS, MODEL_FLASH } from '../constants';
 import { NdaTriageResponse, View } from '../types';
@@ -105,7 +106,8 @@ const NdaTriage: React.FC = () => {
         thinkingLevel: "medium",
         viewContext: 'NDA'
       });
-      setNdaAnalysis(response.data, response.groundingMetadata);
+      setNdaAnalysis(response.data);
+      setMetadata(response.groundingMetadata);
       trackUsage(response.usage);
     } catch (error) {
       alert("Prüfung fehlgeschlagen.");

@@ -1,11 +1,12 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
-import { Upload, FileText, ChevronDown, ChevronUp, Check, AlertTriangle, BookOpen, Copy, Briefcase, ShoppingCart, Mail, Scale, FileCheck, X, User, Home, Building, ShieldAlert, Swords, Eye, Columns, ExternalLink } from 'lucide-react';
+import { Upload, FileText, ChevronDown, ChevronUp, Check, AlertTriangle, BookOpen, Copy, Briefcase, ShoppingCart, Mail, Scale, FileCheck, X, User, Home, Building, ShieldAlert, Swords, Eye, Columns, ExternalLink, Clock, ShieldCheck, ArrowRight, SwitchCamera, MessageSquare, Play, RefreshCw, EyeOff } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import Loader from '../components/ui/Loader';
 import ContextPanel from '../components/ui/ContextPanel';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import FileUploader from '../components/ui/FileUploader';
 import GroundingSources from '../components/ui/GroundingSources';
 import RefinementLoop from '../components/ui/RefinementLoop';
@@ -569,11 +570,21 @@ const ContractReview: React.FC = () => {
 
                     <div className="mb-10 bg-firm-paper/30 p-2 rounded-2xl border border-firm-slate/5">
                         <FileUploader
-                            label="Dokument (PDF/Word) hier ablegen"
-                            files={file}
                             onFileChange={handleFileChange}
+                            files={file}
                             onRemove={() => setContractFile(null)}
+                            accept=".pdf,.docx,.txt"
+                            label="Vertrag hochladen (PDF, DOCX, TXT)"
+                            icon={Upload} // Passing the component itself, not JSX element
                         />
+
+                        {/* DEMO BUTTON */}
+                        {!file && (
+                            <DemoLoadButton
+                                demoFile={{ path: '/test-dummies/01_Vertragsanalyse_SaaS_Review_Risikohaft.md', name: 'SaaS_Rahmenvertrag_Riskanter_Entwurf.md' }}
+                                onLoad={setContractFile}
+                            />
+                        )}
                     </div>
                     <div className="border-t border-firm-slate/10 pt-8 mt-4">
                         <h4 className="text-xs font-bold text-firm-slate uppercase tracking-widest mb-5 flex items-center gap-2">

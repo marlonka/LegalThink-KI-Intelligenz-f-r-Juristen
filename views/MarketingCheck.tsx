@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
@@ -7,6 +6,7 @@ import ContextPanel from '../components/ui/ContextPanel';
 import FileUploader from '../components/ui/FileUploader';
 import GroundingSources from '../components/ui/GroundingSources';
 import RefinementLoop from '../components/ui/RefinementLoop';
+import DemoLoadButton from '../components/ui/DemoLoadButton';
 import { generateAnalysis, fileToBase64, FileData } from '../services/geminiService';
 import { PROMPTS, MODEL_PRO } from '../constants';
 import { MarketingCheckResponse } from '../types';
@@ -15,6 +15,7 @@ import { useTokenContext } from '../contexts/TokenContext';
 import { useAppContext } from '../contexts/AppContext';
 import { Megaphone, Search, AlertOctagon, Check, Copy, Image as ImageIcon, ShieldCheck, RefreshCw, BookOpen, AlertTriangle, Globe, Info } from 'lucide-react';
 import { copyRichText } from '../utils/clipboardUtils';
+import { fetchDemoFile } from '../utils/demoUtils';
 
 const MarketingCheck: React.FC = () => {
   const { state, setMarketingFile, setMarketingText, setMarketingTargetAudience, setMarketingAnalysis, setThinking, toggleSearch } = useAppContext();
@@ -287,6 +288,19 @@ const MarketingCheck: React.FC = () => {
             />
           </div>
           <div className="flex flex-col">
+            {/* DEMO BUTTON */}
+            {!text && !file && (
+              <DemoLoadButton
+                demoFile={{ path: '/test-dummies/07_UWG_Werbetechxt_Greenwashing.md', name: 'Werbetext_Greenwashing.md' }}
+                onLoad={async (file) => {
+                  const text = await file.text();
+                  setMarketingText(text);
+                  setMarketingTargetAudience("Verbraucher, gesundheitsbewusste Personen, Abnehmwillige");
+                }}
+                label="Muster-Werbetext laden"
+              />
+            )}
+
             <label className="block text-[10px] font-bold text-firm-slate/50 uppercase tracking-widest mb-2 px-1">
               Kontext / Branche
             </label>
