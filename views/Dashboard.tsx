@@ -202,7 +202,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
         <div>
           <h4 className="text-sm font-bold text-firm-navy mb-1 flex items-center gap-2">
             Datensicherheit & Vertraulichkeit
-            <span className="text-[10px] bg-green-100/50 text-green-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-green-200/50">TLS gesichert</span>
+            <span className="text-[10px] bg-green-100/50 dark:bg-emerald-500/10 text-green-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-green-200/50 dark:border-emerald-500/20">TLS gesichert</span>
           </h4>
           <p className="text-xs text-firm- font-medium leading-relaxed max-w-2xl">
             Die Analyse erfolgt durch die <strong>Google Gemini API</strong>.
