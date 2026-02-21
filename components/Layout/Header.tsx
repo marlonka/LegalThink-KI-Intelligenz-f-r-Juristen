@@ -52,10 +52,10 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
           </div>
 
           {/* Controls & Date */}
-          <div className="flex items-center bg-firm-paper/50 backdrop-blur-md border border-firm-border/60 rounded-full pr-1.5 pl-3 py-1.5 shadow-sm">
+          <div className="flex items-center bg-firm-paper/60 dark:bg-firm-navy/10 backdrop-blur-md border border-firm-border/60 rounded-full pr-1.5 pl-3 py-1.5 shadow-sm">
 
             <div className="hidden md:block text-right opacity-90 mr-4">
-              <p className="text-[10px] font-bold text-firm-navy/70 uppercase tracking-[0.15em] font-sans">
+              <p className="text-[10px] font-bold text-firm-navy/70 dark:text-firm-navy/80 uppercase tracking-[0.15em] font-sans">
                 {new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' })}
               </p>
             </div>
@@ -75,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
 
             <button
               onClick={() => setIsSettingsOpen(true)}
-              className="p-1.5 text-firm-navy/80 hover:text-firm-accent hover:bg-firm-slate/5 bg-white shadow-sm border border-firm-border/40 rounded-[14px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-firm-accent/50 group"
+              className="p-1.5 text-firm-navy/80 hover:text-firm-accent hover:bg-firm-slate/5 bg-firm-card shadow-sm border border-firm-border/40 rounded-[14px] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-firm-accent/50 group"
               aria-label="Darstellung & Einstellungen"
               title="Darstellung & Einstellungen"
             >
