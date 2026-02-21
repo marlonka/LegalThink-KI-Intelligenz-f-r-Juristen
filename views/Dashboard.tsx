@@ -161,7 +161,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {actions.map((action, index) => {
           const Icon = action.icon;
-          const bgClass = action.bgClass || "bg-firm-paper group-hover:bg-firm-navy dark:group-hover:bg-firm-accent/15 group-hover:shadow-firm-glow";
+          const bgClass = action.bgClass || "bg-firm-paper group-hover:bg-firm-accent/10 dark:group-hover:bg-firm-accent/15 group-hover:shadow-firm-glow";
           const textClass = action.textClass || "text-firm-navy group-hover:text-firm-accent";
 
           return (
