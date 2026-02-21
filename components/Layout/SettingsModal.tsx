@@ -233,9 +233,17 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
           <div className="p-5 border-t border-firm-border bg-firm-paper/50 flex justify-end">
             <button
               onClick={onClose}
-              className="px-6 py-2.5 bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] rounded-xl font-semibold shadow-sm hover:opacity-90 transition-all"
+              className="relative overflow-hidden group px-8 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300
+                bg-firm-navy text-firm-paper shadow-[0_4px_14px_rgba(5,5,10,0.15)] 
+                hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(5,5,10,0.2)]
+                border border-transparent hover:border-firm-accent/50
+                dark:bg-firm-accent dark:text-firm-navy dark:hover:border-white/50"
             >
-              Fertig
+              <span className="relative z-10 flex items-center gap-2">
+                Fertig
+              </span>
+              {/* Subtle hover gradient sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
             </button>
           </div>
         </motion.div>
