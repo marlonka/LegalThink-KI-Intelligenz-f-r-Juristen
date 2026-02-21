@@ -15,14 +15,23 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
   const { state, toggleDemoMode } = useAppContext();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
-  // LOGIC CHANGE: Shimmer ONLY when thinking/loading. 
-  // Removed "currentView === View.DASHBOARD" so it doesn't shimmer constantly on home.
   const isShimmerActive = state.isThinking;
+
+  // Display logic matching main wrapper width
+  const isWideMode =
+    (currentView === View.CONTRACT_REVIEW && state.contractReview.analysis !== null) ||
+    (currentView === View.CONTRACT_COMPARISON && state.comparison.analysis !== null) ||
+    (currentView === View.NDA_TRIAGE && state.ndaTriage.analysis !== null) ||
+    (currentView === View.COMPLIANCE && state.compliance.result !== null);
+
+  const containerClass = isWideMode
+    ? "max-w-[95vw] xl:max-w-[1800px]"
+    : "max-w-6xl";
 
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-firm-paper/80 backdrop-blur-2xl border-b border-firm-border/50 transition-all duration-500 shadow-firm-sm">
-        <div className="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div className={`mx-auto px-6 py-4 flex items-center justify-between transition-[max-width] duration-500 ease-in-out ${containerClass}`}>
           <div className="flex items-center">
             <AnimatePresence>
               {currentView !== View.DASHBOARD && onNavigate && (
@@ -43,30 +52,34 @@ const Header: React.FC<HeaderProps> = ({ currentView, onNavigate }) => {
           </div>
 
           {/* Controls & Date */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => toggleDemoMode(!state.isDemoMode)}
-              className={`hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 border ${state.isDemoMode
+              className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border ${state.isDemoMode
                 ? 'bg-firm-navy/5 text-firm-navy border-firm-navy/20 shadow-sm'
-                : 'bg-transparent text-firm-slate/40 border-firm-slate/15 hover:bg-firm-slate/5 hover:text-firm-navy'
+                : 'bg-transparent text-firm-slate/50 border-firm-slate/20 hover:bg-firm-slate/5 hover:text-firm-navy'
                 }`}
             >
               <Library size={14} className={state.isDemoMode ? 'text-firm-accent' : ''} />
               Testakten {state.isDemoMode ? 'An' : 'Aus'}
             </button>
 
-            <div className="hidden md:block text-right opacity-80">
-              <p className="text-[10px] font-bold text-firm-accent uppercase tracking-[0.2em]">
+            <div className="hidden md:block w-px h-4 bg-firm-border/60 mx-1"></div>
+
+            <div className="hidden md:block text-right opacity-90">
+              <p className="text-[10px] font-bold text-firm-accent uppercase tracking-[0.2em] font-sans">
                 {new Date().toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' })}
               </p>
             </div>
 
+            <div className="hidden md:block w-px h-4 bg-firm-border/60 mx-1"></div>
+
             <button
               onClick={() => setIsSettingsOpen(true)}
-              className="p-2 text-firm-slate hover:text-firm-navy hover:bg-firm-navy/5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-firm-accent/50"
+              className="p-1.5 text-firm-slate hover:text-firm-navy hover:bg-firm-navy/5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-firm-accent/50"
               aria-label="Einstellungen"
             >
-              <Settings2 size={20} />
+              <Settings2 size={18} />
             </button>
           </div>
         </div>

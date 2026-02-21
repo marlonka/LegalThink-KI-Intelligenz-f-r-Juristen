@@ -147,9 +147,8 @@ const BackButton: React.FC<BackButtonProps> = ({
       <button
         ref={buttonRef}
         onClick={onClick}
-        className="group flex items-center gap-2 px-4 py-2 rounded-full
-          bg-firm-card/60 border border-firm-border/40
-          text-firm-slate hover:text-firm-navy hover:bg-firm-card
+        className="group flex items-center gap-2 py-2 pr-4
+          text-firm-slate hover:text-firm-navy
           transition-colors duration-200
           focus:outline-none focus-visible:ring-2 focus-visible:ring-firm-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-firm-paper"
         aria-label={label}
@@ -172,12 +171,10 @@ const BackButton: React.FC<BackButtonProps> = ({
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
       whileTap={{ scale: 0.92 }}
-      className="group relative flex items-center gap-1.5 pl-3 pr-4 py-2 rounded-full overflow-hidden cursor-pointer
-        bg-firm-card/40 backdrop-blur-xl border border-firm-border/30
+      className="group relative flex items-center gap-1.5 pr-4 py-2 overflow-hidden cursor-pointer
         text-firm-slate hover:text-firm-navy
-        shadow-firm-sm hover:shadow-firm
         focus:outline-none focus-visible:ring-2 focus-visible:ring-firm-accent/60 focus-visible:ring-offset-2 focus-visible:ring-offset-firm-paper
-        transition-[box-shadow,color,border-color] duration-300"
+        transition-colors duration-300"
       aria-label={label}
     >
       {/* Radial glow on hover */}
