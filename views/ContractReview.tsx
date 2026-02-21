@@ -368,7 +368,7 @@ const ContractReview: React.FC = () => {
                                 {copiedBriefing ? <Check size={16} className="text-firm-accent" /> : <Copy size={16} />}
                                 {copiedBriefing ? 'Kopiert' : 'Bericht kopieren'}
                             </Button>
-                            <Button onClick={handleGenerateClientLetter} className="!py-2.5 !px-4 text-xs bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] hover:bg-firm-navy/90 !rounded-xl shadow-firm">
+                            <Button onClick={handleGenerateClientLetter} className="!py-2.5 !px-4 text-xs bg-firm-accent text-firm-navy hover:brightness-105 dark:bg-firm-accent dark:text-[#05050A] !rounded-xl shadow-firm">
                                 <Mail size={16} className="text-firm-accent" />
                                 Mandanten-Brief
                             </Button>
@@ -476,7 +476,7 @@ const ContractReview: React.FC = () => {
                         <div className="flex items-center justify-between py-5 sticky top-0 bg-firm-paper/90 z-20 backdrop-blur-md border-b border-firm-slate/5 mb-4">
                             <h3 className="text-xs font-bold text-firm-slate uppercase tracking-widest">Detail-Prüfung ({filteredClauses?.length})</h3>
                             <div className="flex bg-firm-card rounded-xl border border-firm-slate/15 p-1 shadow-sm">
-                                <button onClick={() => setFilter('ALL')} className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-colors ${filter === 'ALL' ? 'bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] shadow' : 'text-firm-slate hover:bg-firm-paper'}`}>Alle</button>
+                                <button onClick={() => setFilter('ALL')} className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-colors ${filter === 'ALL' ? 'bg-firm-accent text-firm-navy dark:bg-firm-accent dark:text-[#05050A] shadow' : 'text-firm-slate hover:bg-firm-paper'}`}>Alle</button>
                                 <button onClick={() => setFilter('DEALBREAKER')} className={`px-4 py-1.5 text-xs font-bold rounded-lg flex items-center gap-1.5 transition-colors ${filter === 'DEALBREAKER' ? 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-200 shadow-sm border border-red-100 dark:border-red-500/30' : 'text-firm-slate hover:bg-firm-paper'}`}>
                                     <AlertTriangle size={12} className={filter === 'DEALBREAKER' ? 'text-red-500' : ''} /> Kritisch
                                 </button>

@@ -208,7 +208,7 @@ const ChronologyBuilder: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleEditMode}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-bold transition-all shadow-sm ${isEditing ? 'bg-[#05050A] text-white dark:bg-firm-accent dark:text-[#05050A] shadow-firm' : 'bg-firm-card text-firm-navy border border-firm-slate/15 hover:border-firm-slate/30 hover:bg-firm-paper/30'}`}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-bold transition-all shadow-sm ${isEditing ? 'bg-firm-accent text-firm-navy dark:bg-firm-accent dark:text-[#05050A] shadow-firm' : 'bg-firm-card text-firm-navy border border-firm-slate/15 hover:border-firm-slate/30 hover:bg-firm-paper/30'}`}
             >
               {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
               {isEditing ? 'Speichern' : 'Editor'}

@@ -292,7 +292,7 @@ const DpiaGenerator: React.FC = () => {
       <Card className="border-0 shadow-firm-lg rounded-3xl overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#05050A] via-firm-accent to-firm-navy opacity-80" />
         <div className="flex items-center gap-4 mb-10 mt-2">
-          <div className={`p-3 rounded-2xl text-white shadow-sm ${mode === 'CREATE' ? 'bg-[#05050A] dark:bg-firm-card' : 'bg-firm-accent'}`}>
+          <div className={`p-3 rounded-2xl shadow-sm ${mode === 'CREATE' ? 'bg-firm-accent text-firm-navy dark:bg-firm-card dark:text-white' : 'bg-firm-accent text-firm-navy'}`}>
             {mode === 'CREATE' ? <Fingerprint size={28} strokeWidth={1.5} /> : <ArrowLeftRight size={28} strokeWidth={1.5} />}
           </div>
           <div>
