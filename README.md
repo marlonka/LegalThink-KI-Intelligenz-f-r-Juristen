@@ -1,6 +1,6 @@
 <div align="center">
   <h1>LegalThink – KI-Intelligenz für Juristen ⚖️</h1>
-  <p><strong>Vom 1x zum 10x Anwalt: Hochperformante KI-Vertragsanalyse und juristische Assistenz, maßgeschneidert für den deutschen Rechtsmarkt (BGB, DSGVO, UWG).</strong></p>
+  <p><strong>Vom 1x zum 10x Anwalt: KI-Vertragsanalyse und juristische Assistenz, maßgeschneidert für den deutschen Rechtsmarkt (BGB, DSGVO, UWG).</strong></p>
 
   <p>
     <a href="https://github.com/marlonka/LegalThink-KI-Intelligenz-f-r-Juristen/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" alt="License"/></a>
@@ -16,7 +16,7 @@
 
 LegalThink überträgt die Leistungsfähigkeit des brandneuen **Google Gemini 3.1 Pro Preview** Modells auf den deutschen Kanzleialltag. 
 
-Inspiriert von internationalen Legal-Tech-Vorreitern, aber **streng optimiert auf deutsches Recht**, bietet diese Open-Source-Lösung eine lokale, datenschutzbewusste Oberfläche für juristische Analysen. Das Interface besticht durch die preisgekrönte Designsprache **"Refined Editorial / Minimal Luxury"** – konzipiert für erfahrene Partner, die Wert auf einen souveränen, klaren und visuell anspruchsvollen Arbeitsbereich legen. Das UI ist vollständig durch **Framer Motion** orchestriert, was flüssige, physikbasierte Animationen und taktiles Feedback garantiert.
+**Otimiert auf deutsches Recht**, bietet diese Open-Source-Lösung eine lokale, datenschutzbewusste Oberfläche für juristische Analysen.
 
 Es ist kein generischer "Chatbot", sondern eine Suite spezialisierter Werkzeuge für Partner, Associates und Rechtsabteilungen.
 
@@ -57,15 +57,6 @@ Prüft Marketing-Materialien und Webseiten-Texte auf "Abmahnfallen".
 ### 6. 🧠 Kanzlei-Playbooks
 Laden Sie Ihre eigenen Muster, AGBs oder "Corporate Wording" Richtlinien hoch. LegalThink prüft und schreibt dann genau in **Ihrem** Stil, wodurch die KI zum perfekten Votums-Schreiber wird.
 
----
-
-## 🎨 Design & Motion "The Masterpiece"
-
-Diese Applikation wurde komplett überarbeitet, um ein **Premium-Gefühl** zu vermitteln. 
-- **Typografie:** `Playfair Display` für autoritäre Überschriften, kombiniert mit scharfem `Inter` für flüssig lesbare Datagrids.
-- **Aesthetic:** Tiefes "Firm Navy" auf "Firm Paper" Off-White mit edlen Gold-Akzenten. Starke asymmetrische Abstände und 1px-feine Rahmen ersetzen generische Drop-Shadows.
-- **Ultra-Wide Layout:** Die App nutzt das "max-w-6xl" Layout Konzept, um auch auf extrem weiten hochauflösenden Monitoren den Platz der Sub-Views perfomed auszunutzen.
-- **Choreografie:** Hochperformantes, durch `Framer Motion` orchestriertes React, das Layoutwechsel sanft animiert und taktile `spring`-Mechaniken auf Buttons und Karten anwendet.
 
 ---
 
@@ -77,7 +68,7 @@ LegalThink ist eine "Client-Side Application" (React/Vite). Das bedeutet:
 3.  Es gibt keinen "LegalThink-Server", der Ihre Daten zwischenspeichert.
 
 > **⚠️ Wichtiger berufsrechtlicher Hinweis:**
-> Die API von Google wird genutzt. Die Verantwortung für die Einhaltung von § 203 StGB (Verschwiegenheitspflicht) liegt beim Anwender. Laden Sie **niemals** Dokumente mit ungeschwärzten personenbezogenen Daten (Namen, Adressen, Unterschriften) hoch, es sei denn, Sie haben einen entsprechenden Vertrag (AVV) mit Google geschlossen, der dies legitimiert.
+> Die API von Google wird genutzt. Die Verantwortung für die Einhaltung von § 203 StGB (Verschwiegenheitspflicht) liegt beim Anwender. Laden Sie **niemals** Dokumente mit ungeschwärzten personenbezogenen Daten (Namen, Adressen, Unterschriften) hoch, es sei denn, Sie haben einen entsprechenden Vertrag (AVV) mit Google geschlossen, der dies ggf. legitimiert.
 
 ---
 
@@ -134,7 +125,7 @@ LegalThink ist Open Source. Wir laden Legal Engineers und entwickelnde Juristen 
 
 ## 📄 Lizenz (MIT)
 
-Copyright (c) 2026 LegalThink
+Copyright (c) 2026 Marlon Kaulich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
